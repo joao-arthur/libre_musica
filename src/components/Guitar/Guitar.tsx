@@ -41,7 +41,7 @@ const guitarFrets = 15;
 export default function guitar() {
     const generateStringNotes = (stringNote: string) =>
         Range(0, guitarFrets + 1).map(
-            i =>
+            (i: number) =>
                 notes[arrayOfNotes[(arrayOfNotes.indexOf(stringNote) + i) % 12]]
         );
 
@@ -62,7 +62,7 @@ export default function guitar() {
                 <tbody>
                     {guitarStrings.reverse().map(string => (
                         <tr>
-                            {generateStringNotes(string).map(note => (
+                            {generateStringNotes(string).map((note: any) => (
                                 <Cell
                                     text={note}
                                     size={guitarFrets}
@@ -73,7 +73,7 @@ export default function guitar() {
                     ))}
                 </tbody>
                 <tfoot>
-                    {Range(0, guitarFrets + 1).map(i => (
+                    {Range(0, guitarFrets + 1).map((i: number) => (
                         <DayBox size={guitarFrets}>
                             <DayLabel>
                                 <b>{i}</b>

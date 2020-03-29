@@ -10,7 +10,7 @@ export default function selector({ options }: props) {
         <Style.Options>
             <ul>
                 {options.map(option => 
-                     <Style.Option>{option}</Style.Option>;
+                     <Style.Option>{option}</Style.Option>
                 )}
             </ul>
         </Style.Options>
