@@ -2,7 +2,7 @@ import React from 'react';
 import * as Style from './Guitar.styles';
 import Cell from './Cell';
 import { DayBox, DayLabel } from './Cell.styles';
-import Selector from '../Selector';
+import UniqueSelector from '../UniqueSelector';
 import { Range } from 'immutable';
 
 const notes: any = {
@@ -36,7 +36,7 @@ const arrayOfNotes: string[] = [
 ];
 
 const guitarStrings = [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E];
-const guitarFrets = 15;
+const guitarFrets = 20;
 
 export default function guitar() {
     const generateStringNotes = (stringNote: string) =>
@@ -48,19 +48,20 @@ export default function guitar() {
     const isAtScale = (note: string) =>
         [
             notes.C,
-            //   notes.D,
+            notes.D,
             notes.E,
-            //   notes.F,
-            notes.G
-            //   notes.A,
-            //   notes.B
+            notes.F,
+            notes.G,
+            notes.A,
+            notes.B
         ].includes(note);
 
     return (
         <>
+            <UniqueSelector options={arrayOfNotes} />
             <Style.Body>
                 <tbody>
-                    {guitarStrings.reverse().map(string => (
+                    {guitarStrings.reverse().map((string) => (
                         <tr>
                             {generateStringNotes(string).map((note: any) => (
                                 <Cell
@@ -82,7 +83,6 @@ export default function guitar() {
                     ))}
                 </tfoot>
             </Style.Body>
-            <Selector options={arrayOfNotes} />
         </>
     );
 }
