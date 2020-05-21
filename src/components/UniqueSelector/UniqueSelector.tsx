@@ -8,8 +8,8 @@ interface props {
 export default function UniqueSelector({ options }: props) {
     return (
         <Style.Options>
-            {options.map(option => (
-                <Style.Option>
+            {options.map((option, index) => (
+                <Style.Option key={index}>
                     <Style.Text>{option}</Style.Text>
                 </Style.Option>
             ))}

@@ -4,6 +4,7 @@ import Cell from './Cell';
 import { DayBox, DayLabel } from './Cell.styles';
 import UniqueSelector from '../UniqueSelector';
 import { Range } from 'immutable';
+import { isAtScale__ } from '../../core/notes';
 
 const notes: any = {
     C: 'C',
@@ -39,6 +40,8 @@ const guitarStrings = [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E];
 const guitarFrets = 20;
 
 export default function guitar() {
+    isAtScale__('C', 'D');
+
     const generateStringNotes = (stringNote: string) =>
         Range(0, guitarFrets + 1).map(
             (i: number) =>
@@ -61,10 +64,11 @@ export default function guitar() {
             <UniqueSelector options={arrayOfNotes} />
             <Style.Body>
                 <tbody>
-                    {guitarStrings.reverse().map((string) => (
-                        <tr>
-                            {generateStringNotes(string).map((note: any) => (
+                    {guitarStrings.reverse().map((string, index) => (
+                        <tr key={index}>
+                            {generateStringNotes(string).map((note: any, i) => (
                                 <Cell
+                                    key={i}
                                     text={note}
                                     size={guitarFrets}
                                     active={isAtScale(note)}
@@ -74,13 +78,15 @@ export default function guitar() {
                     ))}
                 </tbody>
                 <tfoot>
-                    {Range(0, guitarFrets + 1).map((i: number) => (
-                        <DayBox size={guitarFrets}>
-                            <DayLabel>
-                                <b>{i}</b>
-                            </DayLabel>
-                        </DayBox>
-                    ))}
+                    <tr>
+                        {Range(0, guitarFrets + 1).map((i: number, index) => (
+                            <DayBox key={index} size={guitarFrets}>
+                                <DayLabel>
+                                    <b>{i}</b>
+                                </DayLabel>
+                            </DayBox>
+                        ))}
+                    </tr>
                 </tfoot>
             </Style.Body>
         </>

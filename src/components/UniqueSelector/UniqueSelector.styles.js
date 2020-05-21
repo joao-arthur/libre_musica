@@ -24,12 +24,8 @@ export const Option = styled.div`
 
 export const Text = styled.span`
     margin-top: auto;
-
     margin-bottom: auto;
-
     height: 100%;
-
     display: inline-block;
-
     vertical-align: middle;
 `;
