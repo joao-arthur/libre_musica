@@ -38,25 +38,15 @@ const dropDBass = [Notes.D, Notes.A, Notes.D, Notes.G];
 const getScale = (scale: number) =>
     diatonicScale.map(note => (note + scale) % 12);
 
+const getNote = (note: any) => Notes[note];
+
 export const isAtScale__ = (
     note: NotesStrings,
     scale: NotesStrings
 ): boolean => {
-    console.log(Notes[note], Notes[scale]);
+    const scaleNotes = getScale(Notes[scale]).map(getNote);
+    console.log(scaleNotes, note);
 
-    //    console.log(getScale(0));
-    //    console.log(getScale(1));
-    //    console.log(getScale(2));
-    //    console.log(getScale(3));
-    //    console.log(getScale(4));
-    //    console.log(getScale(5));
-    //    console.log(getScale(6));
-    //    console.log(getScale(7));
-    //    console.log(getScale(8));
-    //    console.log(getScale(9));
-    //    console.log(getScale(10));
-    //    console.log(getScale(11));
-    //    console.log(getScale(12));
-
+    console.log(scaleNotes.includes(note));
     return true;
 };

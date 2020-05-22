@@ -40,7 +40,7 @@ const guitarStrings = [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E];
 const guitarFrets = 20;
 
 export default function guitar() {
-    isAtScale__('C', 'D');
+    isAtScale__('C', 'G');
 
     const generateStringNotes = (stringNote: string) =>
         Range(0, guitarFrets + 1).map(
