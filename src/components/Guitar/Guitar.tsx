@@ -4,7 +4,7 @@ import Cell from './Cell';
 import { DayBox, DayLabel } from './Cell.styles';
 import UniqueSelector from '../UniqueSelector';
 import { Range } from 'immutable';
-import { isAtScale__ } from '../../core/notes';
+import { isAtScale, NotesStrings } from '../../core/notes';
 
 const notes: any = {
     C: 'C',
@@ -40,24 +40,11 @@ const guitarStrings = [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E];
 const guitarFrets = 20;
 
 export default function guitar() {
-    isAtScale__('C', 'G');
-
     const generateStringNotes = (stringNote: string) =>
         Range(0, guitarFrets + 1).map(
             (i: number) =>
                 notes[arrayOfNotes[(arrayOfNotes.indexOf(stringNote) + i) % 12]]
         );
-
-    const isAtScale = (note: string) =>
-        [
-            notes.C,
-            notes.D,
-            notes.E,
-            notes.F,
-            notes.G,
-            notes.A,
-            notes.B
-        ].includes(note);
 
     return (
         <>
@@ -71,7 +58,7 @@ export default function guitar() {
                                     key={i}
                                     text={note}
                                     size={guitarFrets}
-                                    active={isAtScale(note)}
+                                    active={isAtScale(note, 'C')}
                                 />
                             ))}
                         </tr>
