@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Label, ActiveBox } from './Cell.styles';
+import { Container, Label, Box } from './Cell.styles';
 
 interface props {
     text: string;
@@ -9,9 +9,9 @@ interface props {
 }
 
 export default ({ text, size, active }: props) => (
-    <Box size={size}>
-        <ActiveBox active={active}>
+    <Container size={size}>
+        <Box active={active}>
             <Label>{text}</Label>
-        </ActiveBox>
-    </Box>
+        </Box>
+    </Container>
 );

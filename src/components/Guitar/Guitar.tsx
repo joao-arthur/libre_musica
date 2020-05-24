@@ -41,7 +41,7 @@ export default function Guitar() {
                 selected={scale}
                 onChange={setScale}
             />
-            <Style.Body>
+            <Style.Table>
                 <tbody>
                     {standardGuitar
                         .slice(0)
@@ -72,7 +72,7 @@ export default function Guitar() {
                         ))}
                     </tr>
                 </tfoot>
-            </Style.Body>
+            </Style.Table>
         </>
     );
 }

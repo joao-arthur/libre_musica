@@ -13,7 +13,7 @@ export default function UniqueSelector<T>({
     selected
 }: props<T>) {
     return (
-        <Style.Options>
+        <Style.Container>
             {options.map((option, index) => (
                 <Style.Option
                     key={index}
@@ -23,6 +23,6 @@ export default function UniqueSelector<T>({
                     <Style.Label>{option}</Style.Label>
                 </Style.Option>
             ))}
-        </Style.Options>
+        </Style.Container>
     );
 }

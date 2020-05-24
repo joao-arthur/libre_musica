@@ -13,7 +13,7 @@ export const Button = styled.button`
     color: white;
 `;
 
-export const Body = styled.table`
+export const Table = styled.table`
     width: 100%;
     background-color: ${styles.lightGrey};
     border-collapse: collapse;

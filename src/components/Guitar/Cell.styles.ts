@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import styles from '../../core/styles';
 
-interface boxProps {
+interface containerProps {
     size: number;
 }
 
-interface activeProps {
+interface boxProps {
     active: boolean;
 }
 
-export const Box = styled.td<boxProps>`
+export const Container = styled.td<containerProps>`
     width: calc(100% / ${({ size }) => (size ? size + 1 : 1)});
     height: 3.5rem;
     cursor: pointer;
@@ -17,7 +17,7 @@ export const Box = styled.td<boxProps>`
     text-align: center;
 `;
 
-export const ActiveBox = styled.div<activeProps>`
+export const Box = styled.div<boxProps>`
     border: none;
     width: 3rem;
     height: 3rem;
