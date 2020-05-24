@@ -5,14 +5,12 @@ interface props {
     options: any[];
 }
 
-export default function UniqueSelector({ options }: props) {
-    return (
-        <Style.Options>
-            {options.map((option, index) => (
-                <Style.Option key={index}>
-                    <Style.Text>{option}</Style.Text>
-                </Style.Option>
-            ))}
-        </Style.Options>
-    );
-}
+export default ({ options }: props) => (
+    <Style.Options>
+        {options.map((option, index) => (
+            <Style.Option key={index} onClick={() => console.log(option)}>
+                <Style.Text>{option}</Style.Text>
+            </Style.Option>
+        ))}
+    </Style.Options>
+);

@@ -25,12 +25,12 @@ export const diasDaSemana = [
     'Sábado'
 ];
 
-export const getMonthTotalDays = (year, month) => {
-    if (month !== 1) return monthDays[month];
-    return monthDays[1][
-        +((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)
-    ];
-};
+export const getMonthTotalDays = (year, month) =>
+    month !== 1
+        ? monthDays[month]
+        : monthDays[1][
+              +((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)
+          ];
 
 export const monthDaysToGrid = (year, month) => {
     const firstDayOfWeekInMonth = new Date(year, month, 1).getDay();

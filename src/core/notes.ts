@@ -21,7 +21,14 @@ const harmonicScale = [0, 2, 4, 5, 7, 8, 11];
 const doubleHarmonicScale = [0, 1, 4, 5, 7, 8, 11];
 const pentatonicScale = [0, 2, 4, 7, 9];
 
-const standardGuitar = [Notes.E, Notes.A, Notes.D, Notes.G, Notes.B, Notes.E];
+export const standardGuitar = [
+    Notes.E,
+    Notes.A,
+    Notes.D,
+    Notes.G,
+    Notes.B,
+    Notes.E
+];
 const dropDGuitar = [Notes.D, Notes.A, Notes.D, Notes.G, Notes.B, Notes.E];
 const dropCGuitar = [Notes.C, Notes.G, Notes.C, Notes.F, Notes.A, Notes.D];
 
@@ -33,7 +40,7 @@ const dropDBass = [Notes.D, Notes.A, Notes.D, Notes.G];
 const getScale = (scale: number) =>
     diatonicScale.map(note => (note + scale) % 12);
 
-const getNote = (note: any) => Notes[note];
+export const getNote = (note: any) => Notes[note];
 
-export const isAtScale__ = (note: NotesStrings, scale: NotesStrings): boolean =>
+export const isAtScale = (note: NotesStrings, scale: NotesStrings): boolean =>
     getScale(Notes[scale]).map(getNote).includes(note);

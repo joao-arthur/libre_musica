@@ -3,79 +3,58 @@ import * as Style from './Guitar.styles';
 import Cell from './Cell';
 import { DayBox, DayLabel } from './Cell.styles';
 import UniqueSelector from '../UniqueSelector';
-import { Range } from 'immutable';
-import { isAtScale, NotesStrings } from '../../core/notes';
-
-const notes: any = {
-    C: 'C',
-    'C#': 'C#',
-    D: 'D',
-    'D#': 'D#',
-    E: 'E',
-    F: 'F',
-    'F#': 'F#',
-    G: 'G',
-    'G#': 'G#',
-    A: 'A',
-    'A#': 'A#',
-    B: 'B'
-};
+import { isAtScale, standardGuitar, getNote } from '../../core/notes';
+import range from '../../core/utils/range';
 
 const arrayOfNotes: string[] = [
-    notes.C,
-    notes['C#'],
-    notes.D,
-    notes['D#'],
-    notes.E,
-    notes.F,
-    notes['F#'],
-    notes.G,
-    notes['G#'],
-    notes.A,
-    notes['A#'],
-    notes.B
+    'C',
+    'C#',
+    'D',
+    'D#',
+    'E',
+    'F',
+    'F#',
+    'G',
+    'G#',
+    'A',
+    'A#',
+    'B'
 ];
 
-const guitarStrings = [notes.E, notes.A, notes.D, notes.G, notes.B, notes.E];
 const guitarFrets = 20;
 
-export default function guitar() {
-    const generateStringNotes = (stringNote: string) =>
-        Range(0, guitarFrets + 1).map(
-            (i: number) =>
-                notes[arrayOfNotes[(arrayOfNotes.indexOf(stringNote) + i) % 12]]
-        );
+const generateStringNotes = (stringNote: number) =>
+    range(guitarFrets + 1).map(i => getNote((stringNote + i) % 12));
 
-    return (
-        <>
-            <UniqueSelector options={arrayOfNotes} />
-            <Style.Body>
-                <tbody>
-                    {guitarStrings.reverse().map((string, index) => (
-                        <tr key={index}>
-                            {generateStringNotes(string).map((note: any, i) => (
-                                <Cell
-                                    key={i}
-                                    text={note}
-                                    size={guitarFrets}
-                                    active={isAtScale(note, 'C')}
-                                />
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        {Range(0, guitarFrets + 1).map((i: number, index) => (
-                            <DayBox key={index} size={guitarFrets}>
-                                <DayLabel>
-                                    <b>{i}</b>
-                                </DayLabel>
-                            </DayBox>
+export default () => (
+    <>
+        <UniqueSelector options={arrayOfNotes} />
+        <Style.Body>
+            <tbody>
+                {standardGuitar.reverse().map((string, index) => (
+                    <tr key={index}>
+                        {generateStringNotes(string).map((note: any, i) => (
+                            <Cell
+                                key={i}
+                                text={note}
+                                size={guitarFrets}
+                                active={isAtScale(note, 'C')}
+                            />
                         ))}
                     </tr>
-                </tfoot>
-            </Style.Body>
-        </>
-    );
-}
+                ))}
+            </tbody>
+            <tfoot>
+                <tr>
+                    {range(guitarFrets + 1).map(i => (
+                        <DayBox key={i} size={guitarFrets}>
+                            <DayLabel>
+                                <b>{i}</b>
+                            </DayLabel>
+                        </DayBox>
+                    ))}
+                </tr>
+            </tfoot>
+        </Style.Body>
+    </>
+);

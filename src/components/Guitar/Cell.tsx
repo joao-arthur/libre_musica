@@ -8,12 +8,10 @@ interface props {
     active: boolean;
 }
 
-export default function cell({ text, size, active }: props) {
-    return (
-        <DayBox size={size}>
-            <ActiveBox active={active}>
-                <DayLabel>{text}</DayLabel>
-            </ActiveBox>
-        </DayBox>
-    );
-}
+export default ({ text, size, active }: props) => (
+    <DayBox size={size}>
+        <ActiveBox active={active}>
+            <DayLabel>{text}</DayLabel>
+        </ActiveBox>
+    </DayBox>
+);

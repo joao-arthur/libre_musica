@@ -13,9 +13,9 @@ export const Option = styled.div`
     height: 80px;
     font-size: 20px;
     text-align: center;
-
     background-color: darkblue;
     color: white;
+    cursor: pointer;
 
     &:hover {
         background-color: yellow;
