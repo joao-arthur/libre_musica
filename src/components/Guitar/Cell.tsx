@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DayBox, DayLabel, ActiveBox } from './Cell.styles';
+import { Box, Label, ActiveBox } from './Cell.styles';
 
 interface props {
     text: string;
@@ -9,9 +9,9 @@ interface props {
 }
 
 export default ({ text, size, active }: props) => (
-    <DayBox size={size}>
+    <Box size={size}>
         <ActiveBox active={active}>
-            <DayLabel>{text}</DayLabel>
+            <Label>{text}</Label>
         </ActiveBox>
-    </DayBox>
+    </Box>
 );

@@ -1,11 +1,5 @@
 import styled from 'styled-components';
-
-//#42a5f5 primary
-//#80d6ff light
-//#0077c2 dark
-
-//#f2f2f2  primary gray
-//#aeaeae  dark gray
+import styles from '../../core/styles';
 
 export const Button = styled.button`
     width: 2rem;
@@ -21,6 +15,6 @@ export const Button = styled.button`
 
 export const Body = styled.table`
     width: 100%;
-    background-color: #fff5ff;
+    background-color: ${styles.lightGrey};
     border-collapse: collapse;
 `;

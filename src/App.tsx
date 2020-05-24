@@ -1,11 +1,13 @@
 import React from 'react';
-
+import styled from 'styled-components';
 import Guitar from './components/Guitar';
 
-export default function App() {
-    return (
-        <div className='App'>
-            <Guitar />
-        </div>
-    );
-}
+const App = styled.div`
+    font-family: sans-serif;
+`;
+
+export default () => (
+    <App>
+        <Guitar />
+    </App>
+);
