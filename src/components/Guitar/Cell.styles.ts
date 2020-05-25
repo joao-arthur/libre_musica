@@ -24,6 +24,7 @@ export const Box = styled.div<boxProps>`
     display: inline-flex;
     border-radius: 100%;
     background-color: ${({ active }) => (active ? styles.dark : styles.light)};
+    color: white;
 `;
 
 export const Label = styled.p`

@@ -14,24 +14,22 @@ export const Container = styled.div`
 `;
 
 export const Option = styled.div<optionProps>`
-    width: 80px;
-    height: 80px;
-    font-size: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 1em;
     text-align: center;
     background-color: ${({ selected }) =>
         selected ? styles.dark : styles.primary};
     color: white;
     cursor: pointer;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &:hover {
-        font-size: 1.65em;
+        font-size: 1.2em;
     }
 `;
 
-export const Label = styled.span`
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-`;
+export const Label = styled.span``;
