@@ -17,6 +17,7 @@ export default function Guitar() {
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
     const [instrument, setInstrument] = useState('Guitar');
+    const [scaleKind, setScaleKind] = useState('diatonic');
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
@@ -42,7 +43,12 @@ export default function Guitar() {
                 <option value='Bass'>Bass</option>
             </select>
             <label>Scale</label>
-            <select id='cars' name='carlist'>
+            <select
+                id='scaleKind'
+                name='scaleKind'
+                value={scaleKind}
+                onChange={e => setScaleKind(e.target.value)}
+            >
                 <option value='diatonic'>diatonic</option>
                 <option value='harmonic'>harmonic</option>
                 <option value='doubleHarmonic'>doubleHarmonic</option>
@@ -89,7 +95,7 @@ export default function Guitar() {
                                     key={i}
                                     text={note}
                                     size={fretNumber}
-                                    active={isAtScale(note, scale)}
+                                    active={isAtScale(note, scale, scaleKind)}
                                 />
                             ))}
                         </tr>
