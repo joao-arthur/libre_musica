@@ -3,6 +3,7 @@ import * as Style from './Guitar.styles';
 import Cell from './Cell';
 import { Container, Label } from './Cell.styles';
 import UniqueSelector from '../UniqueSelector';
+import NumberSelector from '../NumberSelector';
 import {
     NotesStrings,
     notesArray,
@@ -42,49 +43,42 @@ export default function Guitar() {
                 <option value='Guitar'>Guitar</option>
                 <option value='Bass'>Bass</option>
             </select>
-            <label>Scale</label>
-            <select
-                id='scaleKind'
-                name='scaleKind'
-                value={scaleKind}
-                onChange={e => setScaleKind(e.target.value)}
-            >
-                <option value='diatonic'>diatonic</option>
-                <option value='harmonic'>harmonic</option>
-                <option value='doubleHarmonic'>doubleHarmonic</option>
-                <option value='pentatonic'>pentatonic</option>
-            </select>
-            <label>Tuning</label>
-            <select id='tuning' name='tuning'>
-                <option value='Standard'>Standard</option>
-                <option value='Drop D'>Drop D</option>
-                <option value='Drop C'>Drop C</option>
-                <option value='DADGAD'>DADGAD</option>
-            </select>
-            <label>Strings</label>
-            <input
-                type='number'
-                id='stringNumber'
-                name='stringNumber'
+            <UniqueSelector
+                options={[
+                    'diatonic',
+                    'harmonic',
+                    'doubleHarmonic',
+                    'pentatonic'
+                ]}
+                selected={scaleKind}
+                onChange={setScaleKind}
+                title={'Scale'}
+            />
+            <UniqueSelector
+                options={['Standard', 'Drop D', 'Drop C', 'DADGAD']}
+                selected={'Standard'}
+                onChange={() => {}}
+                title={'Tuning'}
+            />
+            <NumberSelector
                 min={instrument === 'Guitar' ? 6 : 4}
                 max={instrument === 'Guitar' ? 8 : 6}
                 value={stringNumber}
-                onChange={e => setStringNumber(parseInt(e.target.value, 10))}
+                onChange={setStringNumber}
+                title={'Strings'}
             />
-            <label>Frets</label>
-            <input
-                type='number'
-                id='fretNumber'
-                name='fretNumber'
-                min='11'
-                max='24'
+            <NumberSelector
+                min={11}
+                max={24}
                 value={fretNumber}
-                onChange={e => setFretNumber(parseInt(e.target.value, 10))}
+                onChange={setFretNumber}
+                title={'Frets'}
             />
             <UniqueSelector
                 options={notesArray}
                 selected={scale}
                 onChange={setScale}
+                title={'key'}
             />
             <Style.Table>
                 <tbody>
