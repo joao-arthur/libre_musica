@@ -1,11 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import * as Style from './Calendar.styles';
 import Cell from './Cell';
-import {
-    monthDaysToGrid,
-    diasDaSemana,
-    nomeDosMeses
-} from './Helper';
+import { monthDaysToGrid, diasDaSemana, nomeDosMeses } from './Helper';
 
 export default function Calendar() {
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());

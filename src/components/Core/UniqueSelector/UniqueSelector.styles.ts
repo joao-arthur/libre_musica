@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import styles from '../../core/styles';
 
 interface optionProps {
     selected: boolean;
@@ -19,7 +18,7 @@ export const Option = styled.div<optionProps>`
     font-size: 1em;
     text-align: center;
     background-color: ${({ selected }) =>
-        selected ? styles.dark : styles.primary};
+        selected ? 'var(--dark)' : 'var(--primary)'};
     color: white;
     cursor: pointer;
 

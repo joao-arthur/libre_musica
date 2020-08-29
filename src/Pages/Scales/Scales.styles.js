@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import styles from '../../core/styles';
 
 export const Button = styled.button`
     width: 2rem;
@@ -11,10 +10,4 @@ export const Button = styled.button`
     cursor: pointer;
     background-color: unset;
     color: white;
-`;
-
-export const Table = styled.table`
-    width: 100%;
-    background-color: ${styles.lightGrey};
-    border-collapse: collapse;
 `;

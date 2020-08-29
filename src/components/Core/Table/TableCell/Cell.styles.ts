@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import styles from '../../core/styles';
 
 interface containerProps {
     size: number;
@@ -13,7 +12,7 @@ export const Container = styled.td<containerProps>`
     width: calc(100% / ${({ size }) => (size ? size + 1 : 1)});
     height: 3.5rem;
     cursor: pointer;
-    border: 1px solid ${styles.darkGrey};
+    border: 1px solid var(--darkGrey);
     text-align: center;
 `;
 
@@ -23,7 +22,8 @@ export const Box = styled.div<boxProps>`
     height: 3rem;
     display: inline-flex;
     border-radius: 100%;
-    background-color: ${({ active }) => (active ? styles.dark : styles.light)};
+    background-color: ${({ active }) =>
+        active ? 'var(--dark)' : 'var(--light)'};
     color: white;
 `;
 

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import * as Style from './Guitar.styles';
-import Cell from './Cell';
-import { Container, Label } from './Cell.styles';
-import UniqueSelector from '../UniqueSelector';
-import NumberSelector from '../NumberSelector';
+import * as Style from './Scales.styles';
+import Cell from '../../components/Core/Table/TableCell/Cell';
+import {
+    Container,
+    Label
+} from '../../components/Core/Table/TableCell/Cell.styles';
+import UniqueSelector from '../../components/Core/UniqueSelector';
+import NumberSelector from '../../components/Core/NumberSelector';
 import {
     NotesStrings,
     notesArray,
@@ -12,6 +15,7 @@ import {
     getNote
 } from '../../core/notes';
 import range from '../../core/utils/range';
+import Table from '../../components/Core/Table';
 
 export default function Guitar() {
     const [scale, setScale] = useState<NotesStrings>('C');
@@ -80,33 +84,27 @@ export default function Guitar() {
                 onChange={setScale}
                 title={'key'}
             />
-            <Style.Table>
-                <tbody>
-                    {strings[instrument][stringNumber].map((string, index) => (
-                        <tr key={index}>
-                            {generateStringNotes(string).map((note: any, i) => (
-                                <Cell
-                                    key={i}
-                                    text={note}
-                                    size={fretNumber}
-                                    active={isAtScale(note, scale, scaleKind)}
-                                />
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        {range(fretNumber + 1).map(i => (
-                            <Container key={i} size={fretNumber}>
-                                <Label>
-                                    <b>{i}</b>
-                                </Label>
-                            </Container>
+            <Table
+                body={strings[instrument][stringNumber].map((string, index) => (
+                    <tr key={index}>
+                        {generateStringNotes(string).map((note: any, i) => (
+                            <Cell
+                                key={i}
+                                text={note}
+                                size={fretNumber}
+                                active={isAtScale(note, scale, scaleKind)}
+                            />
                         ))}
                     </tr>
-                </tfoot>
-            </Style.Table>
+                ))}
+                foot={range(fretNumber + 1).map(i => (
+                    <Container key={i} size={fretNumber}>
+                        <Label>
+                            <b>{i}</b>
+                        </Label>
+                    </Container>
+                ))}
+            />
         </>
     );
 }
