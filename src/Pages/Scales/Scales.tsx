@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import * as Style from './Scales.styles';
+import { Separator } from './Scales.styles';
 import Cell from '../../components/Core/Table/TableCell/Cell';
 import {
     Container,
     Label
 } from '../../components/Core/Table/TableCell/Cell.styles';
-import UniqueSelector from '../../components/Core/UniqueSelector';
+import BoxSelector from '../../components/Core/BoxSelector';
 import NumberSelector from '../../components/Core/NumberSelector';
 import {
     NotesStrings,
@@ -47,42 +47,44 @@ export default function Guitar() {
                 <option value='Guitar'>Guitar</option>
                 <option value='Bass'>Bass</option>
             </select>
-            <UniqueSelector
-                options={[
-                    'diatonic',
-                    'harmonic',
-                    'doubleHarmonic',
-                    'pentatonic'
-                ]}
-                selected={scaleKind}
-                onChange={setScaleKind}
-                title={'Scale'}
-            />
-            <UniqueSelector
-                options={['Standard', 'Drop D', 'Drop C', 'DADGAD']}
-                selected={'Standard'}
-                onChange={() => {}}
-                title={'Tuning'}
-            />
+            <Separator>
+                <BoxSelector
+                    options={[
+                        'diatonic',
+                        'harmonic',
+                        'doubleHarmonic',
+                        'pentatonic'
+                    ]}
+                    selected={scaleKind}
+                    onChange={setScaleKind}
+                    title='Scale'
+                />
+                <BoxSelector
+                    options={['Standard', 'Drop D', 'Drop C', 'DADGAD']}
+                    selected={'Standard'}
+                    onChange={() => {}}
+                    title='Tuning'
+                />
+            </Separator>
             <NumberSelector
                 min={instrument === 'Guitar' ? 6 : 4}
                 max={instrument === 'Guitar' ? 8 : 6}
                 value={stringNumber}
                 onChange={setStringNumber}
-                title={'Strings'}
+                title='Strings'
             />
             <NumberSelector
                 min={11}
                 max={24}
                 value={fretNumber}
                 onChange={setFretNumber}
-                title={'Frets'}
+                title='Frets'
             />
-            <UniqueSelector
+            <BoxSelector
                 options={notesArray}
                 selected={scale}
                 onChange={setScale}
-                title={'key'}
+                title='Key'
             />
             <Table
                 body={strings[instrument][stringNumber].map((string, index) => (

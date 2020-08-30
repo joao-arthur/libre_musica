@@ -11,3 +11,7 @@ export const Button = styled.button`
     background-color: unset;
     color: white;
 `;
+
+export const Separator = styled.div`
+    display: flex;
+`;

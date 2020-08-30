@@ -5,10 +5,16 @@ interface optionProps {
 }
 
 export const Container = styled.div`
+    flex: auto;
+`;
+
+export const Title = styled.h3`
+    text-align: center;
+`;
+
+export const OptionsContainer = styled.div`
     display: flex;
-    width: 100%;
-    overflow: auto;
-    padding: 2px;
+    padding: 2px 0px;
     justify-content: space-around;
 `;
 
@@ -30,5 +36,3 @@ export const Option = styled.div<optionProps>`
         font-size: 1.2em;
     }
 `;
-
-export const Label = styled.span``;

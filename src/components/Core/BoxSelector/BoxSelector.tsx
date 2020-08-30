@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Styles from './UniqueSelector.styles';
+import * as Styles from './BoxSelector.styles';
 
 interface props<T> {
     options: T[];
@@ -8,26 +8,26 @@ interface props<T> {
     title: string;
 }
 
-export default function UniqueSelector<T>({
+export default function BoxSelector<T>({
     options,
     onChange,
     selected,
     title
 }: props<T>) {
     return (
-        <>
-            <h3>{title}</h3>
-            <Styles.Container>
+        <Styles.Container>
+            <Styles.Title>{title}</Styles.Title>
+            <Styles.OptionsContainer>
                 {options.map((option, index) => (
                     <Styles.Option
                         key={index}
                         selected={option === selected}
                         onClick={() => onChange(option)}
                     >
-                        <Styles.Label>{option}</Styles.Label>
+                        <span>{option}</span>
                     </Styles.Option>
                 ))}
-            </Styles.Container>
-        </>
+            </Styles.OptionsContainer>
+        </Styles.Container>
     );
 }
