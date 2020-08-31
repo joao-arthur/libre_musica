@@ -1,12 +1,4 @@
 import React, { useState } from 'react';
-import { Separator } from './Scales.styles';
-import Cell from '../../components/Core/Table/TableCell/Cell';
-import {
-    Container,
-    Label
-} from '../../components/Core/Table/TableCell/Cell.styles';
-import BoxSelector from '../../components/Core/BoxSelector';
-import NumberSelector from '../../components/Core/NumberSelector';
 import {
     NotesStrings,
     notesArray,
@@ -15,7 +7,16 @@ import {
     getNote
 } from '../../core/notes';
 import range from '../../core/utils/range';
-import Table from '../../components/Core/Table';
+import Cell from '../../Components/Core/Table/TableCell/Cell';
+import {
+    Container,
+    Label
+} from '../../Components/Core/Table/TableCell/Cell.styles';
+import BoxSelector from '../../Components/Core/BoxSelector';
+import Selector from '../../Components/Core/Selector';
+import NumberSelector from '../../Components/Core/NumberSelector';
+import Table from '../../Components/Core/Table';
+import { Separator } from './Scales.styles';
 
 export default function Guitar() {
     const [scale, setScale] = useState<NotesStrings>('C');
@@ -28,25 +29,21 @@ export default function Guitar() {
         range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
     return (
         <>
-            <label>Instrument</label>
-            <select
-                id='cars'
-                name='instrument'
-                value={instrument}
-                onChange={e => {
-                    switch (e.target.value) {
+            <Selector
+                title='Instrument'
+                selected={instrument}
+                onChange={instrument => {
+                    switch (instrument) {
                         case 'Guitar':
                             setStringNumber(6);
                             break;
                         case 'Bass':
                             setStringNumber(4);
                     }
-                    setInstrument(e.target.value);
+                    setInstrument(instrument);
                 }}
-            >
-                <option value='Guitar'>Guitar</option>
-                <option value='Bass'>Bass</option>
-            </select>
+                options={['Guitar', 'Bass']}
+            />
             <Separator>
                 <BoxSelector
                     options={[

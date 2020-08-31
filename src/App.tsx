@@ -1,10 +1,10 @@
 import React from 'react';
 import Scales from './Pages/Scales';
-import GlobalStyle from './components/Core/GlobalStyle';
+import GlobalStyle from './Components/Core/GlobalStyle';
 
 export default () => (
     <>
-        <GlobalStyle/>
+        <GlobalStyle />
         <Scales />
     </>
 );
