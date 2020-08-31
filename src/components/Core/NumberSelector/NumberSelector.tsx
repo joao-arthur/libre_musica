@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Styles from './NumberSelector.styles';
 
 interface props {
     value: number;
@@ -9,8 +10,8 @@ interface props {
 }
 
 export default ({ value, min, max, onChange, title }: props) => (
-    <>
-        <h3>{title}</h3>
+    <Styles.Container>
+        <Styles.Title>{title}</Styles.Title>
         <div>{value}</div>
         <button disabled={value >= max} onClick={() => onChange(value + 1)}>
             +
@@ -18,5 +19,5 @@ export default ({ value, min, max, onChange, title }: props) => (
         <button disabled={value <= min} onClick={() => onChange(value - 1)}>
             -
         </button>
-    </>
+    </Styles.Container>
 );

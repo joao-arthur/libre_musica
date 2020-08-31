@@ -29,21 +29,6 @@ export default function Guitar() {
         range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
     return (
         <>
-            <Selector
-                title='Instrument'
-                selected={instrument}
-                onChange={instrument => {
-                    switch (instrument) {
-                        case 'Guitar':
-                            setStringNumber(6);
-                            break;
-                        case 'Bass':
-                            setStringNumber(4);
-                    }
-                    setInstrument(instrument);
-                }}
-                options={['Guitar', 'Bass']}
-            />
             <Separator>
                 <BoxSelector
                     options={[
@@ -63,20 +48,37 @@ export default function Guitar() {
                     title='Tuning'
                 />
             </Separator>
-            <NumberSelector
-                min={instrument === 'Guitar' ? 6 : 4}
-                max={instrument === 'Guitar' ? 8 : 6}
-                value={stringNumber}
-                onChange={setStringNumber}
-                title='Strings'
-            />
-            <NumberSelector
-                min={11}
-                max={24}
-                value={fretNumber}
-                onChange={setFretNumber}
-                title='Frets'
-            />
+            <Separator>
+                <Selector
+                    title='Instrument'
+                    selected={instrument}
+                    onChange={instrument => {
+                        switch (instrument) {
+                            case 'Guitar':
+                                setStringNumber(6);
+                                break;
+                            case 'Bass':
+                                setStringNumber(4);
+                        }
+                        setInstrument(instrument);
+                    }}
+                    options={['Guitar', 'Bass']}
+                />
+                <NumberSelector
+                    min={instrument === 'Guitar' ? 6 : 4}
+                    max={instrument === 'Guitar' ? 8 : 6}
+                    value={stringNumber}
+                    onChange={setStringNumber}
+                    title='Strings'
+                />
+                <NumberSelector
+                    min={11}
+                    max={24}
+                    value={fretNumber}
+                    onChange={setFretNumber}
+                    title='Frets'
+                />
+            </Separator>
             <BoxSelector
                 options={notesArray}
                 selected={scale}

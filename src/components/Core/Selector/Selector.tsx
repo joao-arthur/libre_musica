@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Styles from './Selector.styles';
 
 interface props {
     options: string[];
@@ -14,8 +15,8 @@ export default function BoxSelector({
     title
 }: props) {
     return (
-        <div>
-            <h3>{title}</h3>
+        <Styles.Container>
+            <Styles.Title>{title}</Styles.Title>
             <select
                 name={title}
                 value={selected}
@@ -23,10 +24,10 @@ export default function BoxSelector({
             >
                 {options.map((option, index) => (
                     <option key={index} value={option}>
-                        <span>{option}</span>
+                        {option}
                     </option>
                 ))}
             </select>
-        </div>
+        </Styles.Container>
     );
 }
