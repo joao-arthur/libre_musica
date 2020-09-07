@@ -6,7 +6,7 @@ import {
     strings,
     getNote
 } from '../../core/notes';
-import range from '../../core/utils/range';
+import range from '../../core/range';
 import Cell from '../../Components/Core/Table/TableCell/Cell';
 import {
     Container,
@@ -18,32 +18,38 @@ import NumberSelector from '../../Components/Core/NumberSelector';
 import Table from '../../Components/Core/Table';
 import { Separator } from './Scales.styles';
 
-export default function Guitar() {
-    const [scale, setScale] = useState<NotesStrings>('C');
+export default () => {
+    const [scale, setScale] = useState(0);
+    const [scaleKind, setScaleKind] = useState(0);
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
     const [instrument, setInstrument] = useState('Guitar');
-    const [scaleKind, setScaleKind] = useState('diatonic');
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
+
     return (
         <>
             <Separator>
                 <BoxSelector
                     options={[
-                        'diatonic',
-                        'harmonic',
-                        'doubleHarmonic',
-                        'pentatonic'
+                        { name: 'diatonic', value: 0 },
+                        { name: 'harmonic', value: 1 },
+                        { name: 'double harmonic', value: 2 },
+                        { name: 'pentatonic', value: 3 }
                     ]}
                     selected={scaleKind}
                     onChange={setScaleKind}
                     title='Scale'
                 />
                 <BoxSelector
-                    options={['Standard', 'Drop D', 'Drop C', 'DADGAD']}
-                    selected={'Standard'}
+                    options={[
+                        { name: 'Standard', value: 0 },
+                        { name: 'Drop D', value: 1 },
+                        { name: 'Drop C', value: 2 },
+                        { name: 'DADGAD', value: 3 }
+                    ]}
+                    selected={0}
                     onChange={() => {}}
                     title='Tuning'
                 />
@@ -80,7 +86,20 @@ export default function Guitar() {
                 />
             </Separator>
             <BoxSelector
-                options={notesArray}
+                options={[
+                    { name: 'C', value: 0 },
+                    { name: 'C#', value: 1 },
+                    { name: 'D', value: 2 },
+                    { name: 'D#', value: 3 },
+                    { name: 'E', value: 4 },
+                    { name: 'F', value: 5 },
+                    { name: 'F#', value: 6 },
+                    { name: 'G', value: 7 },
+                    { name: 'G#', value: 8 },
+                    { name: 'A', value: 9 },
+                    { name: 'A#', value: 10 },
+                    { name: 'B', value: 11 }
+                ]}
                 selected={scale}
                 onChange={setScale}
                 title='Key'
@@ -108,4 +127,4 @@ export default function Guitar() {
             />
         </>
     );
-}
+};

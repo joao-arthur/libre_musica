@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import * as Styles from './NumberSelector.styles';
 
 interface props {
@@ -9,15 +9,38 @@ interface props {
     title: string;
 }
 
-export default ({ value, min, max, onChange, title }: props) => (
-    <Styles.Container>
-        <Styles.Title>{title}</Styles.Title>
-        <div>{value}</div>
-        <button disabled={value >= max} onClick={() => onChange(value + 1)}>
-            +
-        </button>
-        <button disabled={value <= min} onClick={() => onChange(value - 1)}>
-            -
-        </button>
-    </Styles.Container>
-);
+export default ({ value, min, max, onChange, title }: props) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const maybeValue = Number(e.target.value);
+        if (!maybeValue) return;
+        if (maybeValue > max) return;
+        if (maybeValue < min) return;
+        onChange(Number(maybeValue));
+    };
+
+    return (
+        <Styles.Container>
+            <Styles.Title>{title}</Styles.Title>
+            <Styles.Input
+                type='number'
+                min={min}
+                max={max}
+                required
+                onChange={handleInputChange}
+                value={value}
+            />
+            <Styles.Button
+                disabled={value >= max}
+                onClick={() => onChange(value + 1)}
+            >
+                +
+            </Styles.Button>
+            <Styles.Button
+                disabled={value <= min}
+                onClick={() => onChange(value - 1)}
+            >
+                -
+            </Styles.Button>
+        </Styles.Container>
+    );
+};

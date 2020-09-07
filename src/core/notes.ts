@@ -43,6 +43,7 @@ enum Modes {
     Aeolian = 9,
     Locrian = 11
 }
+
 export type ModesStrings = keyof typeof Modes;
 const dropDGuitar = [Notes.D, Notes.A, Notes.D, Notes.G, Notes.B, Notes.E];
 const dropCGuitar = [Notes.C, Notes.G, Notes.C, Notes.F, Notes.A, Notes.D];
@@ -78,19 +79,20 @@ export const strings: TInstruments = {
         ]
     }
 };
-const getScale = (scale: number, scaleKind: string) => {
+
+const getScale = (scale: number, scaleKind: number) => {
     let chosenScale;
     switch (scaleKind) {
-        case 'diatonic':
+        case 0:
             chosenScale = diatonicScale;
             break;
-        case 'harmonic':
+        case 1:
             chosenScale = harmonicScale;
             break;
-        case 'doubleHarmonic':
+        case 2:
             chosenScale = doubleHarmonicScale;
             break;
-        case 'pentatonic':
+        case 3:
             chosenScale = pentatonicScale;
             break;
         default:
@@ -100,8 +102,9 @@ const getScale = (scale: number, scaleKind: string) => {
 };
 
 export const getNote = (note: any) => Notes[note];
+
 export const isAtScale = (
     note: NotesStrings,
-    scale: NotesStrings,
-    scaleKind: string
-): boolean => getScale(Notes[scale], scaleKind).map(getNote).includes(note);
+    scale: number,
+    scaleKind: number
+): boolean => getScale(scale, scaleKind).map(getNote).includes(note);

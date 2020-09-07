@@ -1,33 +1,31 @@
 import React from 'react';
 import * as Styles from './BoxSelector.styles';
 
-interface props<T> {
-    options: T[];
-    onChange: (option: T) => void;
-    selected: T;
+interface Option {
+    name: string;
+    value: number;
+}
+
+interface props {
+    options: Option[];
+    onChange: (option: number) => void;
+    selected: number;
     title: string;
 }
 
-export default function BoxSelector<T>({
-    options,
-    onChange,
-    selected,
-    title
-}: props<T>) {
-    return (
-        <Styles.Container>
-            <Styles.Title>{title}</Styles.Title>
-            <Styles.OptionsContainer>
-                {options.map((option, index) => (
-                    <Styles.Option
-                        key={index}
-                        selected={option === selected}
-                        onClick={() => onChange(option)}
-                    >
-                        <span>{option}</span>
-                    </Styles.Option>
-                ))}
-            </Styles.OptionsContainer>
-        </Styles.Container>
-    );
-}
+export default ({ options, onChange, selected, title }: props) => (
+    <Styles.Container>
+        <Styles.Title>{title}</Styles.Title>
+        <Styles.OptionsContainer>
+            {options.map(({ name, value }, index) => (
+                <Styles.Option
+                    key={index}
+                    selected={value === selected}
+                    onClick={() => onChange(value)}
+                >
+                    <span>{name}</span>
+                </Styles.Option>
+            ))}
+        </Styles.OptionsContainer>
+    </Styles.Container>
+);

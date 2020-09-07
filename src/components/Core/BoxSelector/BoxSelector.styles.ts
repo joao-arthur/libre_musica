@@ -27,11 +27,10 @@ export const Option = styled.div<optionProps>`
         selected ? 'var(--dark)' : 'var(--primary)'};
     color: white;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
+    transition: 0.2s ease;
     &:hover {
         font-size: 1.2em;
     }
