@@ -23,7 +23,8 @@ export default () => {
     const [scaleKind, setScaleKind] = useState(0);
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
-    const [instrument, setInstrument] = useState('Guitar');
+    const [instrument, setInstrument] = useState(0);
+    const [tuning, setTuning] = useState(0);
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
@@ -31,7 +32,7 @@ export default () => {
     return (
         <>
             <Separator>
-                <BoxSelector
+                <Selector
                     options={[
                         { name: 'diatonic', value: 0 },
                         { name: 'harmonic', value: 1 },
@@ -42,15 +43,15 @@ export default () => {
                     onChange={setScaleKind}
                     title='Scale'
                 />
-                <BoxSelector
+                <Selector
                     options={[
                         { name: 'Standard', value: 0 },
                         { name: 'Drop D', value: 1 },
                         { name: 'Drop C', value: 2 },
                         { name: 'DADGAD', value: 3 }
                     ]}
-                    selected={0}
-                    onChange={() => {}}
+                    selected={tuning}
+                    onChange={setTuning}
                     title='Tuning'
                 />
             </Separator>
@@ -58,21 +59,24 @@ export default () => {
                 <Selector
                     title='Instrument'
                     selected={instrument}
-                    onChange={instrument => {
-                        switch (instrument) {
-                            case 'Guitar':
+                    onChange={changeInstrument => {
+                        switch (changeInstrument) {
+                            case 0:
                                 setStringNumber(6);
                                 break;
-                            case 'Bass':
+                            case 1:
                                 setStringNumber(4);
                         }
-                        setInstrument(instrument);
+                        setInstrument(changeInstrument);
                     }}
-                    options={['Guitar', 'Bass']}
+                    options={[
+                        { name: 'Guitar', value: 0 },
+                        { name: 'Bass', value: 1 }
+                    ]}
                 />
                 <NumberSelector
-                    min={instrument === 'Guitar' ? 6 : 4}
-                    max={instrument === 'Guitar' ? 8 : 6}
+                    min={instrument === 0 ? 6 : 4}
+                    max={instrument === 0 ? 8 : 6}
                     value={stringNumber}
                     onChange={setStringNumber}
                     title='Strings'
@@ -105,7 +109,9 @@ export default () => {
                 title='Key'
             />
             <Table
-                body={strings[instrument][stringNumber].map((string, index) => (
+                body={strings[instrument === 0 ? 'Guitar' : 'Bass'][
+                    stringNumber
+                ].map((string, index) => (
                     <tr key={index}>
                         {generateStringNotes(string).map((note: any, i) => (
                             <Cell

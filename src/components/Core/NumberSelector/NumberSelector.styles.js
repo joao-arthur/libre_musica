@@ -15,9 +15,9 @@ export const Button = styled.button`
     background-color: var(--light);
     color: white;
     border: 1px solid var(--lightGrey);
-    width: 30px;
-    height: 30px;
-    font-size: 1em;
+    width: 55px;
+    height: 55px;
+    font-size: 1.25em;
     outline: none;
 
     :focus {
@@ -34,14 +34,15 @@ export const Button = styled.button`
 `;
 
 export const Input = styled.input`
-    height: 20px;
+    height: 55px;
+    font-size: 1rem;
     margin: 0 3px;
     border: none;
     padding: 5px;
     outline: none;
 
     :focus {
-        height: 18px;
+        height: 53px;
         border: 1px solid var(--primaryGrey);
         margin: 0 2px;
         border-radius: 5px;
