@@ -18,8 +18,10 @@ export const OptionsContainer = styled.div`
     justify-content: space-around;
 `;
 
-export const Option = styled.div<optionProps>`
+export const Option = styled.button<optionProps>`
     width: 10rem;
+    border: none;
+    outline: none;
     border-radius: 5px;
     height: 55px;
     font-size: 1em;
