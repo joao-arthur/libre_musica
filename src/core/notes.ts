@@ -44,12 +44,6 @@ enum Modes {
     Locrian = 11
 }
 
-export type ModesStrings = keyof typeof Modes;
-const dropDGuitar = [Notes.D, Notes.A, Notes.D, Notes.G, Notes.B, Notes.E];
-const dropCGuitar = [Notes.C, Notes.G, Notes.C, Notes.F, Notes.A, Notes.D];
-const DADGADGuitar = [Notes.D, Notes.A, Notes.D, Notes.G, Notes.A, Notes.D];
-const dropDBass = [Notes.D, Notes.A, Notes.D, Notes.G];
-
 type TInstrumentStrings = {
     [key: number]: number[];
 };
@@ -58,27 +52,14 @@ interface TInstruments {
     [key: string]: TInstrumentStrings;
 }
 
-export const strings: TInstruments = {
-    Bass: {
-        4: [Notes.G, Notes.D, Notes.A, Notes.E],
-        5: [Notes.G, Notes.D, Notes.A, Notes.E, Notes.B],
-        6: [Notes.B, Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
-    },
-    Guitar: {
-        6: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
-        7: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E, Notes.B],
-        8: [
-            Notes.E,
-            Notes.B,
-            Notes.G,
-            Notes.D,
-            Notes.A,
-            Notes.E,
-            Notes.B,
-            Notes['F#']
-        ]
-    }
-};
+export const strings: TInstruments = [
+    Notes.E,
+    Notes.B,
+    Notes.G,
+    Notes.D,
+    Notes.A,
+    Notes.E
+];
 
 const getScale = (scale: number, scaleKind: number) => {
     let chosenScale;
