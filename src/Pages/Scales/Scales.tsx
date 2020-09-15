@@ -7,11 +7,11 @@ import {
     getNote
 } from '../../core/notes';
 import range from '../../core/range';
-import Cell from '../../Components/Core/Table/TableCell/Cell';
+import Cell from '../../Components/Core/Table/TableCell';
 import {
     Container,
     Label
-} from '../../Components/Core/Table/TableCell/Cell.styles';
+} from '../../Components/Core/Table/TableCell/TableCell.styles';
 import BoxSelector from '../../Components/Core/BoxSelector';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
@@ -68,18 +68,7 @@ export default () => {
                 title='Key'
             />
             <Table
-                body={strings.map((string, index) => (
-                    <tr key={index}>
-                        {generateStringNotes(string).map((note: any, i) => (
-                            <Cell
-                                key={i}
-                                text={note}
-                                size={fretNumber}
-                                active={isAtScale(note, scale, scaleKind)}
-                            />
-                        ))}
-                    </tr>
-                ))}
+                body={strings.map(generateStringNotes)}
                 foot={range(fretNumber + 1).map(i => (
                     <Container key={i} size={fretNumber}>
                         <Label>

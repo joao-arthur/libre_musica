@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Label, Box } from './Cell.styles';
+import { Container, Label, Box } from './TableCell.styles';
 
 interface props {
     text: string;

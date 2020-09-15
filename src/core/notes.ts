@@ -1,4 +1,11 @@
 //TODO verify bemol notes
+
+const intervals = {
+    halfTone: 1,
+    tone: 2,
+    toneAndHalf: 3
+};
+
 export enum Notes {
     C,
     'C#',
@@ -13,8 +20,8 @@ export enum Notes {
     'A#',
     B
 }
+
 export type NotesStrings = keyof typeof Notes;
-type TNotes = typeof Notes;
 export const notesArray: NotesStrings[] = [
     'C',
     'C#',
@@ -29,37 +36,30 @@ export const notesArray: NotesStrings[] = [
     'A#',
     'B'
 ];
+
+class Scale {
+    note: string;
+    constructor(note: string) {
+        this.note = note;
+    }
+}
+
 const diatonicScale = [0, 2, 4, 5, 7, 9, 11];
 const harmonicScale = [0, 2, 4, 5, 7, 8, 11];
 const doubleHarmonicScale = [0, 1, 4, 5, 7, 8, 11];
 const pentatonicScale = [0, 2, 4, 7, 9];
-const melodicScale = [];
-enum Modes {
-    Ionian = 0,
-    Dorian = 2,
-    Phrygian = 4,
-    Lydian = 5,
-    Mixolydian = 7,
-    Aeolian = 9,
-    Locrian = 11
-}
+//const melodicScale = [];
+//enum Modes {
+//    Ionian = 0,
+//    Dorian = 2,
+//    Phrygian = 4,
+//    Lydian = 5,
+//    Mixolydian = 7,
+//    Aeolian = 9,
+//    Locrian = 11
+//}
 
-type TInstrumentStrings = {
-    [key: number]: number[];
-};
-
-interface TInstruments {
-    [key: string]: TInstrumentStrings;
-}
-
-export const strings: TInstruments = [
-    Notes.E,
-    Notes.B,
-    Notes.G,
-    Notes.D,
-    Notes.A,
-    Notes.E
-];
+export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
 const getScale = (scale: number, scaleKind: number) => {
     let chosenScale;
