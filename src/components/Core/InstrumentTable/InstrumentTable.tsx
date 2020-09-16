@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Style from './Table.styles';
+import * as Style from './InstrumentTable.styles';
 import TableCell from './TableCell';
 
 interface props {

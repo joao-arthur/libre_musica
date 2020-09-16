@@ -7,15 +7,15 @@ import {
     getNote
 } from '../../core/notes';
 import range from '../../core/range';
-import Cell from '../../Components/Core/Table/TableCell';
+import Cell from '../../Components/Core/InstrumentTable/TableCell';
 import {
     Container,
     Label
-} from '../../Components/Core/Table/TableCell/TableCell.styles';
+} from '../../Components/Core/InstrumentTable/TableCell/TableCell.styles';
 import BoxSelector from '../../Components/Core/BoxSelector';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
-import Table from '../../Components/Core/Table';
+import InstrumentTable from '../../Components/Core/InstrumentTable';
 import { Separator } from './Scales.styles';
 
 export default () => {
@@ -67,7 +67,7 @@ export default () => {
                 onChange={setScale}
                 title='Key'
             />
-            <Table
+            <InstrumentTable
                 body={strings.map(generateStringNotes)}
                 foot={range(fretNumber + 1).map(i => (
                     <Container key={i} size={fretNumber}>
