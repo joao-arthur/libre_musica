@@ -24,7 +24,10 @@ export default () => {
     const [fretNumber, setFretNumber] = useState(11);
 
     const generateStringNotes = (stringNote: number) =>
-        range(fretNumber + 1).map(i => getNote((stringNote + i) % 12));
+        range(fretNumber + 1).map(i => ({
+            note: getNote((stringNote + i) % 12),
+            active: isAtScale(getNote((stringNote + i) % 12), scale, scaleKind)
+        }));
 
     return (
         <>

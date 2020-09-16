@@ -1,9 +1,15 @@
 import React from 'react';
 import * as Style from './InstrumentTable.styles';
 import TableCell from './TableCell';
+import { NotesStrings } from '../../../core/notes';
+
+interface fret {
+    note: NotesStrings;
+    active: boolean;
+}
 
 interface props {
-    body: string[][];
+    body: Array<Array<fret>>;
     foot: Array<any>;
 }
 
@@ -15,9 +21,9 @@ export default ({ body, foot }: props) => (
                     {row.map((cell, i) => (
                         <TableCell
                             key={i}
-                            text={cell}
+                            text={cell.note}
                             size={row.length}
-                            active={false}
+                            active={cell.active}
                         />
                     ))}
                 </tr>
