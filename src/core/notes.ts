@@ -1,11 +1,3 @@
-//TODO verify bemol notes
-
-const intervals = {
-    halfTone: 1,
-    tone: 2,
-    toneAndHalf: 3
-};
-
 export enum Notes {
     C,
     'C#',
@@ -37,11 +29,29 @@ export const notesArray: NotesStrings[] = [
     'B'
 ];
 
-class Scale {
-    note: string;
-    constructor(note: string) {
+const modes = [
+    'Ionian',
+    'Dorian',
+    'Phrygian',
+    'Lydian',
+    'Mixolydian',
+    'Aeolian',
+    'Locrian'
+];
+
+class CustomScale {
+    note: NotesStrings;
+    scaleKind: any;
+    mode: any;
+    constructor(note: NotesStrings, mode: any, scaleKind: any) {
         this.note = note;
+        this.mode = mode;
+        this.scaleKind = scaleKind;
     }
+
+    getScale = () => {
+        return scaleKind.map();
+    };
 }
 
 const diatonicScale = [0, 2, 4, 5, 7, 9, 11];
@@ -49,15 +59,6 @@ const harmonicScale = [0, 2, 4, 5, 7, 8, 11];
 const doubleHarmonicScale = [0, 1, 4, 5, 7, 8, 11];
 const pentatonicScale = [0, 2, 4, 7, 9];
 //const melodicScale = [];
-//enum Modes {
-//    Ionian = 0,
-//    Dorian = 2,
-//    Phrygian = 4,
-//    Lydian = 5,
-//    Mixolydian = 7,
-//    Aeolian = 9,
-//    Locrian = 11
-//}
 
 export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
