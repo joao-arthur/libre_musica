@@ -56,10 +56,6 @@ const test = () => {
     console.log(getScale(2, 0, diatonicScale).map(e => notesArray[e]));
 };
 
-const diatonicScale = [0, 2, 4, 5, 7, 9, 11];
-const harmonicScale = [0, 2, 4, 5, 7, 8, 11];
-const doubleHarmonicScale = [0, 1, 4, 5, 7, 8, 11];
-const pentatonicScale = [0, 2, 4, 7, 9];
 //const melodicScale = [];
 
 export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
@@ -76,40 +72,62 @@ const dadgad = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
 const tunings = {
     guitar: {
-        string6: {},
-        string7: {},
-        string8: {}
+        6: { standard: [], dropd: [], dropc: [], dadgad: [] },
+        7: { standard: [] },
+        8: { standard: [] }
     },
     bass: {
-        string4: {},
-        string5: {},
-        string6: {}
+        4: { standard: [], dropd: [], dropc: [] },
+        5: { standard: [] },
+        6: { standard: [] }
     }
 };
 
 const scales = {
-    guitar: {
-        string6: {},
-        string7: {},
-        string8: {}
-    },
-    bass: {
-        string4: {},
-        string5: {},
-        string6: {}
-    }
+    diatonic = [0, 2, 4, 5, 7, 9, 11],
+    harmonic = [0, 2, 4, 5, 7, 8, 11],
+    doubleHarmonic = [0, 1, 4, 5, 7, 8, 11],
+    pentatonic = [0, 2, 4, 7, 9]
 };
 
-const modes = {
+const settings = {
     guitar: {
-        string6: {},
-        string7: {},
-        string8: {}
+        tunings: {
+            6: ['standard', 'dropd', 'dropc', 'dadgad'],
+            7: ['standard'],
+            7: ['standard']
+        },
+        scales: ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'],
+        modes: {
+            diatonic: [
+                'Ionian',
+                'Dorian',
+                'Phrygian',
+                'Lydian',
+                'Mixolydian',
+                'Aeolian',
+                'Locrian'
+            ]
+        }
     },
     bass: {
-        string4: {},
-        string5: {},
-        string6: {}
+        tunings: {
+            4: ['standard', 'dropd', 'dropc'],
+            5: ['standard'],
+            6: ['standard']
+        },
+        scales: ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'],
+        modes: {
+            diatonic: [
+                'Ionian',
+                'Dorian',
+                'Phrygian',
+                'Lydian',
+                'Mixolydian',
+                'Aeolian',
+                'Locrian'
+            ]
+        }
     }
 };
 
