@@ -1,3 +1,5 @@
+import reorderArrayByIndex from './reorderArrayByIndex';
+
 export enum Notes {
     C,
     'C#',
@@ -39,20 +41,20 @@ const modes = [
     'Locrian'
 ];
 
-class CustomScale {
-    note: NotesStrings;
-    scaleKind: any;
-    mode: any;
-    constructor(note: NotesStrings, mode: any, scaleKind: any) {
-        this.note = note;
-        this.mode = mode;
-        this.scaleKind = scaleKind;
-    }
+export const getScale = (
+    note: number = 0,
+    modeIndex: number = 0,
+    scaleKind: number[] = diatonicScale
+) =>
+    reorderArrayByIndex(scaleKind, modeIndex).map(
+        noteOfScale => (noteOfScale + note) % 12
+    );
 
-    getScale = () => {
-        return scaleKind.map();
-    };
-}
+const test = () => {
+    console.log(getScale(0, 0, diatonicScale).map(e => notesArray[e]));
+    console.log(getScale(0, 1, diatonicScale).map(e => notesArray[e]));
+    console.log(getScale(2, 0, diatonicScale).map(e => notesArray[e]));
+};
 
 const diatonicScale = [0, 2, 4, 5, 7, 9, 11];
 const harmonicScale = [0, 2, 4, 5, 7, 8, 11];
@@ -62,31 +64,4 @@ const pentatonicScale = [0, 2, 4, 7, 9];
 
 export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
-const getScale = (scale: number, scaleKind: number) => {
-    let chosenScale;
-    switch (scaleKind) {
-        case 0:
-            chosenScale = diatonicScale;
-            break;
-        case 1:
-            chosenScale = harmonicScale;
-            break;
-        case 2:
-            chosenScale = doubleHarmonicScale;
-            break;
-        case 3:
-            chosenScale = pentatonicScale;
-            break;
-        default:
-            chosenScale = diatonicScale;
-    }
-    return chosenScale.map(note => (note + scale) % 12);
-};
-
-export const getNote = (note: any) => Notes[note];
-
-export const isAtScale = (
-    note: NotesStrings,
-    scale: number,
-    scaleKind: number
-): boolean => getScale(scale, scaleKind).map(getNote).includes(note);
+export const getNote = (note: number) => notesArray[note];

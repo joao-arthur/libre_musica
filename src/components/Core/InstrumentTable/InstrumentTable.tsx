@@ -3,13 +3,13 @@ import * as Style from './InstrumentTable.styles';
 import TableCell from './TableCell';
 import { NotesStrings } from '../../../core/notes';
 
-interface fret {
+export interface Fret {
     note: NotesStrings;
     active: boolean;
 }
 
 interface props {
-    body: Array<Array<fret>>;
+    body: Array<Array<Fret>>;
     foot: Array<any>;
 }
 

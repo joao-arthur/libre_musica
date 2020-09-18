@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import {
-    NotesStrings,
-    notesArray,
-    isAtScale,
-    strings,
-    getNote
-} from '../../core/notes';
+import { strings, getNote, getScale } from '../../core/notes';
 import range from '../../core/range';
-import Cell from '../../Components/Core/InstrumentTable/TableCell';
 import {
     Container,
     Label
@@ -23,10 +16,12 @@ export default () => {
     const [scaleKind, setScaleKind] = useState(0);
     const [fretNumber, setFretNumber] = useState(11);
 
+    const actualScale = getScale(scale);
+
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1).map(i => ({
             note: getNote((stringNote + i) % 12),
-            active: isAtScale(getNote((stringNote + i) % 12), scale, scaleKind)
+            active: actualScale.includes((stringNote + i) % 12)
         }));
 
     return (
