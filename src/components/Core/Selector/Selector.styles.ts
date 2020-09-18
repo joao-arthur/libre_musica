@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface optionProps {
     selected: boolean;
+    mode: 'square' | 'rectangle';
 }
 
 export const Container = styled.div`
@@ -19,11 +20,11 @@ export const OptionsContainer = styled.div`
 `;
 
 export const Option = styled.button<optionProps>`
-    width: 10rem;
     border: none;
     outline: none;
     border-radius: 5px;
     height: 55px;
+    width: ${({ mode }) => (mode === 'square' ? '55px' : '10rem')};
     font-size: 1em;
     text-align: center;
     background-color: ${({ selected }) =>

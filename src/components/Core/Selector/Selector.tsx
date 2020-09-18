@@ -11,9 +11,16 @@ interface props {
     onChange: (option: number) => void;
     selected: number;
     title: string;
+    mode?: 'square' | 'rectangle';
 }
 
-export default ({ options, onChange, selected, title }: props) => (
+export default ({
+    options,
+    onChange,
+    selected,
+    title,
+    mode = 'rectangle'
+}: props) => (
     <Styles.Container>
         <Styles.Title>{title}</Styles.Title>
         <Styles.OptionsContainer>
@@ -21,6 +28,7 @@ export default ({ options, onChange, selected, title }: props) => (
                 <Styles.Option
                     key={index}
                     selected={value === selected}
+                    mode={mode}
                     onClick={() => onChange(value)}
                 >
                     <span>{name}</span>

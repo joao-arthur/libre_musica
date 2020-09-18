@@ -5,7 +5,6 @@ import {
     Container,
     Label
 } from '../../Components/Core/InstrumentTable/TableCell/TableCell.styles';
-import BoxSelector from '../../Components/Core/BoxSelector';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
 import InstrumentTable from '../../Components/Core/InstrumentTable';
@@ -46,7 +45,7 @@ export default () => {
                     title='Frets'
                 />
             </Separator>
-            <BoxSelector
+            <Selector
                 options={[
                     { name: 'C', value: 0 },
                     { name: 'C#', value: 1 },
@@ -64,6 +63,7 @@ export default () => {
                 selected={scale}
                 onChange={setScale}
                 title='Key'
+                mode='square'
             />
             <InstrumentTable
                 body={strings.map(generateStringNotes)}
