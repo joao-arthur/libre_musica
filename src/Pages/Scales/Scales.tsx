@@ -14,7 +14,6 @@ export default () => {
     const [scale, setScale] = useState(0);
     const [scaleKind, setScaleKind] = useState(0);
     const [fretNumber, setFretNumber] = useState(11);
-
     const actualScale = getScale(scale);
 
     const generateStringNotes = (stringNote: number) =>
