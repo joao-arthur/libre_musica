@@ -4,10 +4,7 @@ import {
     strings,
     getNote,
     getScale,
-    getTuning,
-    getInstrument,
-    getStringNumber,
-    getTuningKind
+    getTuning
 } from '../../core/notes';
 import range from '../../core/range';
 import {
@@ -26,14 +23,10 @@ export default () => {
     const [scale, setScale] = useState(0);
     const [scaleKind, setScaleKind] = useState(0);
     const [instrument, setInstrument] = useState(0);
-    const [tuningKind, setTuningKin] = useState(0);
+    const [tuningKind, setTuningKind] = useState(0);
 
     const actualScale = getScale(scale);
-    const tuning = getTuning(
-        getInstrument(instrument),
-        getStringNumber(stringNumber),
-        getTuningKind(tuningKind)
-    );
+    const tuning = getTuning(instrument, stringNumber, tuningKind);
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1)
