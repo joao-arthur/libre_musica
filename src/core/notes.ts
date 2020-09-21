@@ -31,6 +31,36 @@ export const notesArray: NotesStrings[] = [
     'B'
 ];
 
+enum Instrument {
+    guitar,
+    bass
+}
+type InstrumentStrings = keyof typeof Instrument;
+const instruments: InstrumentStrings[] = ['guitar', 'bass'];
+
+enum StringNumber {
+    four,
+    five,
+    six,
+    seven
+}
+type StringNumberStrings = keyof typeof StringNumber;
+const stringsArray: StringNumberStrings[] = ['four', 'five', 'six', 'seven'];
+
+enum TuningKind {
+    standard,
+    dropd,
+    dropc,
+    dadgad
+}
+type TuningKindStrings = keyof typeof TuningKind;
+const tuningKind: TuningKindStrings[] = [
+    'standard',
+    'dropd',
+    'dropc',
+    'dadgad'
+];
+
 const modes = [
     'Ionian',
     'Dorian',
@@ -51,12 +81,29 @@ export const getScale = (
     );
 
 export const getNote = (note: number) => notesArray[note];
+export const getInstrument = (instrument: number): InstrumentStrings =>
+    instruments[instrument];
+export const getStringNumber = (stringNumber: number): StringNumberStrings => {
+    switch (stringNumber) {
+        case 4:
+            return 'four';
+        case 5:
+            return 'five';
+        case 6:
+            return 'six';
+        case 7:
+            return 'seven';
+    }
+    return 'four';
+};
+export const getTuningKind = (tuningKind: number): TuningKindStrings =>
+    tuningKind[tuningKind];
 
 export const getTuning = (
-    instrument: 'guitar' | 'bass',
-    stringNumber: '4' | '5' | '6' | '7',
-    tuning: 'standard' | 'dropd' | 'dropc' | 'dadgad'
-) => tunings[instrument][stringNumber][tuning];
+    instrument: InstrumentStrings,
+    stringNumber: StringNumberStrings,
+    tuningKind: TuningKindStrings
+) => tunings[instrument][stringNumber][tuningKind];
 
 export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
@@ -69,25 +116,25 @@ const scales = {
 
 const tunings = {
     guitar: {
-        4: {
+        four: {
             standard: [],
             dropd: [],
             dropc: [],
             dadgad: []
         },
-        5: {
+        five: {
             standard: [],
             dropd: [],
             dropc: [],
             dadgad: []
         },
-        6: {
+        six: {
             standard: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
             dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.D],
             dropc: [Notes.D, Notes.A, Notes.F, Notes.C, Notes.G, Notes.C],
             dadgad: [Notes.D, Notes.A, Notes.G, Notes.D, Notes.A, Notes.D]
         },
-        7: {
+        seven: {
             standard: [
                 Notes.E,
                 Notes.B,
@@ -103,19 +150,19 @@ const tunings = {
         }
     },
     bass: {
-        4: {
+        four: {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E],
             dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
             dropc: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
             dadgad: []
         },
-        5: {
+        five: {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E, Notes.B],
             dropd: [],
             dropc: [],
             dadgad: []
         },
-        6: {
+        six: {
             standard: [
                 Notes.C,
                 Notes.B,
@@ -129,7 +176,7 @@ const tunings = {
             dropc: [],
             dadgad: []
         },
-        7: {
+        seven: {
             standard: [],
             dropd: [],
             dropc: [],

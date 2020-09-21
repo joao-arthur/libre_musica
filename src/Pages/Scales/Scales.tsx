@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { notesArray, strings, getNote, getScale } from '../../core/notes';
+import {
+    notesArray,
+    strings,
+    getNote,
+    getScale,
+    getTuning,
+    getInstrument,
+    getStringNumber,
+    getTuningKind
+} from '../../core/notes';
 import range from '../../core/range';
 import {
     Container,
@@ -17,7 +26,14 @@ export default () => {
     const [scale, setScale] = useState(0);
     const [scaleKind, setScaleKind] = useState(0);
     const [instrument, setInstrument] = useState(0);
+    const [tuningKind, setTuningKin] = useState(0);
+
     const actualScale = getScale(scale);
+    const tuning = getTuning(
+        getInstrument(instrument),
+        getStringNumber(stringNumber),
+        getTuningKind(tuningKind)
+    );
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1)
