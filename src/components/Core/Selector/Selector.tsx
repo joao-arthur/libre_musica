@@ -1,13 +1,8 @@
 import React from 'react';
 import * as Styles from './Selector.styles';
 
-interface Option {
-    name: string;
-    value: number;
-}
-
 interface props {
-    options: Option[];
+    options: string[];
     onChange: (option: number) => void;
     selected: number;
     title: string;
@@ -24,14 +19,14 @@ export default ({
     <Styles.Container>
         <Styles.Title>{title}</Styles.Title>
         <Styles.OptionsContainer>
-            {options.map(({ name, value }, index) => (
+            {options.map((option, index) => (
                 <Styles.Option
-                    key={index}
-                    selected={value === selected}
+                    key={option}
+                    selected={index === selected}
                     mode={mode}
-                    onClick={() => onChange(value)}
+                    onClick={() => onChange(index)}
                 >
-                    <span>{name}</span>
+                    <span>{option}</span>
                 </Styles.Option>
             ))}
         </Styles.OptionsContainer>
