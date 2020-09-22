@@ -46,6 +46,11 @@ export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 export const getTuningKind = (instrument: number, stringNumber: number) =>
     settings[['guitar', 'bass'][instrument]].tunings[stringNumber];
 
+export const getModes = (instrument: number, scaleKind: number) =>
+    settings[['guitar', 'bass'][instrument]].modes[
+        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]
+    ];
+
 export const getTuning = (
     instrument: number,
     stringNumber: number,
@@ -133,9 +138,6 @@ const settings: ISettings = {
             7: ['standard'],
             8: ['standard']
         },
-        scales: {
-            scales: ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic']
-        },
         modes: {
             diatonic: [
                 'Ionian',
@@ -153,9 +155,6 @@ const settings: ISettings = {
             4: ['standard', 'dropd', 'dropc'],
             5: ['standard'],
             6: ['standard']
-        },
-        scales: {
-            scales: ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic']
         },
         modes: {
             diatonic: [

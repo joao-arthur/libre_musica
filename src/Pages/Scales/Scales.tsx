@@ -5,7 +5,8 @@ import {
     getNote,
     getScale,
     getTuning,
-    getTuningKind
+    getTuningKind,
+    getModes
 } from '../../core/notes';
 import range from '../../core/range';
 import {
@@ -18,17 +19,6 @@ import InstrumentTable from '../../Components/Core/InstrumentTable';
 import { Separator } from './Scales.styles';
 
 export default () => {
-    const scales = ['diatonic', 'harmonic', 'double harmonic', 'pentatonic'];
-    const modes = [
-        'Ionian',
-        'Dorian',
-        'Phrygian',
-        'Lydian',
-        'Mixolydian',
-        'Aeolian',
-        'Locrian'
-    ];
-
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
 
@@ -40,8 +30,7 @@ export default () => {
     const actualScale = getScale(scale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);
-
-    console.log(tuningKinds, tuning, strings);
+    const modes = getModes(instrument, scaleKind);
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1)
@@ -74,6 +63,17 @@ export default () => {
                     onChange={setStringNumber}
                     title='String number'
                 />
+                <Selector
+                    options={[
+                        'diatonic',
+                        'harmonic',
+                        'double harmonic',
+                        'pentatonic'
+                    ]}
+                    selected={scaleKind}
+                    onChange={setScaleKind}
+                    title='Scale kind'
+                />
             </Separator>
             <Separator>
                 <Selector
@@ -94,17 +94,6 @@ export default () => {
                     selected={tuningKind}
                     onChange={setTuningKind}
                     title='Tuning kind'
-                />
-                <Selector
-                    options={[
-                        'diatonic',
-                        'harmonic',
-                        'double harmonic',
-                        'pentatonic'
-                    ]}
-                    selected={scaleKind}
-                    onChange={setScaleKind}
-                    title='Scale kind'
                 />
             </Separator>
             <Selector
