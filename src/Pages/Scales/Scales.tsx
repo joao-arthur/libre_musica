@@ -4,7 +4,8 @@ import {
     strings,
     getNote,
     getScale,
-    getTuning
+    getTuning,
+    getTuningKind
 } from '../../core/notes';
 import range from '../../core/range';
 import {
@@ -17,6 +18,17 @@ import InstrumentTable from '../../Components/Core/InstrumentTable';
 import { Separator } from './Scales.styles';
 
 export default () => {
+    const scales = ['diatonic', 'harmonic', 'double harmonic', 'pentatonic'];
+    const modes = [
+        'Ionian',
+        'Dorian',
+        'Phrygian',
+        'Lydian',
+        'Mixolydian',
+        'Aeolian',
+        'Locrian'
+    ];
+
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
 
@@ -27,6 +39,9 @@ export default () => {
 
     const actualScale = getScale(scale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
+    const tuningKinds = getTuningKind(instrument, stringNumber);
+
+    console.log(tuningKinds, tuning, strings);
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1)
@@ -38,6 +53,28 @@ export default () => {
 
     return (
         <>
+            <Separator>
+                <Selector
+                    options={['guitar', 'bass']}
+                    selected={instrument}
+                    onChange={setInstrument}
+                    title='Instrument'
+                />
+                <NumberSelector
+                    min={11}
+                    max={24}
+                    value={fretNumber}
+                    onChange={setFretNumber}
+                    title='Frets'
+                />
+                <NumberSelector
+                    min={instrument === 0 ? 6 : 4}
+                    max={instrument === 0 ? 7 : 6}
+                    value={stringNumber}
+                    onChange={setStringNumber}
+                    title='String number'
+                />
+            </Separator>
             <Separator>
                 <Selector
                     options={[
@@ -53,10 +90,10 @@ export default () => {
             </Separator>
             <Separator>
                 <Selector
-                    options={['guitar', 'bass']}
-                    selected={instrument}
-                    onChange={setInstrument}
-                    title='Instrument'
+                    options={tuningKinds}
+                    selected={tuningKind}
+                    onChange={setTuningKind}
+                    title='Tuning kind'
                 />
                 <Selector
                     options={[
@@ -67,21 +104,7 @@ export default () => {
                     ]}
                     selected={scaleKind}
                     onChange={setScaleKind}
-                    title='Scale'
-                />
-                <NumberSelector
-                    min={11}
-                    max={24}
-                    value={fretNumber}
-                    onChange={setFretNumber}
-                    title='Frets'
-                />
-                <NumberSelector
-                    min={instrument === 0 ? 6 : 4}
-                    max={instrument === 0 ? 7 : 6}
-                    value={stringNumber}
-                    onChange={setStringNumber}
-                    title='String number'
+                    title='Scale kind'
                 />
             </Separator>
             <Selector
