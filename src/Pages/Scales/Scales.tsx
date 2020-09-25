@@ -46,7 +46,11 @@ export default () => {
                 <Selector
                     options={['guitar', 'bass']}
                     selected={instrument}
-                    onChange={setInstrument}
+                    onChange={instrument => {
+                        setInstrument(instrument);
+                        if (instrument === 0) setStringNumber(6);
+                        else setStringNumber(4);
+                    }}
                     title='Instrument'
                 />
                 <NumberSelector

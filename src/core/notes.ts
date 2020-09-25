@@ -44,12 +44,10 @@ export const getNote = (note: number) => notesArray[note];
 export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
 export const getTuningKind = (instrument: number, stringNumber: number) =>
-    settings[['guitar', 'bass'][instrument]].tunings[stringNumber];
+    tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
 
-export const getModes = (instrument: number, scaleKind: number) =>
-    settings[['guitar', 'bass'][instrument]].modes[
-        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]
-    ];
+export const getModes = (scaleKind: number) =>
+    modes[['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]];
 
 export const getTuning = (
     instrument: number,
@@ -123,49 +121,62 @@ interface ISettingsStringsKinds {
     [key: string]: Array<string>;
 }
 
-interface ISettingsKinds {
+interface ISettings {
     [key: string]: ISettingsStringsKinds;
 }
 
-interface ISettings {
-    [key: string]: ISettingsKinds;
-}
-
-const settings: ISettings = {
+const tuningsNames: ISettings = {
     guitar: {
-        tunings: {
-            6: ['standard', 'dropd', 'dropc', 'dadgad'],
-            7: ['standard'],
-            8: ['standard']
-        },
-        modes: {
-            diatonic: [
-                'Ionian',
-                'Dorian',
-                'Phrygian',
-                'Lydian',
-                'Mixolydian',
-                'Aeolian',
-                'Locrian'
-            ]
-        }
+        6: ['standard', 'dropd', 'dropc', 'dadgad'],
+        7: ['standard'],
+        8: ['standard']
     },
     bass: {
-        tunings: {
-            4: ['standard', 'dropd', 'dropc'],
-            5: ['standard'],
-            6: ['standard']
-        },
-        modes: {
-            diatonic: [
-                'Ionian',
-                'Dorian',
-                'Phrygian',
-                'Lydian',
-                'Mixolydian',
-                'Aeolian',
-                'Locrian'
-            ]
-        }
+        4: ['standard', 'dropd', 'dropc'],
+        5: ['standard'],
+        6: ['standard']
     }
+};
+
+interface IModes {
+    [key: string]: Array<string>;
+}
+
+const modes = {
+    diatonic: [
+        'Ionian',
+        'Dorian',
+        'Phrygian',
+        'Lydian',
+        'Mixolydian',
+        'Aeolian',
+        'Locrian'
+    ],
+    harmonic: [
+        'Ionian',
+        'Dorian',
+        'Phrygian',
+        'Lydian',
+        'Mixolydian',
+        'Aeolian',
+        'Locrian'
+    ],
+    doubleHarmonic: [
+        'Ionian',
+        'Dorian',
+        'Phrygian',
+        'Lydian',
+        'Mixolydian',
+        'Aeolian',
+        'Locrian'
+    ],
+    pentatonic: [
+        'Ionian',
+        'Dorian',
+        'Phrygian',
+        'Lydian',
+        'Mixolydian',
+        'Aeolian',
+        'Locrian'
+    ]
 };
