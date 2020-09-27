@@ -41,7 +41,6 @@ export const getScale = (
     );
 
 export const getNote = (note: number) => notesArray[note];
-export const strings = [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E];
 
 export const getTuningKind = (instrument: number, stringNumber: number) =>
     tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
@@ -55,7 +54,9 @@ export const getTuning = (
     tuningKind: number
 ) =>
     tunings[['guitar', 'bass'][instrument]][stringNumber][
-        ['standard', 'dropd', 'dropc', 'dadgad'][tuningKind]
+        ['standard', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'][
+            tuningKind
+        ]
     ];
 
 const scales = {
@@ -83,7 +84,16 @@ const tunings: Ituning = {
             standard: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
             dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.D],
             dropc: [Notes.D, Notes.A, Notes.F, Notes.C, Notes.G, Notes.C],
-            dadgad: [Notes.D, Notes.A, Notes.G, Notes.D, Notes.A, Notes.D]
+            dadgad: [Notes.D, Notes.A, Notes.G, Notes.D, Notes.A, Notes.D],
+            dadaad: [Notes.D, Notes.A, Notes.G, Notes.A, Notes.A, Notes.D],
+            incinerate: [
+                Notes.G,
+                Notes.G,
+                Notes['D#'],
+                Notes['A#'],
+                Notes['D#'],
+                Notes.D
+            ]
         },
         7: {
             standard: [
@@ -100,8 +110,8 @@ const tunings: Ituning = {
     bass: {
         4: {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E],
-            dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
-            dropc: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E]
+            dropd: [Notes.G, Notes.D, Notes.A, Notes.D],
+            dropc: [Notes.F, Notes.C, Notes.G, Notes.C]
         },
         5: {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
@@ -130,7 +140,7 @@ interface ISettings {
 
 const tuningsNames: ISettings = {
     guitar: {
-        6: ['standard', 'dropd', 'dropc', 'dadgad'],
+        6: ['standard', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'],
         7: ['standard'],
         8: ['standard']
     },
@@ -156,22 +166,22 @@ const modes: IModes = {
         'Locrian'
     ],
     harmonic: [
-        'Ionian',
-        'Dorian',
-        'Phrygian',
-        'Lydian',
-        'Mixolydian',
-        'Aeolian',
-        'Locrian'
+        'Harmonic Major',
+        'Locrian ♮2 ♮6 / Dorian ♭5',
+        'Altered Dominant ♮5 / Phrygian ♭4',
+        'Melodic Minor ♯4 / Lydian ♭3',
+        'Mixolydian ♭2',
+        'Lydian Augmented ♯2',
+        'Locrian double flat7'
     ],
     doubleHarmonic: [
-        'Ionian',
-        'Dorian',
-        'Phrygian',
-        'Lydian',
-        'Mixolydian',
-        'Aeolian',
-        'Locrian'
+        'Double harmonic major',
+        'Lydian ♯2 ♯6',
+        'Ultraphrygian',
+        'Hungarian/Gypsy minor',
+        'Oriental',
+        'Ionian ♯2 ♯5',
+        'Locrian double flat3 double flat7'
     ],
     pentatonic: [
         'Ionian',
