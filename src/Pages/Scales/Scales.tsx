@@ -30,7 +30,7 @@ export default () => {
     const actualScale = getScale(scale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);
-    const modes = getModes(instrument, scaleKind);
+    const modes = getModes(scaleKind);
 
     const generateStringNotes = (stringNote: number) =>
         range(fretNumber + 1)
@@ -81,12 +81,7 @@ export default () => {
             </Separator>
             <Separator>
                 <Selector
-                    options={[
-                        'diatonic',
-                        'harmonic',
-                        'double harmonic',
-                        'pentatonic'
-                    ]}
+                    options={modes}
                     selected={scaleKind}
                     onChange={setScaleKind}
                     title='Modes'

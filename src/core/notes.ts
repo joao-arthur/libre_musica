@@ -142,7 +142,7 @@ interface IModes {
     [key: string]: Array<string>;
 }
 
-const modes = {
+const modes: IModes = {
     diatonic: [
         'Ionian',
         'Dorian',
