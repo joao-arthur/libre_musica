@@ -53,7 +53,10 @@ export const getTuning = (
     instrument: number,
     stringNumber: number,
     tuningKind: number
-) => tunings[['guitar', 'bass'][instrument]][stringNumber][tuningKind];
+) =>
+    tunings[['guitar', 'bass'][instrument]][stringNumber][
+        ['standard', 'dropd', 'dropc', 'dadgad'][tuningKind]
+    ];
 
 const scales = {
     diatonic: [0, 2, 4, 5, 7, 9, 11],
@@ -63,7 +66,7 @@ const scales = {
 };
 
 interface Ikinds {
-    [key: string]: Object;
+    [key: string]: number[];
 }
 
 interface Istrings {

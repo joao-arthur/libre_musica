@@ -26,6 +26,7 @@ export default () => {
     const [scaleKind, setScaleKind] = useState(0);
     const [instrument, setInstrument] = useState(0);
     const [tuningKind, setTuningKind] = useState(0);
+    const [modesState, setModes] = useState(0);
 
     const actualScale = getScale(scale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
@@ -82,8 +83,8 @@ export default () => {
             <Separator>
                 <Selector
                     options={modes}
-                    selected={scaleKind}
-                    onChange={setScaleKind}
+                    selected={modesState}
+                    onChange={setModes}
                     title='Modes'
                 />
             </Separator>
@@ -103,7 +104,7 @@ export default () => {
                 mode='square'
             />
             <InstrumentTable
-                body={strings.map(generateStringNotes)}
+                body={tuning.map(generateStringNotes)}
                 foot={range(fretNumber + 1).map(i => (
                     <Container key={i} size={fretNumber}>
                         <Label>
