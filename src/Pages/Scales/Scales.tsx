@@ -27,7 +27,7 @@ export default () => {
     const [tuningKind, setTuningKind] = useState(0);
     const [modeIndex, setModes] = useState(0);
 
-    const actualScale = getScale(scale, modeIndex);
+    const actualScale = getScale(scale, modeIndex, scaleKind);
     console.log(actualScale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);

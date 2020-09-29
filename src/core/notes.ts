@@ -31,12 +31,8 @@ export const notesArray: NotesStrings[] = [
     'B'
 ];
 
-export const getScale = (
-    note: number = 0,
-    modeIndex: number = 0,
-    scaleKind: number[] = scales.diatonic
-) =>
-    reorderArrayByIndex(scaleKind, modeIndex).map(
+export const getScale = (note: number, modeIndex: number, scaleKind: number) =>
+    reorderArrayByIndex(getScales(scaleKind), modeIndex).map(
         noteOfScale => (noteOfScale + note) % 12
     );
 
@@ -59,16 +55,19 @@ export const getTuning = (
         ]
     ];
 
-const scales = {
+const getScales = (index: number) =>
+    scales[['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][index]];
+
+interface Ikinds {
+    [key: string]: number[];
+}
+
+const scales: Ikinds = {
     diatonic: [0, 2, 4, 5, 7, 9, 11],
     harmonic: [0, 2, 4, 5, 7, 8, 11],
     doubleHarmonic: [0, 1, 4, 5, 7, 8, 11],
     pentatonic: [0, 2, 4, 7, 9]
 };
-
-interface Ikinds {
-    [key: string]: number[];
-}
 
 interface Istrings {
     [key: string]: Ikinds;
