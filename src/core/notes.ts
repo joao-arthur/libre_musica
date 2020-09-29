@@ -54,7 +54,7 @@ export const getTuning = (
     tuningKind: number
 ) =>
     tunings[['guitar', 'bass'][instrument]][stringNumber][
-        ['standard', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'][
+        ['standard', 'nst', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'][
             tuningKind
         ]
     ];
@@ -82,10 +82,11 @@ const tunings: Ituning = {
     guitar: {
         6: {
             standard: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
+            nst: [Notes.G, Notes.E, Notes.A, Notes.D, Notes.G, Notes.C],
             dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.D],
             dropc: [Notes.D, Notes.A, Notes.F, Notes.C, Notes.G, Notes.C],
             dadgad: [Notes.D, Notes.A, Notes.G, Notes.D, Notes.A, Notes.D],
-            dadaad: [Notes.D, Notes.A, Notes.G, Notes.A, Notes.A, Notes.D],
+            dadaad: [Notes.D, Notes.A, Notes.A, Notes.D, Notes.A, Notes.D],
             incinerate: [
                 Notes.G,
                 Notes.G,
@@ -140,12 +141,20 @@ interface ISettings {
 
 const tuningsNames: ISettings = {
     guitar: {
-        6: ['standard', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'],
+        6: [
+            'standard',
+            'nst',
+            'dropd',
+            'dropc',
+            'dadgad',
+            'dadaad',
+            'incinerate'
+        ],
         7: ['standard'],
         8: ['standard']
     },
     bass: {
-        4: ['standard', 'dropd', 'dropc'],
+        4: ['standard', 'nst', 'dropd', 'dropc'],
         5: ['standard'],
         6: ['standard']
     }
