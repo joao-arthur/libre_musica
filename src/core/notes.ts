@@ -111,6 +111,7 @@ const tunings: Ituning = {
     bass: {
         4: {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E],
+            nst: [Notes.A, Notes.D, Notes.G, Notes.C],
             dropd: [Notes.G, Notes.D, Notes.A, Notes.D],
             dropc: [Notes.F, Notes.C, Notes.G, Notes.C]
         },
