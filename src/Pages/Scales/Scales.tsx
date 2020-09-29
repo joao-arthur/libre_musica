@@ -25,9 +25,10 @@ export default () => {
     const [scaleKind, setScaleKind] = useState(0);
     const [instrument, setInstrument] = useState(0);
     const [tuningKind, setTuningKind] = useState(0);
-    const [modesState, setModes] = useState(0);
+    const [modeIndex, setModes] = useState(0);
 
-    const actualScale = getScale(scale);
+    const actualScale = getScale(scale, modeIndex);
+    console.log(actualScale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);
     const modes = getModes(scaleKind);
@@ -82,7 +83,7 @@ export default () => {
             <Separator>
                 <Selector
                     options={modes}
-                    selected={modesState}
+                    selected={modeIndex}
                     onChange={setModes}
                     title='Modes'
                 />
