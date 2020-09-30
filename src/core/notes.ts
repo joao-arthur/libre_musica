@@ -118,15 +118,7 @@ const tunings: Ituning = {
             standard: [Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
         },
         6: {
-            standard: [
-                Notes.C,
-                Notes.B,
-                Notes.G,
-                Notes.D,
-                Notes.A,
-                Notes.E,
-                Notes.B
-            ]
+            standard: [Notes.B, Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
         }
     }
 };
