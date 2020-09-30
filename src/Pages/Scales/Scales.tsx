@@ -25,7 +25,7 @@ export default () => {
     const [scaleKind, setScaleKind] = useState(0);
     const [instrument, setInstrument] = useState(0);
     const [tuningKind, setTuningKind] = useState(0);
-    const [modeIndex, setModes] = useState(0);
+    const [modeIndex, setMode] = useState(0);
 
     const actualScale = getScale(scale, modeIndex, scaleKind);
     console.log(actualScale);
@@ -84,7 +84,10 @@ export default () => {
                         'pentatonic'
                     ]}
                     selected={scaleKind}
-                    onChange={setScaleKind}
+                    onChange={scaleKind => {
+                        setScaleKind(scaleKind);
+                        setMode(0);
+                    }}
                     title='Scale kind'
                 />
             </Separator>
@@ -92,7 +95,7 @@ export default () => {
                 <Selector
                     options={modes}
                     selected={modeIndex}
-                    onChange={setModes}
+                    onChange={setMode}
                     title='Modes'
                 />
             </Separator>

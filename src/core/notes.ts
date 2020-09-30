@@ -192,13 +192,5 @@ const modes: IModes = {
         'Ionian ♯2 ♯5',
         'Locrian double flat3 double flat7'
     ],
-    pentatonic: [
-        'Ionian',
-        'Dorian',
-        'Phrygian',
-        'Lydian',
-        'Mixolydian',
-        'Aeolian',
-        'Locrian'
-    ]
+    pentatonic: ['Ionian', 'Dorian', 'Phrygian', 'Mixolydian', 'Aeolian']
 };
