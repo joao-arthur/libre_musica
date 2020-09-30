@@ -49,8 +49,13 @@ export default () => {
                     selected={instrument}
                     onChange={instrument => {
                         setInstrument(instrument);
-                        if (instrument === 0) setStringNumber(6);
-                        else setStringNumber(4);
+                        if (instrument === 0) {
+                            setStringNumber(6);
+                            setTuningKind(0);
+                        } else {
+                            setStringNumber(4);
+                            setTuningKind(0);
+                        }
                     }}
                     title='Instrument'
                 />
