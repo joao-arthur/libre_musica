@@ -70,7 +70,10 @@ export default () => {
                     min={instrument === 0 ? 6 : 4}
                     max={instrument === 0 ? 7 : 6}
                     value={stringNumber}
-                    onChange={setStringNumber}
+                    onChange={stringNumber => {
+                        setStringNumber(stringNumber);
+                        setTuningKind(0);
+                    }}
                     title='String number'
                 />
                 <Selector
