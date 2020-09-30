@@ -1,7 +1,8 @@
 import React from 'react';
-import * as Style from './InstrumentTable.styles';
-import TableCell from './TableCell';
 import { NotesStrings } from '../../../core/notes';
+import * as Style from './InstrumentTable.styles';
+import { Container, Label } from './TableCell/TableCell.styles';
+import TableCell from './TableCell';
 
 export interface Fret {
     note: NotesStrings;
@@ -11,9 +12,10 @@ export interface Fret {
 interface props {
     body: Array<Array<Fret>>;
     foot: Array<any>;
+    fretNumber: number;
 }
 
-export default ({ body, foot }: props) => (
+export default ({ body, foot, fretNumber }: props) => (
     <Style.Table>
         <tbody>
             {body.map((row, index) => (
@@ -30,7 +32,15 @@ export default ({ body, foot }: props) => (
             ))}
         </tbody>
         <tfoot>
-            <tr>{foot}</tr>
+            <tr>
+                {foot.map(i => (
+                    <Container key={i} size={fretNumber}>
+                        <Label>
+                            <b>{i}</b>
+                        </Label>
+                    </Container>
+                ))}
+            </tr>
         </tfoot>
     </Style.Table>
 );

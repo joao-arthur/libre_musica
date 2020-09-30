@@ -8,10 +8,6 @@ import {
     getModes
 } from '../../core/notes';
 import range from '../../core/range';
-import {
-    Container,
-    Label
-} from '../../Components/Core/InstrumentTable/TableCell/TableCell.styles';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
 import InstrumentTable from '../../Components/Core/InstrumentTable';
@@ -28,7 +24,6 @@ export default () => {
     const [modeIndex, setMode] = useState(0);
 
     const actualScale = getScale(scale, modeIndex, scaleKind);
-    console.log(actualScale);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);
     const modes = getModes(scaleKind);
@@ -115,14 +110,9 @@ export default () => {
                 mode='square'
             />
             <InstrumentTable
+                fretNumber={fretNumber}
                 body={tuning.map(generateStringNotes)}
-                foot={range(fretNumber + 1).map(i => (
-                    <Container key={i} size={fretNumber}>
-                        <Label>
-                            <b>{i}</b>
-                        </Label>
-                    </Container>
-                ))}
+                foot={range(fretNumber + 1)}
             />
         </>
     );

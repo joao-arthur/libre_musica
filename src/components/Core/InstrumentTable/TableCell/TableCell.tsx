@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Container, Label, Box } from './TableCell.styles';
 
 interface props {
