@@ -8,7 +8,7 @@ interface props {
 }
 
 export default ({ text, size, active }: props) => (
-    <Container size={size}>
+    <Container size={size} onClick={() => console.log(text)}>
         <Box active={active}>
             <Label>{text}</Label>
         </Box>

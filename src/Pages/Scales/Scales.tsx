@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+    NotesStrings,
     notesArray,
     getNote,
     getScale,
@@ -35,6 +36,8 @@ export default () => {
                 note: getNote(fret),
                 active: actualScale.includes(fret)
             }));
+
+    const handleChord = (note: NotesStrings) => {};
 
     return (
         <>
