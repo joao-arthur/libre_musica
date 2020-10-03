@@ -13,9 +13,10 @@ interface props {
     body: Array<Array<Fret>>;
     foot: Array<any>;
     fretNumber: number;
+    handleChord: (note: NotesStrings) => void;
 }
 
-export default ({ body, foot, fretNumber }: props) => (
+export default ({ body, foot, fretNumber, handleChord }: props) => (
     <Style.Table>
         <tbody>
             {body.map((row, index) => (
@@ -26,6 +27,7 @@ export default ({ body, foot, fretNumber }: props) => (
                             text={cell.note}
                             size={row.length}
                             active={cell.active}
+                            onClick={() => handleChord(cell.note)}
                         />
                     ))}
                 </tr>

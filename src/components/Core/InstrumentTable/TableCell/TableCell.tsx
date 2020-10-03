@@ -5,10 +5,11 @@ interface props {
     text: string;
     size: number;
     active: boolean;
+    onClick: () => void;
 }
 
-export default ({ text, size, active }: props) => (
-    <Container size={size} onClick={() => console.log(text)}>
+export default ({ text, size, active, onClick }: props) => (
+    <Container size={size} onClick={onClick}>
         <Box active={active}>
             <Label>{text}</Label>
         </Box>

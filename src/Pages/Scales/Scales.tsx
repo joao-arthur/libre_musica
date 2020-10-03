@@ -6,7 +6,8 @@ import {
     getScale,
     getTuning,
     getTuningKind,
-    getModes
+    getModes,
+    Notes
 } from '../../core/notes';
 import range from '../../core/range';
 import Selector from '../../Components/Core/Selector';
@@ -24,20 +25,35 @@ export default () => {
     const [tuningKind, setTuningKind] = useState(0);
     const [modeIndex, setMode] = useState(0);
 
+    const [chordNote, setChordNote] = useState(0);
+    const [usingChord, setUsingChord] = useState(false);
+
     const actualScale = getScale(scale, modeIndex, scaleKind);
     const tuning = getTuning(instrument, stringNumber, tuningKind);
     const tuningKinds = getTuningKind(instrument, stringNumber);
     const modes = getModes(scaleKind);
 
-    const generateStringNotes = (stringNote: number) =>
-        range(fretNumber + 1)
+    const generateStringNotes = (stringNote: number) => {
+        const chordNoteIndex = actualScale.indexOf(chordNote);
+        const chordScale = [
+            actualScale[chordNoteIndex],
+            actualScale[(chordNoteIndex + 2) % 7],
+            actualScale[(chordNoteIndex + 4) % 7]
+        ];
+        const usedScale = usingChord ? chordScale : actualScale;
+
+        return range(fretNumber + 1)
             .map(fret => (stringNote + fret) % 12)
             .map(fret => ({
                 note: getNote(fret),
-                active: actualScale.includes(fret)
+                active: usedScale.includes(fret)
             }));
+    };
 
-    const handleChord = (note: NotesStrings) => {};
+    const handleChord = (note: NotesStrings): void => {
+        setUsingChord(true);
+        setChordNote(Notes[note]);
+    };
 
     return (
         <>
@@ -88,6 +104,9 @@ export default () => {
                     }}
                     title='Scale kind'
                 />
+                <button onClick={() => setUsingChord(false)}>
+                    clear chord
+                </button>
             </Separator>
             <Separator>
                 <Selector
@@ -115,6 +134,7 @@ export default () => {
             <InstrumentTable
                 fretNumber={fretNumber}
                 body={tuning.map(generateStringNotes)}
+                handleChord={handleChord}
                 foot={range(fretNumber + 1)}
             />
         </>
