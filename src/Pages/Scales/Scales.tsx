@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     NotesStrings,
     notesArray,
-    getNote,
     getScale,
     getTuning,
     getTuningKind,
@@ -45,12 +44,13 @@ export default () => {
         return range(fretNumber + 1)
             .map(fret => (stringNote + fret) % 12)
             .map(fret => ({
-                note: getNote(fret),
+                note: notesArray[fret],
                 active: usedScale.includes(fret)
             }));
     };
 
     const handleChord = (note: NotesStrings): void => {
+        if (!actualScale.includes(Notes[note])) return;
         setUsingChord(true);
         setChordNote(Notes[note]);
     };

@@ -36,8 +36,6 @@ export const getScale = (note: number, modeIndex: number, scaleKind: number) =>
         noteOfScale => (noteOfScale + note) % 12
     );
 
-export const getNote = (note: number) => notesArray[note];
-
 export const getTuningKind = (instrument: number, stringNumber: number) =>
     tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
 
