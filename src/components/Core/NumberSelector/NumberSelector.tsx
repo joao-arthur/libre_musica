@@ -15,7 +15,7 @@ export default ({ value, min, max, onChange, title }: props) => {
         if (!maybeValue) return;
         if (maybeValue > max) return;
         if (maybeValue < min) return;
-        onChange(Number(maybeValue));
+        onChange(maybeValue);
     };
 
     return (
