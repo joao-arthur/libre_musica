@@ -8,10 +8,10 @@ export default () => (
             <Link to='/about'>instruments</Link>
         </Item>
         <Item>
-            <Link to='/users'>calendar</Link>
+            <Link to='/about'>calendar</Link>
         </Item>
         <Item>
-            <Link to='/users'>calendar</Link>
+            <Link to='/about'>calendar</Link>
         </Item>
     </Container>
 );
