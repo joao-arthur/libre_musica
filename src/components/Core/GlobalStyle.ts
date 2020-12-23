@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-family: Roboto, sans-serif;
     }
+
+    #root{
+        display: flex;
+    }
 `;
 
 export default GlobalStyle;

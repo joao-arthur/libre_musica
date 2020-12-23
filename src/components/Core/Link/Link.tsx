@@ -1,9 +1,14 @@
 import React, { ReactChild } from 'react';
-import Link from './Link.styled';
+import Link from './Link.styles';
 
 interface props {
     to: string;
     children: ReactChild;
+    className?: string;
 }
 
-export default ({ to, children }: props) => <Link to={to}>{children}</Link>;
+export default ({ to, children, className }: props) => (
+    <Link to={to} className={className}>
+        {children}
+    </Link>
+);
