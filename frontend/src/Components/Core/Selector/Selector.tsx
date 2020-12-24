@@ -1,7 +1,6 @@
-import React from 'react';
 import * as Styles from './Selector.styles';
 
-interface props {
+interface Props {
     options: string[];
     onChange: (option: number) => void;
     selected: number;
@@ -9,13 +8,13 @@ interface props {
     mode?: 'square' | 'rectangle';
 }
 
-export default ({
+const Selector = ({
     options,
     onChange,
     selected,
     title,
     mode = 'rectangle'
-}: props) => (
+}: Props) => (
     <Styles.Container>
         <Styles.Title>{title}</Styles.Title>
         <Styles.OptionsContainer>
@@ -32,3 +31,5 @@ export default ({
         </Styles.OptionsContainer>
     </Styles.Container>
 );
+
+export default Selector;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
     NotesStrings,
     notesArray,
@@ -14,7 +14,7 @@ import NumberSelector from '../../Components/Core/NumberSelector';
 import InstrumentTable from '../../Components/Core/InstrumentTable';
 import { Button } from './Scales.styles';
 
-export default () => {
+const Scales = () => {
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
 
@@ -132,3 +132,5 @@ export default () => {
         </>
     );
 };
+
+export default Scales;

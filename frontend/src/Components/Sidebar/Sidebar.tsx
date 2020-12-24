@@ -1,7 +1,6 @@
-import React from 'react';
 import { Container, Item, CustomLink } from './Sidebar.styles';
 
-export default () => (
+const Sidebar = () => (
     <div style={{ display: 'flex' }}>
         <Container>
             <Item>
@@ -14,7 +13,7 @@ export default () => (
                 <CustomLink to='/signin'>signin</CustomLink>
             </Item>
             <Item>
-                <CustomLink to='/sample'>sample</CustomLink>
+                <CustomLink to='/home'>home</CustomLink>
             </Item>
             <Item>
                 <CustomLink to='/sample'>sample</CustomLink>
@@ -31,3 +30,5 @@ export default () => (
         </Container>
     </div>
 );
+
+export default Sidebar;

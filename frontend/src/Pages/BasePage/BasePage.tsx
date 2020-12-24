@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import { ReactChild } from 'react';
 import {
     Header,
     HeaderTitle,
@@ -8,11 +8,11 @@ import {
 } from './BasePage.styles';
 import Sidebar from '../../Components/Sidebar';
 
-interface props {
+interface Props {
     children: ReactChild;
 }
 
-export default ({ children }: props) => (
+const BasePage = ({ children }: Props) => (
     <>
         <Header>
             <HeaderTitle>título</HeaderTitle>
@@ -25,3 +25,5 @@ export default ({ children }: props) => (
         <Footer>muito shoow</Footer>
     </>
 );
+
+export default BasePage;

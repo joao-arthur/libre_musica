@@ -1,7 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import * as Styles from './NumberSelector.styles';
 
-interface props {
+interface Props {
     value: number;
     min: number;
     max: number;
@@ -9,7 +9,7 @@ interface props {
     title: string;
 }
 
-export default ({ value, min, max, onChange, title }: props) => {
+const NumberSelector = ({ value, min, max, onChange, title }: Props) => {
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const maybeValue = Number(e.target.value);
         if (!maybeValue) return;
@@ -44,3 +44,5 @@ export default ({ value, min, max, onChange, title }: props) => {
         </Styles.Container>
     );
 };
+
+export default NumberSelector;

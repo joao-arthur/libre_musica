@@ -1,4 +1,3 @@
-import React from 'react';
 import { NotesStrings } from '../../../core/notes';
 import * as Style from './InstrumentTable.styles';
 import { Container, Label } from './TableCell/TableCell.styles';
@@ -9,14 +8,14 @@ export interface Fret {
     active: boolean;
 }
 
-interface props {
+interface Props {
     body: Array<Array<Fret>>;
     foot: Array<any>;
     fretNumber: number;
     handleChord: (note: NotesStrings) => void;
 }
 
-export default ({ body, foot, fretNumber, handleChord }: props) => (
+const InstrumentTable = ({ body, foot, fretNumber, handleChord }: Props) => (
     <Style.Table>
         <tbody>
             {body.map((row, index) => (
@@ -46,3 +45,5 @@ export default ({ body, foot, fretNumber, handleChord }: props) => (
         </tfoot>
     </Style.Table>
 );
+
+export default InstrumentTable;

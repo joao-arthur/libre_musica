@@ -10,7 +10,7 @@ interface boxProps {
 
 export const Container = styled.td<containerProps>`
     width: calc(100% / ${({ size }) => (size ? size + 1 : 1)});
-    height: 3.5rem;
+    height: 3.0rem;
     cursor: pointer;
     border: 1px solid var(--darkGrey);
     text-align: center;
@@ -18,8 +18,8 @@ export const Container = styled.td<containerProps>`
 
 export const Box = styled.div<boxProps>`
     border: none;
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: inline-flex;
     border-radius: 100%;
     background-color: ${({ active }) =>

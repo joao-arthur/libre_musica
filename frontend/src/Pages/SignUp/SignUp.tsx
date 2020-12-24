@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default () => (
+const SignUp = () => (
     <div>
         <h1>sign up</h1>
         <form>
@@ -9,3 +7,5 @@ export default () => (
         </form>
     </div>
 );
+
+export default SignUp;

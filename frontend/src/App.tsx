@@ -1,4 +1,3 @@
-import React from 'react';
 import GlobalStyle from './Components/Core/GlobalStyle';
 import Scales from './Pages/Scales';
 import Home from './Pages/Home';
@@ -6,12 +5,12 @@ import BasePage from './Pages/BasePage';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 import NotFound from './Pages/NotFound';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-export default () => (
+const App = () => (
     <>
         <GlobalStyle />
-        <Router>
+        <BrowserRouter>
             <BasePage>
                 <Switch>
                     <Route path='/home'>
@@ -31,10 +30,11 @@ export default () => (
                     </Route>
                 </Switch>
             </BasePage>
-        </Router>
+        </BrowserRouter>
     </>
 );
 
+export default App;
 /*TODO
     header fixo na página ou não?
     Implementar history nas rotas
@@ -54,4 +54,14 @@ export default () => (
     efeitos no som
     notação musical
     tocar músicas
+
+    header que rola com a página, que possui o botão pro hamburguer da sidebar
+    quando a sidebar estiver fechada vai aparecer apenas os ícones de cada página
+    sidebar flutuante
+
+    footer
+
+    © 2020 joão arthur ajuda sobre contato
+
+    footer no final da página, sem problema
 */

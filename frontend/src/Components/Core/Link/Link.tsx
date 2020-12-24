@@ -1,14 +1,16 @@
-import React, { ReactChild } from 'react';
-import Link from './Link.styles';
+import { ReactChild } from 'react';
+import CustomLink from './Link.styles';
 
-interface props {
+interface Props {
     to: string;
     children: ReactChild;
     className?: string;
 }
 
-export default ({ to, children, className }: props) => (
-    <Link to={to} className={className}>
+const Link = ({ to, children, className }: Props) => (
+    <CustomLink to={to} className={className}>
         {children}
-    </Link>
+    </CustomLink>
 );
+
+export default Link;

@@ -56,23 +56,23 @@ export const getTuning = (
 const getScales = (index: number) =>
     scales[['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][index]];
 
-interface Ikinds {
+interface IKinds {
     [key: string]: number[];
 }
 
-const scales: Ikinds = {
+const scales: IKinds = {
     diatonic: [0, 2, 4, 5, 7, 9, 11],
     harmonic: [0, 2, 4, 5, 7, 8, 11],
     doubleHarmonic: [0, 1, 4, 5, 7, 8, 11],
     pentatonic: [0, 2, 4, 7, 9]
 };
 
-interface Istrings {
-    [key: string]: Ikinds;
+interface IStrings {
+    [key: string]: IKinds;
 }
 
 interface Ituning {
-    [key: string]: Istrings;
+    [key: string]: IStrings;
 }
 
 const tunings: Ituning = {
