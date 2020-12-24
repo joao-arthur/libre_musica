@@ -3,7 +3,8 @@ import GlobalStyle from './Components/Core/GlobalStyle';
 import Scales from './Pages/Scales';
 import Home from './Pages/Home';
 import BasePage from './Pages/BasePage';
-import Login from './Pages/Login';
+import SignIn from './Pages/SignIn';
+import SignUp from './Pages/SignUp';
 import NotFound from './Pages/NotFound';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -19,8 +20,11 @@ export default () => (
                     <Route path='/scales'>
                         <Scales />
                     </Route>
-                    <Route path='/login'>
-                        <Login />
+                    <Route path='/signin'>
+                        <SignIn />
+                    </Route>
+                    <Route path='/signup'>
+                        <SignUp />
                     </Route>
                     <Route>
                         <NotFound />

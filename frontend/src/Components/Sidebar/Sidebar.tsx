@@ -8,10 +8,10 @@ export default () => (
                 <CustomLink to='/scales'>scales</CustomLink>
             </Item>
             <Item>
-                <CustomLink to='/login'>login</CustomLink>
+                <CustomLink to='/signup'>signup</CustomLink>
             </Item>
             <Item>
-                <CustomLink to='/sample'>sample</CustomLink>
+                <CustomLink to='/signin'>signin</CustomLink>
             </Item>
             <Item>
                 <CustomLink to='/sample'>sample</CustomLink>
