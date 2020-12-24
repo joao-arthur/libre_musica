@@ -32,6 +32,7 @@ export default () => (
 );
 
 /*TODO
+    header fixo na página ou não?
     Implementar history nas rotas
     ícones na sidebar
     sidebar hamburguer

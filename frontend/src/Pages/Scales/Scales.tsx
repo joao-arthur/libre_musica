@@ -12,7 +12,7 @@ import range from '../../core/range';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
 import InstrumentTable from '../../Components/Core/InstrumentTable';
-import { Separator } from './Scales.styles';
+import { Button } from './Scales.styles';
 
 export default () => {
     const [fretNumber, setFretNumber] = useState(11);
@@ -57,73 +57,65 @@ export default () => {
 
     return (
         <>
-            <Separator>
-                <Selector
-                    options={['guitar', 'bass']}
-                    selected={instrument}
-                    onChange={instrument => {
-                        setInstrument(instrument);
-                        if (instrument === 0) {
-                            setStringNumber(6);
-                            setTuningKind(0);
-                        } else {
-                            setStringNumber(4);
-                            setTuningKind(0);
-                        }
-                    }}
-                    title='Instrument'
-                />
-                <NumberSelector
-                    min={11}
-                    max={24}
-                    value={fretNumber}
-                    onChange={setFretNumber}
-                    title='Frets'
-                />
-                <NumberSelector
-                    min={instrument === 0 ? 6 : 4}
-                    max={instrument === 0 ? 7 : 6}
-                    value={stringNumber}
-                    onChange={stringNumber => {
-                        setStringNumber(stringNumber);
+            <Selector
+                options={['guitar', 'bass']}
+                selected={instrument}
+                onChange={instrument => {
+                    setInstrument(instrument);
+                    if (instrument === 0) {
+                        setStringNumber(6);
                         setTuningKind(0);
-                    }}
-                    title='String number'
-                />
-                <Selector
-                    options={[
-                        'diatonic',
-                        'harmonic',
-                        'double harmonic',
-                        'pentatonic'
-                    ]}
-                    selected={scaleKind}
-                    onChange={scaleKind => {
-                        setScaleKind(scaleKind);
-                        setMode(0);
-                    }}
-                    title='Scale kind'
-                />
-                <button onClick={() => setUsingChord(false)}>
-                    clear chord
-                </button>
-            </Separator>
-            <Separator>
-                <Selector
-                    options={modes}
-                    selected={modeIndex}
-                    onChange={setMode}
-                    title='Modes'
-                />
-            </Separator>
-            <Separator>
-                <Selector
-                    options={tuningKinds}
-                    selected={tuningKind}
-                    onChange={setTuningKind}
-                    title='Tuning kind'
-                />
-            </Separator>
+                    } else {
+                        setStringNumber(4);
+                        setTuningKind(0);
+                    }
+                }}
+                title='Instrument'
+            />
+            <NumberSelector
+                min={11}
+                max={24}
+                value={fretNumber}
+                onChange={setFretNumber}
+                title='Frets'
+            />
+            <NumberSelector
+                min={instrument === 0 ? 6 : 4}
+                max={instrument === 0 ? 7 : 6}
+                value={stringNumber}
+                onChange={stringNumber => {
+                    setStringNumber(stringNumber);
+                    setTuningKind(0);
+                }}
+                title='String number'
+            />
+            <Selector
+                options={[
+                    'diatonic',
+                    'harmonic',
+                    'double harmonic',
+                    'pentatonic'
+                ]}
+                selected={scaleKind}
+                onChange={scaleKind => {
+                    setScaleKind(scaleKind);
+                    setMode(0);
+                }}
+                title='Scale kind'
+            />
+            <Button onClick={() => setUsingChord(false)}>clear chord</Button>
+            <Selector
+                options={modes}
+                selected={modeIndex}
+                onChange={setMode}
+                title='Modes'
+            />
+            <Selector
+                options={tuningKinds}
+                selected={tuningKind}
+                onChange={setTuningKind}
+                title='Tuning kind'
+            />
             <Selector
                 options={notesArray}
                 selected={scale}

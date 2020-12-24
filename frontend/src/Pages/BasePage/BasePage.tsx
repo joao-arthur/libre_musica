@@ -16,6 +16,7 @@ export default ({ children }: props) => (
     <>
         <Header>
             <HeaderTitle>título</HeaderTitle>
+            <h3>sign in</h3> <h3>sign up</h3>
         </Header>
         <ContentContainer>
             <Sidebar />
