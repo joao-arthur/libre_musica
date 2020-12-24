@@ -1,4 +1,11 @@
 import React, { ReactChild } from 'react';
+import {
+    Header,
+    HeaderTitle,
+    ContentContainer,
+    ChildrenContainer,
+    Footer
+} from './BasePage.styles';
 import Sidebar from '../../Components/Sidebar';
 
 interface props {
@@ -7,7 +14,13 @@ interface props {
 
 export default ({ children }: props) => (
     <>
-        <Sidebar />
-        <div style={{ display: 'block' }}>{children}</div>
+        <Header>
+            <HeaderTitle>título</HeaderTitle>
+        </Header>
+        <ContentContainer>
+            <Sidebar />
+            <ChildrenContainer>{children}</ChildrenContainer>
+        </ContentContainer>
+        <Footer>muito shoow</Footer>
     </>
 );

@@ -3,10 +3,15 @@ import Link from '../Core/Link';
 
 export const Container = styled.div`
     height: 100vh;
-    width: 20vw;
-    border-right: 1px solid gray;
+    width: 1vw;
     box-shadow: 0px 0px 2px;
     overflow: hidden;
+    transition: width 1s;
+    flex: 0 0 auto;
+
+    &:hover {
+        width: 10vw;
+    }
 `;
 
 export const Item = styled.div`
