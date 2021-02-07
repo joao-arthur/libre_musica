@@ -1,4 +1,4 @@
-import { NotesStrings } from '../../../core/notes';
+import { NotesStrings } from '../../../Core/notes';
 import * as Style from './InstrumentTable.styles';
 import { Container, Label } from './TableCell/TableCell.styles';
 import TableCell from './TableCell';

@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import GlobalStyle from './Components/Core/GlobalStyle';
 import Scales from './Pages/Scales';
 import Home from './Pages/Home';
@@ -8,7 +9,7 @@ import NotFound from './Pages/NotFound';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => (
-    <>
+    <StrictMode>
         <GlobalStyle />
         <BrowserRouter>
             <BasePage>
@@ -31,7 +32,7 @@ const App = () => (
                 </Switch>
             </BasePage>
         </BrowserRouter>
-    </>
+    </StrictMode>
 );
 
 export default App;

@@ -7,8 +7,8 @@ import {
     getTuningKind,
     getModes,
     Notes
-} from '../../core/notes';
-import range from '../../core/range';
+} from '../../Core/notes';
+import range from '../../Core/range';
 import Selector from '../../Components/Core/Selector';
 import NumberSelector from '../../Components/Core/NumberSelector';
 import InstrumentTable from '../../Components/Core/InstrumentTable';
