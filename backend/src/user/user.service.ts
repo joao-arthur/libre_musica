@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDTO } from './user.dto';
-
+import { CreateUserDTO, UserDB } from './user.dto';
+import Authorization from '../Core/Authorization';
 @Injectable()
 export class UserService {
-    create(user: CreateUserDTO): string {
-        console.log(user);
+    create(user: CreateUserDTO) {
+        const { name, username, password, email, gender, birthday } = user;
 
-        return 'user created!';
+        new UserDB(
+            0,
+            name,
+            username,
+            email,
+            gender,
+            birthday,
+            '',
+            '',
+            Authorization.getIterations()
+        );
     }
 }
