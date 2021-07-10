@@ -6,6 +6,8 @@ export class UserService {
     create(user: CreateUserDTO) {
         const { name, username, password, email, gender, birthday } = user;
 
+        console.log(Authorization.encryptRSA(password));
+
         new UserDB(
             0,
             name,

@@ -19,9 +19,11 @@ const decryptRSA = (text: string) => {
     return privateKey.decrypt(text, 'utf8');
 };
 
-export default {
+const Authorization = {
     generateSalt,
     getIterations,
     encryptRSA,
     decryptRSA
 };
+
+export default Authorization;
