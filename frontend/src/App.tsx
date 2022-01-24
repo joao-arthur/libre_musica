@@ -3,8 +3,6 @@ import GlobalStyle from './Components/Core/GlobalStyle';
 import Scales from './Pages/Scales';
 import Home from './Pages/Home';
 import BasePage from './Pages/BasePage';
-import SignIn from './Pages/SignIn';
-import SignUp from './Pages/SignUp';
 import NotFound from './Pages/NotFound';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -19,12 +17,6 @@ const App = () => (
                     </Route>
                     <Route path='/scales'>
                         <Scales />
-                    </Route>
-                    <Route path='/signin'>
-                        <SignIn />
-                    </Route>
-                    <Route path='/signup'>
-                        <SignUp />
                     </Route>
                     <Route>
                         <NotFound />
