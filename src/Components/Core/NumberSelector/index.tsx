@@ -1,3 +1,1 @@
-import NumberSelector from './NumberSelector';
-
-export default NumberSelector;
+export { NumberSelector } from './NumberSelector';

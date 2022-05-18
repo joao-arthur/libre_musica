@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Link from '../Core/Link';
+import { Link } from '../Core/Link';
 
 export const Container = styled.div`
     height: 100vh;

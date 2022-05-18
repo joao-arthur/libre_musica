@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-interface optionProps {
+type optionProps = {
     selected: boolean;
     mode: 'square' | 'rectangle';
-}
+};
 
 export const Container = styled.div`
     flex: auto;

@@ -1,4 +1,4 @@
-import { ReactChild } from 'react';
+import { ReactElement } from 'react';
 import {
     Header,
     HeaderTitle,
@@ -6,24 +6,24 @@ import {
     ChildrenContainer,
     Footer
 } from './BasePage.styles';
-import Sidebar from '../../Components/Sidebar';
+import { Sidebar } from '../../Components/Sidebar';
 
-interface Props {
-    children: ReactChild;
+type props = {
+    children: ReactElement;
+};
+
+export function BasePage({ children }: props) {
+    return (
+        <>
+            <Header>
+                <HeaderTitle>título</HeaderTitle>
+                <h3>sign in</h3> <h3>sign up</h3>
+            </Header>
+            <ContentContainer>
+                <Sidebar />
+                <ChildrenContainer>{children}</ChildrenContainer>
+            </ContentContainer>
+            <Footer>nothing to see here (yet)</Footer>
+        </>
+    );
 }
-
-const BasePage = ({ children }: Props) => (
-    <>
-        <Header>
-            <HeaderTitle>título</HeaderTitle>
-            <h3>sign in</h3> <h3>sign up</h3>
-        </Header>
-        <ContentContainer>
-            <Sidebar />
-            <ChildrenContainer>{children}</ChildrenContainer>
-        </ContentContainer>
-        <Footer>muito shoow</Footer>
-    </>
-);
-
-export default BasePage;

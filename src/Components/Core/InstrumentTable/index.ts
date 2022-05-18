@@ -1,3 +1,1 @@
-import InstrumentTable from './InstrumentTable';
-
-export default InstrumentTable;
+export { InstrumentTable } from './InstrumentTable';

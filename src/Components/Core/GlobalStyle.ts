@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     html {
         --primary: #1976d2;
         --light: #63a4ff;
@@ -15,5 +15,3 @@ const GlobalStyle = createGlobalStyle`
         font-family: Roboto, sans-serif;
     }
 `;
-
-export default GlobalStyle;

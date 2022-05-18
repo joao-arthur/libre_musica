@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-interface containerProps {
+type containerProps = {
     size: number;
-}
+};
 
-interface boxProps {
+type boxProps = {
     active: boolean;
-}
+};
 
 export const Container = styled.td<containerProps>`
-    width: calc(100% / ${({ size }) => (size ? size + 1 : 1)});
-    height: 3.0rem;
+    width: calc(100% / ${({ size }) => size + 1});
+    height: 3rem;
     cursor: pointer;
     border: 1px solid var(--darkGrey);
     text-align: center;

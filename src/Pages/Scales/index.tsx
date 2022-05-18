@@ -1,3 +1,1 @@
-import Scales from './Scales';
-
-export default Scales;
+export { Scales } from './Scales';

@@ -1,4 +1,3 @@
-const reorderArrayByIndex = (array: Array<any>, index: number) =>
-    array.slice(index).concat(array.slice(0, index));
-
-export default reorderArrayByIndex;
+export function reorderArrayByIndex<T = unknown>(array: T[], index: number) {
+    return array.slice(index).concat(array.slice(0, index));
+}

@@ -8,13 +8,13 @@ import {
     getModes,
     Notes
 } from '../../core/notes';
-import range from '../../core/range';
-import Selector from '../../Components/Core/Selector';
-import NumberSelector from '../../Components/Core/NumberSelector';
-import InstrumentTable from '../../Components/Core/InstrumentTable';
+import { range } from '../../core/range';
+import { Selector } from '../../Components/Core/Selector';
+import { NumberSelector } from '../../Components/Core/NumberSelector';
+import { InstrumentTable } from '../../Components/Core/InstrumentTable';
 import { Button } from './Scales.styles';
 
-const Scales = () => {
+export function Scales() {
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState(6);
 
@@ -131,6 +131,4 @@ const Scales = () => {
             />
         </>
     );
-};
-
-export default Scales;
+}

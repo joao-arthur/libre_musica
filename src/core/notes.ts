@@ -1,4 +1,4 @@
-import reorderArrayByIndex from './reorderArrayByIndex';
+import { reorderArrayByIndex } from './reorderArrayByIndex';
 
 export enum Notes {
     C,
@@ -31,51 +31,59 @@ export const notesArray: NotesStrings[] = [
     'B'
 ];
 
-export const getScale = (note: number, modeIndex: number, scaleKind: number) =>
-    reorderArrayByIndex(getScales(scaleKind), modeIndex).map(
+export function getScale(note: number, modeIndex: number, scaleKind: number) {
+    return reorderArrayByIndex(getScales(scaleKind), modeIndex).map(
         noteOfScale => (noteOfScale + note) % 12
     );
+}
 
-export const getTuningKind = (instrument: number, stringNumber: number) =>
-    tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
+export function getTuningKind(instrument: number, stringNumber: number) {
+    return tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
+}
 
-export const getModes = (scaleKind: number) =>
-    modes[['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]];
-
-export const getTuning = (
+export function getModes(scaleKind: number) {
+    return modes[
+        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]
+    ];
+}
+export function getTuning(
     instrument: number,
     stringNumber: number,
     tuningKind: number
-) =>
-    tunings[['guitar', 'bass'][instrument]][stringNumber][
+) {
+    return tunings[['guitar', 'bass'][instrument]][stringNumber][
         ['standard', 'nst', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'][
             tuningKind
         ]
     ];
-
-const getScales = (index: number) =>
-    scales[['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][index]];
-
-interface IKinds {
-    [key: string]: number[];
 }
 
-const scales: IKinds = {
+function getScales(index: number) {
+    return scales[
+        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][index]
+    ];
+}
+
+type kinds = {
+    [key: string]: number[];
+};
+
+const scales: kinds = {
     diatonic: [0, 2, 4, 5, 7, 9, 11],
     harmonic: [0, 2, 4, 5, 7, 8, 11],
     doubleHarmonic: [0, 1, 4, 5, 7, 8, 11],
     pentatonic: [0, 2, 4, 7, 9]
 };
 
-interface IStrings {
-    [key: string]: IKinds;
-}
+type strings = {
+    [key: string]: kinds;
+};
 
-interface Ituning {
-    [key: string]: IStrings;
-}
+type tuning = {
+    [key: string]: strings;
+};
 
-const tunings: Ituning = {
+const tunings: tuning = {
     guitar: {
         6: {
             standard: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
@@ -121,15 +129,15 @@ const tunings: Ituning = {
     }
 };
 
-interface ISettingsStringsKinds {
-    [key: string]: Array<string>;
-}
+type settingsStringsKinds = {
+    [key: string]: string[];
+};
 
-interface ISettings {
-    [key: string]: ISettingsStringsKinds;
-}
+type settings = {
+    [key: string]: settingsStringsKinds;
+};
 
-const tuningsNames: ISettings = {
+const tuningsNames: settings = {
     guitar: {
         6: [
             'standard',
@@ -150,11 +158,11 @@ const tuningsNames: ISettings = {
     }
 };
 
-interface IModes {
-    [key: string]: Array<string>;
-}
+type modestype = {
+    [key: string]: string[];
+};
 
-const modes: IModes = {
+const modes: modestype = {
     diatonic: [
         'Ionian',
         'Dorian',

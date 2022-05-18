@@ -1,12 +1,12 @@
 import { StrictMode } from 'react';
-import GlobalStyle from './Components/Core/GlobalStyle';
-import Scales from './Pages/Scales';
-import Home from './Pages/Home';
-import BasePage from './Pages/BasePage';
-import NotFound from './Pages/NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GlobalStyle } from './Components/Core/GlobalStyle';
+import { Scales } from './Pages/Scales';
+import { Home } from './Pages/Home';
+import { BasePage } from './Pages/BasePage';
+import { NotFound } from './Pages/NotFound';
 
-export default function App() {
+export function App() {
     return (
         <StrictMode>
             <GlobalStyle />

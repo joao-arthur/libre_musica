@@ -1,49 +1,54 @@
 import { NotesStrings } from '../../../core/notes';
-import * as Style from './InstrumentTable.styles';
+import { Table } from './InstrumentTable.styles';
 import { Container, Label } from './TableCell/TableCell.styles';
-import TableCell from './TableCell';
+import { TableCell } from './TableCell';
 
-export interface Fret {
+type fret = {
     note: NotesStrings;
     active: boolean;
-}
+};
 
-interface Props {
-    body: Array<Array<Fret>>;
-    foot: Array<any>;
+type props = {
+    body: fret[][];
+    foot: (string | number)[];
     fretNumber: number;
     handleChord: (note: NotesStrings) => void;
-}
+};
 
-const InstrumentTable = ({ body, foot, fretNumber, handleChord }: Props) => (
-    <Style.Table>
-        <tbody>
-            {body.map((row, index) => (
-                <tr key={index}>
-                    {row.map((cell, i) => (
-                        <TableCell
-                            key={i}
-                            text={cell.note}
-                            size={row.length}
-                            active={cell.active}
-                            onClick={() => handleChord(cell.note)}
-                        />
+export function InstrumentTable({
+    body,
+    foot,
+    fretNumber,
+    handleChord
+}: props) {
+    return (
+        <Table>
+            <tbody>
+                {body.map((row, index) => (
+                    <tr key={index}>
+                        {row.map((cell, i) => (
+                            <TableCell
+                                key={i}
+                                text={cell.note}
+                                size={row.length}
+                                active={cell.active}
+                                onClick={() => handleChord(cell.note)}
+                            />
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
+            <tfoot>
+                <tr>
+                    {foot.map(i => (
+                        <Container key={i} size={fretNumber}>
+                            <Label>
+                                <b>{i}</b>
+                            </Label>
+                        </Container>
                     ))}
                 </tr>
-            ))}
-        </tbody>
-        <tfoot>
-            <tr>
-                {foot.map(i => (
-                    <Container key={i} size={fretNumber}>
-                        <Label>
-                            <b>{i}</b>
-                        </Label>
-                    </Container>
-                ))}
-            </tr>
-        </tfoot>
-    </Style.Table>
-);
-
-export default InstrumentTable;
+            </tfoot>
+        </Table>
+    );
+}
