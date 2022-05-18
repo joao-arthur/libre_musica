@@ -6,7 +6,7 @@ import {
     ChildrenContainer,
     Footer
 } from './BasePage.styles';
-import { Sidebar } from '../../Components/Sidebar';
+import { Sidebar } from '../../components/Sidebar';
 
 type props = {
     children: ReactElement;

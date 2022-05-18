@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { GlobalStyle } from './Components/Core/GlobalStyle';
-import { Scales } from './Pages/Scales';
-import { Home } from './Pages/Home';
-import { BasePage } from './Pages/BasePage';
-import { NotFound } from './Pages/NotFound';
+import { GlobalStyle } from './components/core/GlobalStyle';
+import { Scales } from './pages/Scales';
+import { Home } from './pages/Home';
+import { BasePage } from './pages/BasePage';
+import { NotFound } from './pages/NotFound';
 
 export function App() {
     return (

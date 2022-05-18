@@ -9,9 +9,9 @@ import {
     Notes
 } from '../../core/notes';
 import { range } from '../../core/range';
-import { Selector } from '../../Components/Core/Selector';
-import { NumberSelector } from '../../Components/Core/NumberSelector';
-import { InstrumentTable } from '../../Components/Core/InstrumentTable';
+import { Selector } from '../../components/core/Selector';
+import { NumberSelector } from '../../components/core/NumberSelector';
+import { InstrumentTable } from '../../components/core/InstrumentTable';
 import { Button } from './Scales.styles';
 
 export function Scales() {
