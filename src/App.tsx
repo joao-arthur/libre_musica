@@ -6,28 +6,29 @@ import BasePage from './Pages/BasePage';
 import NotFound from './Pages/NotFound';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-const App = () => (
-    <StrictMode>
-        <GlobalStyle />
-        <BrowserRouter>
-            <BasePage>
-                <Switch>
-                    <Route path='/home'>
-                        <Home />
-                    </Route>
-                    <Route path='/scales'>
-                        <Scales />
-                    </Route>
-                    <Route>
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </BasePage>
-        </BrowserRouter>
-    </StrictMode>
-);
+export default function App() {
+    return (
+        <StrictMode>
+            <GlobalStyle />
+            <BrowserRouter>
+                <BasePage>
+                    <Switch>
+                        <Route path='/home'>
+                            <Home />
+                        </Route>
+                        <Route path='/scales'>
+                            <Scales />
+                        </Route>
+                        <Route>
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </BasePage>
+            </BrowserRouter>
+        </StrictMode>
+    );
+}
 
-export default App;
 /*TODO
     header fixo na página ou não?
     Implementar history nas rotas

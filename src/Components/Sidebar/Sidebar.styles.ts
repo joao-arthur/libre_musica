@@ -18,7 +18,7 @@ export const Item = styled.div`
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
-    position:relative;
+    position: relative;
 
     cursor: pointer;
 
@@ -31,6 +31,6 @@ export const Item = styled.div`
 export const CustomLink = styled(Link)`
     padding: 20px;
     padding-left: 50px;
-    font-size:20px; 
-    width:100%;
-`
+    font-size: 20px;
+    width: 100%;
+`;
