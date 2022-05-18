@@ -4,7 +4,7 @@ import Scales from './Pages/Scales';
 import Home from './Pages/Home';
 import BasePage from './Pages/BasePage';
 import NotFound from './Pages/NotFound';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export default function App() {
     return (
@@ -12,17 +12,11 @@ export default function App() {
             <GlobalStyle />
             <BrowserRouter>
                 <BasePage>
-                    <Switch>
-                        <Route path='/home'>
-                            <Home />
-                        </Route>
-                        <Route path='/scales'>
-                            <Scales />
-                        </Route>
-                        <Route>
-                            <NotFound />
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route index element={<Home />} />
+                        <Route path='/scales' element={<Scales />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
                 </BasePage>
             </BrowserRouter>
         </StrictMode>
