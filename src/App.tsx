@@ -22,34 +22,3 @@ export default function App() {
         </StrictMode>
     );
 }
-
-/*TODO
-    header fixo na página ou não?
-    Implementar history nas rotas
-    ícones na sidebar
-    sidebar hamburguer
-    header
-    footer
-    home
-    melhorar página não encontrada
-    criar testes
-    implementar cadastro
-    implementar login
-    melhorar layout da página de escalas
-    acordes com outras notas
-    progressões de acordes
-    sons de notas
-    efeitos no som
-    notação musical
-    tocar músicas
-
-    header que rola com a página, que possui o botão pro hamburguer da sidebar
-    quando a sidebar estiver fechada vai aparecer apenas os ícones de cada página
-    sidebar flutuante
-
-    footer
-
-    © 2020 joão arthur ajuda sobre contato
-
-    footer no final da página, sem problema
-*/
