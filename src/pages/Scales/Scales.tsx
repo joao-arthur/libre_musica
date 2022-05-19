@@ -32,7 +32,7 @@ export function Scales() {
     const tuningKinds = getTuningKind(instrument, stringNumber);
     const modes = getModes(scaleKind);
 
-    const generateStringNotes = (stringNote: number) => {
+    function generateStringNotes(stringNote: number) {
         const chordNoteIndex = actualScale.indexOf(chordNote);
         const chordScale = [
             actualScale[chordNoteIndex],
@@ -47,13 +47,13 @@ export function Scales() {
                 note: notesArray[fret],
                 active: usedScale.includes(fret)
             }));
-    };
+    }
 
-    const handleChord = (note: NotesStrings): void => {
+    function handleChord(note: NotesStrings) {
         if (!actualScale.includes(Notes[note])) return;
         setUsingChord(true);
         setChordNote(Notes[note]);
-    };
+    }
 
     return (
         <>
@@ -72,23 +72,25 @@ export function Scales() {
                 }}
                 title='Instrument'
             />
-            <NumberSelector
-                min={11}
-                max={24}
-                value={fretNumber}
-                onChange={setFretNumber}
-                title='Frets'
-            />
-            <NumberSelector
-                min={instrument === 0 ? 6 : 4}
-                max={instrument === 0 ? 7 : 6}
-                value={stringNumber}
-                onChange={stringNumber => {
-                    setStringNumber(stringNumber);
-                    setTuningKind(0);
-                }}
-                title='String number'
-            />
+            <div className='flex'>
+                <NumberSelector
+                    min={11}
+                    max={24}
+                    value={fretNumber}
+                    onChange={setFretNumber}
+                    title='Frets'
+                />
+                <NumberSelector
+                    min={instrument === 0 ? 6 : 4}
+                    max={instrument === 0 ? 7 : 6}
+                    value={stringNumber}
+                    onChange={stringNumber => {
+                        setStringNumber(stringNumber);
+                        setTuningKind(0);
+                    }}
+                    title='String number'
+                />
+            </div>
             <Selector
                 options={[
                     'diatonic',

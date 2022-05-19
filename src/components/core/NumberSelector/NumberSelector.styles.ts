@@ -40,11 +40,11 @@ export const Input = styled.input`
     border: none;
     padding: 5px;
     outline: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    width: 7rem;
 
     :focus {
-        height: 53px;
         border: 1px solid var(--primaryGrey);
-        margin: 0 2px;
-        border-radius: 5px;
     }
 `;

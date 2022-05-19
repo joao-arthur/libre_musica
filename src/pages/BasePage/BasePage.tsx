@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { Sidebar } from '../../components/Sidebar';
 import {
     Header,
     HeaderTitle,
@@ -6,7 +7,6 @@ import {
     ChildrenContainer,
     Footer
 } from './BasePage.styles';
-import { Sidebar } from '../../components/Sidebar';
 
 type props = {
     children: ReactElement;
@@ -17,7 +17,6 @@ export function BasePage({ children }: props) {
         <>
             <Header>
                 <HeaderTitle>título</HeaderTitle>
-                <h3>sign in</h3> <h3>sign up</h3>
             </Header>
             <ContentContainer>
                 <Sidebar />
