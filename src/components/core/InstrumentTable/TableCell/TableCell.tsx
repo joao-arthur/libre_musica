@@ -1,18 +1,26 @@
-import { Container, Label, Box } from './TableCell.styles';
+import classNames from 'classnames';
+import { TableLabel } from '../TableLabel';
 
 type props = {
     text: string;
-    size: number;
     active: boolean;
     onClick: () => void;
 };
 
-export function TableCell({ text, size, active, onClick }: props) {
+export function TableCell({ text, active, onClick }: props) {
     return (
-        <Container size={size} onClick={onClick}>
-            <Box active={active}>
-                <Label>{text}</Label>
-            </Box>
-        </Container>
+        <td
+            className='cursor-pointer h-12 text-center border border-grey-dark'
+            onClick={onClick}
+        >
+            <div
+                className={classNames(
+                    'inline-flex w-10 h-10 rounded-full text-white',
+                    active ? 'bg-primary-dark' : 'bg-primary-light'
+                )}
+            >
+                <TableLabel>{text}</TableLabel>
+            </div>
+        </td>
     );
 }

@@ -12,7 +12,8 @@ import { range } from '../../core/range';
 import { Selector } from '../../components/core/Selector';
 import { NumberSelector } from '../../components/core/NumberSelector';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
-import { Button } from './Scales.styles';
+
+const instrumentOptions = ['guitar', 'bass'];
 
 export function Scales() {
     const [fretNumber, setFretNumber] = useState(11);
@@ -58,7 +59,7 @@ export function Scales() {
     return (
         <>
             <Selector
-                options={['guitar', 'bass']}
+                options={instrumentOptions}
                 selected={instrument}
                 onChange={instrument => {
                     setInstrument(instrument);
@@ -105,7 +106,9 @@ export function Scales() {
                 }}
                 title='Scale kind'
             />
-            <Button onClick={() => setUsingChord(false)}>clear chord</Button>
+            <button className='text-lg' onClick={() => setUsingChord(false)}>
+                clear chord
+            </button>
             <Selector
                 options={modes}
                 selected={modeIndex}
@@ -126,7 +129,6 @@ export function Scales() {
                 mode='square'
             />
             <InstrumentTable
-                fretNumber={fretNumber}
                 body={tuning.map(generateStringNotes)}
                 handleChord={handleChord}
                 foot={range(fretNumber + 1)}

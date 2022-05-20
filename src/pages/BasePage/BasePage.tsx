@@ -1,28 +1,21 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 import { Sidebar } from '../../components/Sidebar';
-import {
-    Header,
-    HeaderTitle,
-    ContentContainer,
-    ChildrenContainer,
-    Footer
-} from './BasePage.styles';
 
 type props = {
-    children: ReactElement;
+    children: ReactNode;
 };
 
 export function BasePage({ children }: props) {
     return (
         <>
-            <Header>
-                <HeaderTitle>título</HeaderTitle>
-            </Header>
-            <ContentContainer>
+            <header className='text-center bg-gray-400'>
+                <h1>app title</h1>
+            </header>
+            <div className='flex'>
                 <Sidebar />
-                <ChildrenContainer>{children}</ChildrenContainer>
-            </ContentContainer>
-            <Footer>nothing to see here (yet)</Footer>
+                <div className='block flex-1-0-auto'>{children}</div>
+            </div>
+            <footer>nothing to see here (yet)</footer>
         </>
     );
 }

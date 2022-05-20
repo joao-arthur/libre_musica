@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
-import { Container, Title, Input, Button } from './NumberSelector.styles';
+import { InputButton } from './InputButton';
+import { Input } from './NumberSelector.styles';
 
 type props = {
     value: number;
@@ -10,7 +11,7 @@ type props = {
 };
 
 export function NumberSelector({ value, min, max, onChange, title }: props) {
-    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
         const maybeValue = Number(e.target.value);
         if (!maybeValue) return;
         if (maybeValue > max) return;
@@ -19,22 +20,28 @@ export function NumberSelector({ value, min, max, onChange, title }: props) {
     }
 
     return (
-        <Container>
-            <Title>{title}</Title>
-            <Input
+        <div className='flex-auto'>
+            <h3 className='text-center'>{title}</h3>
+            <input
                 type='number'
+                className='w-28 h-14 mx-1 p-1 outline-none border border-transparent focus:border-gray-300 rounded'
                 min={min}
                 max={max}
-                required
-                onChange={handleInputChange}
+                onChange={handleOnChange}
                 value={value}
             />
-            <Button disabled={value >= max} onClick={() => onChange(value + 1)}>
+            <InputButton
+                disabled={value >= max}
+                onClick={() => onChange(value + 1)}
+            >
                 +
-            </Button>
-            <Button disabled={value <= min} onClick={() => onChange(value - 1)}>
+            </InputButton>
+            <InputButton
+                disabled={value <= min}
+                onClick={() => onChange(value - 1)}
+            >
                 -
-            </Button>
-        </Container>
+            </InputButton>
+        </div>
     );
 }

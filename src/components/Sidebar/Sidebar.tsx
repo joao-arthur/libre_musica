@@ -1,34 +1,17 @@
-import { Container, Item, CustomLink } from './Sidebar.styles';
+import { SidebarItem } from './SidebarItem';
+import { SidebarLink } from './SidebarLink';
 
 export function Sidebar() {
     return (
-        <div style={{ display: 'flex' }}>
-            <Container>
-                <Item>
-                    <CustomLink to='/scales'>scales</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/signup'>signup</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/signin'>signin</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/home'>home</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/sample'>sample</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/sample'>sample</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/sample'>sample</CustomLink>
-                </Item>
-                <Item>
-                    <CustomLink to='/sample'>sample</CustomLink>
-                </Item>
-            </Container>
+        <div className='flex'>
+            <div className='h-screen flex-0-auto shado overflow-hidden transition-all duration-500 w-2 hover:w-80'>
+                <SidebarItem>
+                    <SidebarLink to='/scales'>scales</SidebarLink>
+                </SidebarItem>
+                <SidebarItem>
+                    <SidebarLink to='/home'>home</SidebarLink>
+                </SidebarItem>
+            </div>
         </div>
     );
 }

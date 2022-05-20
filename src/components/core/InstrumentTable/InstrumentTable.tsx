@@ -1,7 +1,6 @@
 import { NotesStrings } from '../../../core/notes';
-import { Table } from './InstrumentTable.styles';
-import { Container, Label } from './TableCell/TableCell.styles';
 import { TableCell } from './TableCell';
+import { TableLabel } from './TableLabel';
 
 type fret = {
     note: NotesStrings;
@@ -11,18 +10,12 @@ type fret = {
 type props = {
     body: fret[][];
     foot: (string | number)[];
-    fretNumber: number;
     handleChord: (note: NotesStrings) => void;
 };
 
-export function InstrumentTable({
-    body,
-    foot,
-    fretNumber,
-    handleChord
-}: props) {
+export function InstrumentTable({ body, foot, handleChord }: props) {
     return (
-        <Table>
+        <table className='w-full border-collapse bg-grey-light'>
             <tbody>
                 {body.map((row, index) => (
                     <tr key={index}>
@@ -30,7 +23,6 @@ export function InstrumentTable({
                             <TableCell
                                 key={i}
                                 text={cell.note}
-                                size={row.length}
                                 active={cell.active}
                                 onClick={() => handleChord(cell.note)}
                             />
@@ -41,14 +33,17 @@ export function InstrumentTable({
             <tfoot>
                 <tr>
                     {foot.map(i => (
-                        <Container key={i} size={fretNumber}>
-                            <Label>
+                        <td
+                            className='cursor-pointer h-12 text-center border border-grey-dark'
+                            key={i}
+                        >
+                            <TableLabel>
                                 <b>{i}</b>
-                            </Label>
-                        </Container>
+                            </TableLabel>
+                        </td>
                     ))}
                 </tr>
             </tfoot>
-        </Table>
+        </table>
     );
 }
