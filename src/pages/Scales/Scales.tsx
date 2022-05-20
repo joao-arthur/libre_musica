@@ -13,24 +13,62 @@ import { Selector } from '../../components/core/Selector';
 import { NumberSelector } from '../../components/core/NumberSelector';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
 
-const instrumentOptions = ['guitar', 'bass'];
+const instrumentOptions = ['guitar', 'bass'] as const;
+const scaleKindOptions = [
+    'diatonic',
+    'harmonic',
+    'doubleHarmonic',
+    'pentatonic'
+] as const;
 
 export function Scales() {
     const [fretNumber, setFretNumber] = useState(11);
-    const [stringNumber, setStringNumber] = useState(6);
+    const [stringNumber, setStringNumber] = useState<4 | 5 | 6 | 7>(6);
 
-    const [scale, setScale] = useState(0);
-    const [scaleKind, setScaleKind] = useState(0);
-    const [instrument, setInstrument] = useState(0);
-    const [tuningKind, setTuningKind] = useState(0);
-    const [modeIndex, setMode] = useState(0);
+    const [scale, setScale] = useState<
+        | 'C'
+        | 'C#'
+        | 'D'
+        | 'D#'
+        | 'E'
+        | 'F'
+        | 'F#'
+        | 'G'
+        | 'G#'
+        | 'A'
+        | 'A#'
+        | 'B'
+    >('C');
+    const [scaleKind, setScaleKind] = useState<
+        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    >('diatonic');
+    const [instrument, setInstrument] = useState<'guitar' | 'bass'>('guitar');
+    const [tuningKind, setTuningKind] = useState<
+        | 'standard'
+        | 'nst'
+        | 'dropd'
+        | 'dropc'
+        | 'dadgad'
+        | 'dadaad'
+        | 'incinerate'
+    >('standard');
+    const [modeIndex, setMode] = useState<
+        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    >('diatonic');
 
     const [chordNote, setChordNote] = useState(0);
     const [usingChord, setUsingChord] = useState(false);
 
-    const actualScale = getScale(scale, modeIndex, scaleKind);
-    const tuning = getTuning(instrument, stringNumber, tuningKind);
-    const tuningKinds = getTuningKind(instrument, stringNumber);
+    const actualScale = getScale(scale, scaleKind);
+    const tuning = getTuning({
+        instrument: instrument as any,
+        stringNumber,
+        tuningKind: tuningKind as any
+    });
+    const tuningKinds = getTuningKind({
+        instrument,
+        stringNumber: stringNumber as any
+    });
     const modes = getModes(scaleKind);
 
     function generateStringNotes(stringNote: number) {
@@ -62,13 +100,13 @@ export function Scales() {
                 options={instrumentOptions}
                 selected={instrument}
                 onChange={instrument => {
-                    setInstrument(instrument);
-                    if (instrument === 0) {
+                    setInstrument(instrument as any);
+                    if (instrument === 'guitar') {
                         setStringNumber(6);
-                        setTuningKind(0);
+                        setTuningKind('standard');
                     } else {
                         setStringNumber(4);
-                        setTuningKind(0);
+                        setTuningKind('standard');
                     }
                 }}
                 title='Instrument'
@@ -82,27 +120,22 @@ export function Scales() {
                     title='Frets'
                 />
                 <NumberSelector
-                    min={instrument === 0 ? 6 : 4}
-                    max={instrument === 0 ? 7 : 6}
+                    min={instrument === 'guitar' ? 6 : 4}
+                    max={instrument === 'guitar' ? 7 : 6}
                     value={stringNumber}
                     onChange={stringNumber => {
-                        setStringNumber(stringNumber);
+                        setStringNumber(stringNumber as any);
                         setTuningKind(0);
                     }}
                     title='String number'
                 />
             </div>
             <Selector
-                options={[
-                    'diatonic',
-                    'harmonic',
-                    'double harmonic',
-                    'pentatonic'
-                ]}
+                options={scaleKindOptions}
                 selected={scaleKind}
                 onChange={scaleKind => {
-                    setScaleKind(scaleKind);
-                    setMode(0);
+                    setScaleKind(scaleKind as any);
+                    setMode('diatonic');
                 }}
                 title='Scale kind'
             />
@@ -112,24 +145,24 @@ export function Scales() {
             <Selector
                 options={modes}
                 selected={modeIndex}
-                onChange={setMode}
+                onChange={() => setMode}
                 title='Modes'
             />
             <Selector
                 options={tuningKinds}
                 selected={tuningKind}
-                onChange={setTuningKind}
+                onChange={newValue => setTuningKind(newValue as any)}
                 title='Tuning kind'
             />
             <Selector
                 options={notesArray}
                 selected={scale}
-                onChange={setScale}
+                onChange={newValue => setScale(newValue as any)}
                 title='Key'
                 mode='square'
             />
             <InstrumentTable
-                body={tuning.map(generateStringNotes)}
+                body={tuning!.map(generateStringNotes)}
                 handleChord={handleChord}
                 foot={range(fretNumber + 1)}
             />

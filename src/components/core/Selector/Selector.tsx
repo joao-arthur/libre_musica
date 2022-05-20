@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 type props = {
-    options: string[];
+    options: readonly string[];
     onChange: (option: string) => void;
     selected: string;
     title: string;

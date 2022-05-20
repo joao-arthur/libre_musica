@@ -31,138 +31,251 @@ export const notesArray: NotesStrings[] = [
     'B'
 ];
 
-export function getScale(note: number, modeIndex: number, scaleKind: number) {
-    return reorderArrayByIndex(getScales(scaleKind), modeIndex).map(
-        noteOfScale => (noteOfScale + note) % 12
+export function getScale(
+    note:
+        | 'C'
+        | 'C#'
+        | 'D'
+        | 'D#'
+        | 'E'
+        | 'F'
+        | 'F#'
+        | 'G'
+        | 'G#'
+        | 'A'
+        | 'A#'
+        | 'B',
+    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+) {
+    return getScales(scaleKind).map(
+        noteOfScale => (noteOfScale + notesArray.indexOf(note)) % 12
     );
 }
 
-export function getTuningKind(instrument: number, stringNumber: number) {
-    return tuningsNames[['guitar', 'bass'][instrument]][stringNumber];
+type tuningsKindType =
+    | {
+          instrument: 'guitar';
+          stringNumber: 6 | 7 | 8;
+      }
+    | {
+          instrument: 'bass';
+          stringNumber: 4 | 5 | 6;
+      };
+
+export function getTuningKind({ instrument, stringNumber }: tuningsKindType) {
+    switch (instrument) {
+        case 'guitar':
+            switch (stringNumber) {
+                case 6:
+                    return [
+                        'standard',
+                        'nst',
+                        'dropd',
+                        'dropc',
+                        'dadgad',
+                        'dadaad',
+                        'incinerate'
+                    ];
+                case 7:
+                    return ['standard'];
+                case 8:
+                    return ['standard'];
+            }
+        case 'bass':
+            switch (stringNumber) {
+                case 4:
+                    return ['standard', 'nst', 'dropd', 'dropc'];
+                case 5:
+                    return ['standard'];
+                case 6:
+                    return ['standard'];
+            }
+    }
 }
 
-export function getModes(scaleKind: number) {
-    return modes[
-        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][scaleKind]
-    ];
-}
-export function getTuning(
-    instrument: number,
-    stringNumber: number,
-    tuningKind: number
+export function getModes(
+    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
 ) {
-    return tunings[['guitar', 'bass'][instrument]][stringNumber][
-        ['standard', 'nst', 'dropd', 'dropc', 'dadgad', 'dadaad', 'incinerate'][
-            tuningKind
-        ]
-    ];
+    return modes[scaleKind];
 }
 
-function getScales(index: number) {
-    return scales[
-        ['diatonic', 'harmonic', 'doubleHarmonic', 'pentatonic'][index]
-    ];
+type tuningsType =
+    | {
+          instrument: 'guitar';
+          stringNumber: 6 | 7;
+          tuningKind:
+              | 'standard'
+              | 'nst'
+              | 'dropd'
+              | 'dropc'
+              | 'dadgad'
+              | 'dadaad'
+              | 'incinerate';
+      }
+    | {
+          instrument: 'bass';
+          stringNumber: 4 | 5 | 6;
+          tuningKind:
+              | 'standard'
+              | 'nst'
+              | 'dropd'
+              | 'dropc'
+              | 'dadgad'
+              | 'dadaad'
+              | 'incinerate';
+      };
+
+export function getTuning({
+    instrument,
+    stringNumber,
+    tuningKind
+}: tuningsType) {
+    switch (instrument) {
+        case 'guitar':
+            switch (stringNumber) {
+                case 6:
+                    switch (tuningKind) {
+                        case 'standard':
+                            return [
+                                Notes.E,
+                                Notes.B,
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.E
+                            ];
+                        case 'nst':
+                            return [
+                                Notes.G,
+                                Notes.E,
+                                Notes.A,
+                                Notes.D,
+                                Notes.G,
+                                Notes.C
+                            ];
+                        case 'dropd':
+                            return [
+                                Notes.E,
+                                Notes.B,
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.D
+                            ];
+                        case 'dropc':
+                            return [
+                                Notes.D,
+                                Notes.A,
+                                Notes.F,
+                                Notes.C,
+                                Notes.G,
+                                Notes.C
+                            ];
+                        case 'dadgad':
+                            return [
+                                Notes.D,
+                                Notes.A,
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.D
+                            ];
+                        case 'dadaad':
+                            return [
+                                Notes.D,
+                                Notes.A,
+                                Notes.A,
+                                Notes.D,
+                                Notes.A,
+                                Notes.D
+                            ];
+                        case 'incinerate':
+                            return [
+                                Notes.G,
+                                Notes.G,
+                                Notes['D#'],
+                                Notes['A#'],
+                                Notes['D#'],
+                                Notes.D
+                            ];
+                    }
+                case 7:
+                    switch (tuningKind) {
+                        case 'standard':
+                            return [
+                                Notes.E,
+                                Notes.B,
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.E,
+                                Notes.B
+                            ];
+                    }
+                    break;
+            }
+            tuningKind;
+            break;
+        case 'bass':
+            switch (stringNumber) {
+                case 4:
+                    switch (tuningKind) {
+                        case 'standard':
+                            return [Notes.G, Notes.D, Notes.A, Notes.E];
+                        case 'nst':
+                            return [Notes.A, Notes.D, Notes.G, Notes.C];
+                        case 'dropd':
+                            return [Notes.G, Notes.D, Notes.A, Notes.D];
+                        case 'dropc':
+                            return [Notes.F, Notes.C, Notes.G, Notes.C];
+                    }
+                    break;
+                case 5:
+                    switch (tuningKind) {
+                        case 'standard':
+                            tuningKind;
+                            return [
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.E,
+                                Notes.B
+                            ];
+                    }
+                    break;
+                case 6:
+                    switch (tuningKind) {
+                        case 'standard':
+                            return [
+                                Notes.C,
+                                Notes.G,
+                                Notes.D,
+                                Notes.A,
+                                Notes.E,
+                                Notes.B
+                            ];
+                    }
+                    break;
+            }
+    }
 }
 
-type kinds = {
-    [key: string]: number[];
-};
-
-const scales: kinds = {
-    diatonic: [0, 2, 4, 5, 7, 9, 11],
-    harmonic: [0, 2, 4, 5, 7, 8, 11],
-    doubleHarmonic: [0, 1, 4, 5, 7, 8, 11],
-    pentatonic: [0, 2, 4, 7, 9]
-};
-
-type strings = {
-    [key: string]: kinds;
-};
-
-type tuning = {
-    [key: string]: strings;
-};
-
-const tunings: tuning = {
-    guitar: {
-        6: {
-            standard: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.E],
-            nst: [Notes.G, Notes.E, Notes.A, Notes.D, Notes.G, Notes.C],
-            dropd: [Notes.E, Notes.B, Notes.G, Notes.D, Notes.A, Notes.D],
-            dropc: [Notes.D, Notes.A, Notes.F, Notes.C, Notes.G, Notes.C],
-            dadgad: [Notes.D, Notes.A, Notes.G, Notes.D, Notes.A, Notes.D],
-            dadaad: [Notes.D, Notes.A, Notes.A, Notes.D, Notes.A, Notes.D],
-            incinerate: [
-                Notes.G,
-                Notes.G,
-                Notes['D#'],
-                Notes['A#'],
-                Notes['D#'],
-                Notes.D
-            ]
-        },
-        7: {
-            standard: [
-                Notes.E,
-                Notes.B,
-                Notes.G,
-                Notes.D,
-                Notes.A,
-                Notes.E,
-                Notes.B
-            ]
-        }
-    },
-    bass: {
-        4: {
-            standard: [Notes.G, Notes.D, Notes.A, Notes.E],
-            nst: [Notes.A, Notes.D, Notes.G, Notes.C],
-            dropd: [Notes.G, Notes.D, Notes.A, Notes.D],
-            dropc: [Notes.F, Notes.C, Notes.G, Notes.C]
-        },
-        5: {
-            standard: [Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
-        },
-        6: {
-            standard: [Notes.C, Notes.G, Notes.D, Notes.A, Notes.E, Notes.B]
-        }
+function getScales(
+    scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+) {
+    switch (scale) {
+        case 'diatonic':
+            return [0, 2, 4, 5, 7, 9, 11];
+        case 'harmonic':
+            return [0, 2, 4, 5, 7, 8, 11];
+        case 'doubleHarmonic':
+            return [0, 1, 4, 5, 7, 8, 11];
+        case 'pentatonic':
+            return [0, 2, 4, 7, 9];
     }
-};
+}
 
-type settingsStringsKinds = {
-    [key: string]: string[];
-};
-
-type settings = {
-    [key: string]: settingsStringsKinds;
-};
-
-const tuningsNames: settings = {
-    guitar: {
-        6: [
-            'standard',
-            'nst',
-            'dropd',
-            'dropc',
-            'dadgad',
-            'dadaad',
-            'incinerate'
-        ],
-        7: ['standard'],
-        8: ['standard']
-    },
-    bass: {
-        4: ['standard', 'nst', 'dropd', 'dropc'],
-        5: ['standard'],
-        6: ['standard']
-    }
-};
-
-type modestype = {
-    [key: string]: string[];
-};
-
-const modes: modestype = {
+const modes = {
     diatonic: [
         'Ionian',
         'Dorian',
@@ -191,4 +304,4 @@ const modes: modestype = {
         'Locrian double flat3 double flat7'
     ],
     pentatonic: ['Ionian', 'Dorian', 'Phrygian', 'Mixolydian', 'Aeolian']
-};
+} as const;
