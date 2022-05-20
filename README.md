@@ -21,3 +21,9 @@ This project aims to help learning music theory in string instruments.
 -   sound effects
 -   musical notation
 -   play songs
+
+## Run it
+
+> pnpm install
+
+> pnpm dev
