@@ -1,4 +1,4 @@
-import { NotesStrings } from '../../../core/notes';
+import { NotesStrings } from '../../../lib/notes';
 import { TableCell } from './TableCell';
 import { TableLabel } from './TableLabel';
 
