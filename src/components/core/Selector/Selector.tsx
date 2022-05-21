@@ -13,7 +13,7 @@ export function Selector({
     onChange,
     selected,
     title,
-    mode = 'rectangle'
+    mode = 'rectangle',
 }: props) {
     return (
         <div className='flex-auto'>
@@ -21,16 +21,16 @@ export function Selector({
             <div className='flex py-1 justify-around'>
                 {options.map(option => (
                     <button
+                        type='button'
                         className={classNames(
                             'flex items-center justify-center text-white border-none outline-none h-14 rounded text-center hover:bg-primary',
                             option === selected
                                 ? 'bg-primary-dark'
                                 : 'bg-primary-light',
-                            mode === 'square'
-                                ? 'w-14'
-                                : mode === 'rectangle'
-                                ? 'w-40'
-                                : ''
+                            {
+                                'w-14': mode === 'square',
+                                'w-40': mode === 'rectangle',
+                            },
                         )}
                         key={option}
                         onClick={() => onChange(option)}

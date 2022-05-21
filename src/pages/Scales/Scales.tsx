@@ -6,54 +6,55 @@ import {
     getTuning,
     getTuningKind,
     getModes,
-    Notes
+    Notes,
 } from '../../lib/notes';
 import { range } from '../../lib/range';
 import { Selector } from '../../components/core/Selector';
 import { NumberSelector } from '../../components/core/NumberSelector';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
 
+type notes =
+    | 'C'
+    | 'C#'
+    | 'D'
+    | 'D#'
+    | 'E'
+    | 'F'
+    | 'F#'
+    | 'G'
+    | 'G#'
+    | 'A'
+    | 'A#'
+    | 'B';
+
 const instrumentOptions = ['guitar', 'bass'] as const;
 const scaleKindOptions = [
     'diatonic',
     'harmonic',
     'doubleHarmonic',
-    'pentatonic'
+    'pentatonic',
 ] as const;
 
 export function Scales() {
     const [fretNumber, setFretNumber] = useState(11);
     const [stringNumber, setStringNumber] = useState<4 | 5 | 6 | 7>(6);
 
-    const [scale, setScale] = useState<
-        | 'C'
-        | 'C#'
-        | 'D'
-        | 'D#'
-        | 'E'
-        | 'F'
-        | 'F#'
-        | 'G'
-        | 'G#'
-        | 'A'
-        | 'A#'
-        | 'B'
-    >('C');
+    const [scale, setScale] = useState<notes>('C');
     const [scaleKind, setScaleKind] = useState<
-        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
     const [instrument, setInstrument] = useState<'guitar' | 'bass'>('guitar');
     const [tuningKind, setTuningKind] = useState<
-        | 'standard'
-        | 'nst'
-        | 'dropd'
-        | 'dropc'
-        | 'dadgad'
-        | 'dadaad'
-        | 'incinerate'
+    | 'standard'
+    | 'nst'
+    | 'dropd'
+    | 'dropc'
+    | 'dadgad'
+    | 'dadaad'
+    | 'incinerate'
     >('standard');
     const [modeIndex, setMode] = useState<
-        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
 
     const [chordNote, setChordNote] = useState(0);
@@ -63,11 +64,11 @@ export function Scales() {
     const tuning = getTuning({
         instrument: instrument as any,
         stringNumber,
-        tuningKind: tuningKind as any
+        tuningKind: tuningKind as any,
     });
     const tuningKinds = getTuningKind({
         instrument,
-        stringNumber: stringNumber as any
+        stringNumber: stringNumber as any,
     });
     const modes = getModes(scaleKind);
 
@@ -76,7 +77,7 @@ export function Scales() {
         const chordScale = [
             actualScale[chordNoteIndex],
             actualScale[(chordNoteIndex + 2) % 7],
-            actualScale[(chordNoteIndex + 4) % 7]
+            actualScale[(chordNoteIndex + 4) % 7],
         ];
         const usedScale = usingChord ? chordScale : actualScale;
 
@@ -84,7 +85,7 @@ export function Scales() {
             .map(fret => (stringNote + fret) % 12)
             .map(fret => ({
                 note: notesArray[fret],
-                active: usedScale.includes(fret)
+                active: usedScale.includes(fret),
             }));
     }
 
@@ -125,7 +126,7 @@ export function Scales() {
                     value={stringNumber}
                     onChange={stringNumber => {
                         setStringNumber(stringNumber as any);
-                        setTuningKind(0);
+                        setTuningKind('standard');
                     }}
                     title='String number'
                 />
@@ -139,7 +140,11 @@ export function Scales() {
                 }}
                 title='Scale kind'
             />
-            <button className='text-lg' onClick={() => setUsingChord(false)}>
+            <button
+                type='button'
+                className='text-lg'
+                onClick={() => setUsingChord(false)}
+            >
                 clear chord
             </button>
             <Selector

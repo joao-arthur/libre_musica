@@ -30,6 +30,24 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
+        'react/jsx-no-bind': [
+            'error',
+            {
+                ignoreDOMComponents: false,
+                ignoreRefs: false,
+                allowArrowFunctions: true,
+                allowFunctions: true,
+                allowBind: false,
+            },
+        ],
+        'react/require-default-props': [
+            'error',
+            {
+                forbidDefaultForRequired: true,
+                classes: 'ignore',
+                functions: 'defaultArguments',
+            },
+        ],
         'import/prefer-default-export': 'off',
         'import/no-default-export': 'error',
         '@typescript-eslint/naming-convention': [
@@ -51,5 +69,8 @@ module.exports = {
             { overrides: { '?': 'before', ':': 'before' } },
         ],
         'no-implicit-globals': 'error',
+        'jsx-quotes': ['error', 'prefer-single'],
+        'default-case': 'off',
+        indent: 'off',
     },
 };

@@ -1,4 +1,4 @@
-import { reorderArrayByIndex } from './reorderArrayByIndex';
+// import { reorderArrayByIndex } from './reorderArrayByIndex';
 
 export enum Notes {
     C,
@@ -12,7 +12,7 @@ export enum Notes {
     'G#',
     A,
     'A#',
-    B
+    B,
 }
 
 export type NotesStrings = keyof typeof Notes;
@@ -28,7 +28,7 @@ export const notesArray: NotesStrings[] = [
     'G#',
     'A',
     'A#',
-    'B'
+    'B',
 ];
 
 export function getScale(
@@ -45,10 +45,10 @@ export function getScale(
         | 'A'
         | 'A#'
         | 'B',
-    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
 ) {
     return getScales(scaleKind).map(
-        noteOfScale => (noteOfScale + notesArray.indexOf(note)) % 12
+        noteOfScale => (noteOfScale + notesArray.indexOf(note)) % 12,
     );
 }
 
@@ -74,7 +74,7 @@ export function getTuningKind({ instrument, stringNumber }: tuningsKindType) {
                         'dropc',
                         'dadgad',
                         'dadaad',
-                        'incinerate'
+                        'incinerate',
                     ];
                 case 7:
                     return ['standard'];
@@ -94,7 +94,7 @@ export function getTuningKind({ instrument, stringNumber }: tuningsKindType) {
 }
 
 export function getModes(
-    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
 ) {
     return modes[scaleKind];
 }
@@ -128,7 +128,7 @@ type tuningsType =
 export function getTuning({
     instrument,
     stringNumber,
-    tuningKind
+    tuningKind,
 }: tuningsType) {
     switch (instrument) {
         case 'guitar':
@@ -142,7 +142,7 @@ export function getTuning({
                                 Notes.G,
                                 Notes.D,
                                 Notes.A,
-                                Notes.E
+                                Notes.E,
                             ];
                         case 'nst':
                             return [
@@ -151,7 +151,7 @@ export function getTuning({
                                 Notes.A,
                                 Notes.D,
                                 Notes.G,
-                                Notes.C
+                                Notes.C,
                             ];
                         case 'dropd':
                             return [
@@ -160,7 +160,7 @@ export function getTuning({
                                 Notes.G,
                                 Notes.D,
                                 Notes.A,
-                                Notes.D
+                                Notes.D,
                             ];
                         case 'dropc':
                             return [
@@ -169,7 +169,7 @@ export function getTuning({
                                 Notes.F,
                                 Notes.C,
                                 Notes.G,
-                                Notes.C
+                                Notes.C,
                             ];
                         case 'dadgad':
                             return [
@@ -178,7 +178,7 @@ export function getTuning({
                                 Notes.G,
                                 Notes.D,
                                 Notes.A,
-                                Notes.D
+                                Notes.D,
                             ];
                         case 'dadaad':
                             return [
@@ -187,7 +187,7 @@ export function getTuning({
                                 Notes.A,
                                 Notes.D,
                                 Notes.A,
-                                Notes.D
+                                Notes.D,
                             ];
                         case 'incinerate':
                             return [
@@ -196,7 +196,7 @@ export function getTuning({
                                 Notes['D#'],
                                 Notes['A#'],
                                 Notes['D#'],
-                                Notes.D
+                                Notes.D,
                             ];
                     }
                 case 7:
@@ -209,12 +209,11 @@ export function getTuning({
                                 Notes.D,
                                 Notes.A,
                                 Notes.E,
-                                Notes.B
+                                Notes.B,
                             ];
                     }
                     break;
             }
-            tuningKind;
             break;
         case 'bass':
             switch (stringNumber) {
@@ -233,13 +232,12 @@ export function getTuning({
                 case 5:
                     switch (tuningKind) {
                         case 'standard':
-                            tuningKind;
                             return [
                                 Notes.G,
                                 Notes.D,
                                 Notes.A,
                                 Notes.E,
-                                Notes.B
+                                Notes.B,
                             ];
                     }
                     break;
@@ -252,7 +250,7 @@ export function getTuning({
                                 Notes.D,
                                 Notes.A,
                                 Notes.E,
-                                Notes.B
+                                Notes.B,
                             ];
                     }
                     break;
@@ -261,7 +259,7 @@ export function getTuning({
 }
 
 function getScales(
-    scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+    scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
 ) {
     switch (scale) {
         case 'diatonic':
@@ -283,7 +281,7 @@ const modes = {
         'Lydian',
         'Mixolydian',
         'Aeolian',
-        'Locrian'
+        'Locrian',
     ],
     harmonic: [
         'Harmonic Major',
@@ -292,7 +290,7 @@ const modes = {
         'Melodic Minor ♯4 / Lydian ♭3',
         'Mixolydian ♭2',
         'Lydian Augmented ♯2',
-        'Locrian double flat7'
+        'Locrian double flat7',
     ],
     doubleHarmonic: [
         'Double harmonic major',
@@ -301,7 +299,7 @@ const modes = {
         'Hungarian/Gypsy minor',
         'Oriental',
         'Ionian ♯2 ♯5',
-        'Locrian double flat3 double flat7'
+        'Locrian double flat3 double flat7',
     ],
-    pentatonic: ['Ionian', 'Dorian', 'Phrygian', 'Mixolydian', 'Aeolian']
+    pentatonic: ['Ionian', 'Dorian', 'Phrygian', 'Mixolydian', 'Aeolian'],
 } as const;

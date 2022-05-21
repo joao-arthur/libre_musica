@@ -16,7 +16,7 @@ export function TableCell({ text, active, onClick }: props) {
             <div
                 className={classNames(
                     'inline-flex w-10 h-10 rounded-full text-white',
-                    active ? 'bg-primary-dark' : 'bg-primary-light'
+                    active ? 'bg-primary-dark' : 'bg-primary-light',
                 )}
             >
                 <TableLabel>{text}</TableLabel>

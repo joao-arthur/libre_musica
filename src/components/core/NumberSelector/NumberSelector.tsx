@@ -1,6 +1,5 @@
 import { ChangeEvent } from 'react';
 import { InputButton } from './InputButton';
-import { Input } from './NumberSelector.styles';
 
 type props = {
     value: number;
@@ -10,7 +9,9 @@ type props = {
     title: string;
 };
 
-export function NumberSelector({ value, min, max, onChange, title }: props) {
+export function NumberSelector({
+    value, min, max, onChange, title,
+}: props) {
     function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
         const maybeValue = Number(e.target.value);
         if (!maybeValue) return;
