@@ -1,5 +1,3 @@
-// import { reorderArrayByIndex } from './reorderArrayByIndex';
-
 export enum Notes {
     C,
     'C#',

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { arrayFns } from '../../lib/objects/arrayFns';
 import {
     NotesStrings,
     notesArray,
@@ -8,7 +9,6 @@ import {
     getModes,
     Notes,
 } from '../../lib/notes';
-import { range } from '../../lib/range';
 import { Selector } from '../../components/core/Selector';
 import { NumberSelector } from '../../components/core/NumberSelector';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
@@ -41,20 +41,20 @@ export function Scales() {
 
     const [scale, setScale] = useState<notes>('C');
     const [scaleKind, setScaleKind] = useState<
-    'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
     const [instrument, setInstrument] = useState<'guitar' | 'bass'>('guitar');
     const [tuningKind, setTuningKind] = useState<
-    | 'standard'
-    | 'nst'
-    | 'dropd'
-    | 'dropc'
-    | 'dadgad'
-    | 'dadaad'
-    | 'incinerate'
+        | 'standard'
+        | 'nst'
+        | 'dropd'
+        | 'dropc'
+        | 'dadgad'
+        | 'dadaad'
+        | 'incinerate'
     >('standard');
     const [modeIndex, setMode] = useState<
-    'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
+        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
 
     const [chordNote, setChordNote] = useState(0);
@@ -81,7 +81,8 @@ export function Scales() {
         ];
         const usedScale = usingChord ? chordScale : actualScale;
 
-        return range(fretNumber + 1)
+        return arrayFns
+            .range(fretNumber + 1)
             .map(fret => (stringNote + fret) % 12)
             .map(fret => ({
                 note: notesArray[fret],
@@ -169,7 +170,7 @@ export function Scales() {
             <InstrumentTable
                 body={tuning!.map(generateStringNotes)}
                 handleChord={handleChord}
-                foot={range(fretNumber + 1)}
+                foot={arrayFns.range(fretNumber + 1)}
             />
         </>
     );
