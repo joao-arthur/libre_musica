@@ -66,35 +66,34 @@ export function getTuningKind({ instrument, stringNumber }: tuningsKindType) {
             switch (stringNumber) {
                 case 6:
                     return [
-                        'standard',
-                        'nst',
-                        'dropd',
-                        'dropc',
-                        'dadgad',
-                        'dadaad',
-                        'incinerate',
+                        { label: 'standard', value: 'standard' },
+                        { label: 'nst', value: 'nst' },
+                        { label: 'dropd', value: 'dropd' },
+                        { label: 'dropc', value: 'dropc' },
+                        { label: 'dadgad', value: 'dadgad' },
+                        { label: 'dadaad', value: 'dadaad' },
+                        { label: 'incinerate', value: 'incinerate' },
                     ];
                 case 7:
-                    return ['standard'];
+                    return [{ label: 'standard', value: 'standard' }];
                 case 8:
-                    return ['standard'];
+                    return [{ label: 'standard', value: 'standard' }];
             }
         case 'bass':
             switch (stringNumber) {
                 case 4:
-                    return ['standard', 'nst', 'dropd', 'dropc'];
+                    return [
+                        { label: 'standard', value: 'standard' },
+                        { label: 'nst', value: 'nst' },
+                        { label: 'dropd', value: 'dropd' },
+                        { label: 'dropc', value: 'dropc' },
+                    ];
                 case 5:
-                    return ['standard'];
+                    return [{ label: 'standard', value: 'standard' }];
                 case 6:
-                    return ['standard'];
+                    return [{ label: 'standard', value: 'standard' }];
             }
     }
-}
-
-export function getModes(
-    scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
-) {
-    return modes[scaleKind];
 }
 
 type tuningsType =
@@ -270,34 +269,3 @@ function getScales(
             return [0, 2, 4, 7, 9];
     }
 }
-
-const modes = {
-    diatonic: [
-        'Ionian',
-        'Dorian',
-        'Phrygian',
-        'Lydian',
-        'Mixolydian',
-        'Aeolian',
-        'Locrian',
-    ],
-    harmonic: [
-        'Harmonic Major',
-        'Locrian ♮2 ♮6 / Dorian ♭5',
-        'Altered Dominant ♮5 / Phrygian ♭4',
-        'Melodic Minor ♯4 / Lydian ♭3',
-        'Mixolydian ♭2',
-        'Lydian Augmented ♯2',
-        'Locrian double flat7',
-    ],
-    doubleHarmonic: [
-        'Double harmonic major',
-        'Lydian ♯2 ♯6',
-        'Ultraphrygian',
-        'Hungarian/Gypsy minor',
-        'Oriental',
-        'Ionian ♯2 ♯5',
-        'Locrian double flat3 double flat7',
-    ],
-    pentatonic: ['Ionian', 'Dorian', 'Phrygian', 'Mixolydian', 'Aeolian'],
-} as const;
