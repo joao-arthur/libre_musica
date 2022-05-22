@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { arrayFns } from '../../lib/objects/arrayFns';
+import { instruments, instrumentNames } from '../../features/instruments';
 import {
     NotesStrings,
     notesArray,
@@ -26,10 +27,7 @@ type notes =
     | 'A#'
     | 'B';
 
-const instrumentOptions = [
-    { label: 'guitar', value: 'guitar' },
-    { label: 'bass', value: 'bass' },
-] as const;
+const instrumentOptions = instruments.getOptions();
 
 const scaleKindOptions = [
     { label: 'diatonic', value: 'diatonic' },
@@ -61,7 +59,7 @@ export function Scales() {
     const [scaleKind, setScaleKind] = useState<
         'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
-    const [instrument, setInstrument] = useState<'guitar' | 'bass'>('guitar');
+    const [instrument, setInstrument] = useState<instrumentNames>('guitar');
     const [tuningKind, setTuningKind] = useState<
         | 'standard'
         | 'nst'
@@ -119,7 +117,7 @@ export function Scales() {
                     options={instrumentOptions}
                     value={instrument}
                     onChange={instrument => {
-                        setInstrument(instrument as any);
+                        setInstrument(instrument as instrumentNames);
                         if (instrument === 'guitar') {
                             setStringNumber(6);
                             setTuningKind('standard');

@@ -24,4 +24,4 @@ export const note = {
     fSharp,
     g,
     gSharp,
-};
+} as const;

@@ -11,7 +11,7 @@ type props = {
 export function SelectInput({ name, options, value, onChange }: props) {
     return (
         <select
-            className='w-28 bg-white h-14 mx-1 p-1 outline-none border border-transparent focus:border-gray-300 rounded'
+            className='w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
             name={name}
             value={value}
             onChange={e => onChange(e.target.value)}
