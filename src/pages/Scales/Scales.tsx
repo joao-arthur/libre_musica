@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { instruments, instrumentNames } from '../../features/instruments';
-import { getTuning, getTuningKind } from '../../lib/notes';
+import { getTuningKind } from '../../lib/notes';
 import { SelectField } from '../../components/molecules/SelectField';
 import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from './InstrumentTable';
@@ -34,13 +34,23 @@ const scaleKindOptions = [
 
 const notesOptions = notes.getOptions();
 
+type tuningsKindType =
+    | {
+          instrument: 'guitar';
+          stringNumber: 6 | 7 | 8;
+      }
+    | {
+          instrument: 'bass';
+          stringNumber: 4 | 5 | 6;
+      };
+
 export function Scales() {
     const [selectedInstrument, setInstrument] = useState<
         typeof instrumentOptions[number]['value']
     >(instrumentOptions[0].value);
     const [scaleNote, setScale] = useState<noteType['number']>(0);
     const [fretNumber, setFretNumber] = useState<numberOfFretsType>(11);
-    const [numberOfStrings, setStringNumber] = useState(
+    const [numberOfStrings, setStringNumber] = useState<number>(
         instrument.guitar.numberOfStrings.default,
     );
     const [scaleKind, setScaleKind] = useState<
@@ -48,11 +58,41 @@ export function Scales() {
     >(scaleKindOptions[0].value);
     const [tuningKind, setTuningKind] = useState('standard');
 
-    const tuning = getTuning({
-        instrument: selectedInstrument,
-        stringNumber: numberOfStrings as any,
-        tuningKind: tuningKind as any,
-    });
+    function getTuningKind({ instrument, stringNumber }: tuningsKindType) {
+        switch (instrument) {
+            case 'guitar':
+                switch (stringNumber) {
+                    case 6:
+                        return [
+                            { label: 'standard', value: 'standard' },
+                            { label: 'nst', value: 'nst' },
+                            { label: 'dropd', value: 'dropd' },
+                            { label: 'dropc', value: 'dropc' },
+                            { label: 'dadgad', value: 'dadgad' },
+                            { label: 'dadaad', value: 'dadaad' },
+                            { label: 'incinerate', value: 'incinerate' },
+                        ];
+                    case 7:
+                        return [{ label: 'standard', value: 'standard' }];
+                    case 8:
+                        return [{ label: 'standard', value: 'standard' }];
+                }
+            case 'bass':
+                switch (stringNumber) {
+                    case 4:
+                        return [
+                            { label: 'standard', value: 'standard' },
+                            { label: 'nst', value: 'nst' },
+                            { label: 'dropd', value: 'dropd' },
+                            { label: 'dropc', value: 'dropc' },
+                        ];
+                    case 5:
+                        return [{ label: 'standard', value: 'standard' }];
+                    case 6:
+                        return [{ label: 'standard', value: 'standard' }];
+                }
+        }
+    }
 
     const tuningKinds = getTuningKind({
         instrument: selectedInstrument,
@@ -81,7 +121,7 @@ export function Scales() {
                     max={24}
                     value={fretNumber}
                     onChange={setFretNumber}
-                    title='Frets'
+                    title='FretnotesOptionss'
                 />
                 <NumberField
                     min={instrument[selectedInstrument].numberOfStrings.min}
@@ -116,10 +156,12 @@ export function Scales() {
                 />
             </div>
             <InstrumentTable
-                tuning={tuning!}
                 numberOfFrets={fretNumber}
                 scaleNote={scaleNote}
                 scaleKind={scaleKind}
+                selectedInstrument={selectedInstrument}
+                numberOfStrings={numberOfStrings}
+                tuningKind={tuningKind}
             />
         </>
     );

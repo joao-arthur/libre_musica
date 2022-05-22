@@ -19,10 +19,11 @@ export function SelectInput<T extends string | number>({
             className='w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
             name={name}
             value={value}
-            onChange={e => onChange(e.target.value as T)}
         >
             {options.map(({ value, label }) => (
-                <option value={value}>{label}</option>
+                <option onClick={() => onChange(value)} value={value}>
+                    {label}
+                </option>
             ))}
         </select>
     );
