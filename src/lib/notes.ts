@@ -1,4 +1,7 @@
 export enum Notes {
+    A,
+    'A#',
+    B,
     C,
     'C#',
     D,
@@ -8,13 +11,13 @@ export enum Notes {
     'F#',
     G,
     'G#',
-    A,
-    'A#',
-    B,
 }
 
 export type NotesStrings = keyof typeof Notes;
 export const notesArray: NotesStrings[] = [
+    'A',
+    'A#',
+    'B',
     'C',
     'C#',
     'D',
@@ -24,13 +27,13 @@ export const notesArray: NotesStrings[] = [
     'F#',
     'G',
     'G#',
-    'A',
-    'A#',
-    'B',
 ];
 
 export function getScale(
     note:
+        | 'A'
+        | 'A#'
+        | 'B'
         | 'C'
         | 'C#'
         | 'D'
@@ -39,10 +42,7 @@ export function getScale(
         | 'F'
         | 'F#'
         | 'G'
-        | 'G#'
-        | 'A'
-        | 'A#'
-        | 'B',
+        | 'G#',
     scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
 ) {
     return getScales(scaleKind).map(

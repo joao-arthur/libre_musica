@@ -13,7 +13,6 @@ export function BasePage({ children }: props) {
             <div className='flex'>
                 <div className='block flex-1-0-auto'>{children}</div>
             </div>
-            <footer>nothing to see here (yet)</footer>
         </>
     );
 }
