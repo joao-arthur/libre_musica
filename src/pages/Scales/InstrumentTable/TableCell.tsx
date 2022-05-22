@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { TableLabel } from '../TableLabel';
+import { TableLabel } from './TableLabel';
 
 type props = {
     text: string;

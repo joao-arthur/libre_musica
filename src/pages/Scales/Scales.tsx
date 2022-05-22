@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
-import { arrayFns } from '../../lib/objects/arrayFns';
 import { instruments, instrumentNames } from '../../features/instruments';
-import {
-    notesArray,
-    getScale,
-    getTuning,
-    getTuningKind,
-} from '../../lib/notes';
+import { getTuning, getTuningKind } from '../../lib/notes';
 import { SelectorField } from '../../components/molecules/SelectorField';
 import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from './InstrumentTable';
@@ -56,7 +50,7 @@ export function Scales() {
         instrument.guitar.numberOfStrings.default,
     );
 
-    const [scale, setScale] = useState<notes>('C');
+    const [scaleNote, setScale] = useState<notes>('C');
     const [scaleKind, setScaleKind] = useState<
         'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
     >('diatonic');
@@ -143,14 +137,14 @@ export function Scales() {
                     title='Key'
                     name='key'
                     options={notesOptions}
-                    value={scale}
+                    value={scaleNote}
                     onChange={newValue => setScale(newValue as any)}
                 />
             </div>
             <InstrumentTable
                 tuning={tuning!}
                 numberOfFrets={fretNumber}
-                scale={scale}
+                scaleNote={scaleNote}
                 scaleKind={scaleKind}
             />
         </>

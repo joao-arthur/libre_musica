@@ -29,24 +29,27 @@ export const notesArray: NotesStrings[] = [
     'G#',
 ];
 
+function getScales(
+    scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
+) {
+    switch (scale) {
+        case 'diatonic':
+            return [0, 2, 4, 5, 7, 9, 11];
+        case 'harmonic':
+            return [0, 2, 4, 5, 7, 8, 11];
+        case 'doubleHarmonic':
+            return [0, 1, 4, 5, 7, 8, 11];
+        case 'pentatonic':
+            return [0, 2, 4, 7, 9];
+    }
+}
+
 export function getScale(
-    note:
-        | 'A'
-        | 'A#'
-        | 'B'
-        | 'C'
-        | 'C#'
-        | 'D'
-        | 'D#'
-        | 'E'
-        | 'F'
-        | 'F#'
-        | 'G'
-        | 'G#',
+    scaleNote: NotesStrings,
     scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
 ) {
     return getScales(scaleKind).map(
-        noteOfScale => (noteOfScale + notesArray.indexOf(note)) % 12,
+        noteOfScale => (noteOfScale + notesArray.indexOf(scaleNote)) % 12,
     );
 }
 
@@ -252,20 +255,5 @@ export function getTuning({
                     }
                     break;
             }
-    }
-}
-
-function getScales(
-    scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
-) {
-    switch (scale) {
-        case 'diatonic':
-            return [0, 2, 4, 5, 7, 9, 11];
-        case 'harmonic':
-            return [0, 2, 4, 5, 7, 8, 11];
-        case 'doubleHarmonic':
-            return [0, 1, 4, 5, 7, 8, 11];
-        case 'pentatonic':
-            return [0, 2, 4, 7, 9];
     }
 }

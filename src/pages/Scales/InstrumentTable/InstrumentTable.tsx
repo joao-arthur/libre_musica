@@ -1,5 +1,5 @@
-import { notes } from '../../../features/notes';
-import { getScale, Notes } from '../../../lib/notes';
+import { notes, noteType } from '../../../features/notes';
+import { getScale } from '../../../lib/notes';
 import { arrayFns } from '../../../lib/objects/arrayFns';
 import { TableCell } from './TableCell';
 import { TableLabel } from './TableLabel';
@@ -19,61 +19,46 @@ type notesTypes =
     | 'B';
 
 type props = {
-    tuning: Notes[];
+    tuning: noteType['number'][];
     numberOfFrets: number;
-    scale: notesTypes;
+    scaleNote: notesTypes;
     scaleKind: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic';
 };
 
 export function InstrumentTable({
     tuning,
     numberOfFrets,
-    scale,
+    scaleNote,
     scaleKind,
 }: props) {
-    const actualScale = getScale(scale, scaleKind);
-
-    function generateStringNotes(stringNote: number) {
-        return arrayFns
-            .range(numberOfFrets + 1)
-            .map(
-                fret =>
-                    ((stringNote + fret) % 12) as
-                        | 0
-                        | 1
-                        | 2
-                        | 3
-                        | 4
-                        | 5
-                        | 6
-                        | 7
-                        | 8
-                        | 9
-                        | 10
-                        | 11,
-            )
-            .map(fret => ({
-                note: notes.getNoteByNumber(fret),
-                active: actualScale.includes(fret),
-            }));
-    }
-
-    const body = tuning.map(generateStringNotes);
+    const currentScale = getScale(scaleNote, scaleKind);
 
     return (
         <table className='w-full border-collapse bg-grey-light'>
             <tbody>
-                {body.map((row, index) => (
-                    <tr key={index}>
-                        {row.map((cell, i) => (
-                            <TableCell
-                                key={i}
-                                text={notes.getNoteName(cell.note!, 'standard')}
-                                active={cell.active}
-                            />
-                        ))}
-                    </tr>
-                ))}
+                {tuning
+                    .map(baseNote =>
+                        notes.getNotesRange(
+                            notes.getNoteByNumber(baseNote),
+                            numberOfFrets + 1,
+                        ),
+                    )
+                    .map((row, index) => (
+                        <tr key={index}>
+                            {row.map((currentNote, i) => (
+                                <TableCell
+                                    key={i}
+                                    text={notes.getNoteName(
+                                        currentNote,
+                                        'standard',
+                                    )}
+                                    active={currentScale.includes(
+                                        currentNote.number,
+                                    )}
+                                />
+                            ))}
+                        </tr>
+                    ))}
             </tbody>
             <tfoot>
                 <tr>
