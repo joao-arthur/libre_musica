@@ -1,3 +1,4 @@
+import { InputTitle } from '../atoms/InputTitle';
 import { NumberInput } from '../atoms/NumberInput';
 
 type props = {
@@ -11,7 +12,7 @@ type props = {
 export function NumberSelector({ value, min, max, onChange, title }: props) {
     return (
         <div className='flex-auto'>
-            <h3 className='text-center'>{title}</h3>
+            <InputTitle>{title}</InputTitle>
             <NumberInput
                 min={min}
                 max={max}

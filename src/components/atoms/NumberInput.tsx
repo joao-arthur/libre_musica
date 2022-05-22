@@ -17,7 +17,7 @@ export function NumberInput({ value, min, max, onChange }: props) {
     return (
         <input
             type='number'
-            className='w-28 h-14 mx-1 p-1 outline-none border border-transparent focus:border-gray-300 rounded'
+            className='w-28 h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
             min={min}
             max={max}
             onChange={e => handleOnChange(e.target.value)}
