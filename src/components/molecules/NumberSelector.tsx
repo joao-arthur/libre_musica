@@ -1,4 +1,4 @@
-import { NumberInput } from '../../atoms/NumberInput';
+import { NumberInput } from '../atoms/NumberInput';
 
 type props = {
     value: number;

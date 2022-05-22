@@ -10,7 +10,7 @@ import {
     Notes,
 } from '../../lib/notes';
 import { Selector } from '../../components/core/Selector';
-import { NumberSelector } from '../../components/core/NumberSelector';
+import { NumberSelector } from '../../components/molecules/NumberSelector';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
 
 type notes =
