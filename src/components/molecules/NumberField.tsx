@@ -1,15 +1,21 @@
 import { InputTitle } from '../atoms/InputTitle';
 import { NumberInput } from '../atoms/NumberInput';
 
-type props = {
-    value: number;
+type props<T extends number> = {
+    title: string;
     min: number;
     max: number;
-    onChange: (value: number) => void;
-    title: string;
+    value: T;
+    onChange: (value: T) => void;
 };
 
-export function NumberField({ value, min, max, onChange, title }: props) {
+export function NumberField<T extends number>({
+    value,
+    min,
+    max,
+    onChange,
+    title,
+}: props<T>) {
     return (
         <div className='flex-auto'>
             <InputTitle>{title}</InputTitle>

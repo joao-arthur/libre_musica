@@ -1,20 +1,25 @@
-type props = {
+type props<T extends string | number> = {
     name: string;
     readonly options: readonly {
-        readonly value: string;
+        readonly value: T;
         readonly label: string;
     }[];
-    value: string;
-    onChange: (newValue: string) => void;
+    value: T;
+    onChange: (newValue: T) => void;
 };
 
-export function SelectInput({ name, options, value, onChange }: props) {
+export function SelectInput<T extends string | number>({
+    name,
+    options,
+    value,
+    onChange,
+}: props<T>) {
     return (
         <select
             className='w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
             name={name}
             value={value}
-            onChange={e => onChange(e.target.value)}
+            onChange={e => onChange(e.target.value as T)}
         >
             {options.map(({ value, label }) => (
                 <option value={value}>{label}</option>

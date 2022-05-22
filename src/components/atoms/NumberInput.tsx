@@ -1,13 +1,18 @@
-type props = {
-    value: number;
+type props<T extends number> = {
     min: number;
     max: number;
-    onChange: (value: number) => void;
+    value: T;
+    onChange: (newValue: T) => void;
 };
 
-export function NumberInput({ value, min, max, onChange }: props) {
-    function handleOnChange(newValue: string) {
-        const maybeValue = Number(newValue);
+export function NumberInput<T extends number>({
+    value,
+    min,
+    max,
+    onChange,
+}: props<T>) {
+    function handleOnChange(newValue: number) {
+        const maybeValue: T = newValue as any;
         if (!maybeValue) return;
         if (maybeValue > max) return;
         if (maybeValue < min) return;
@@ -20,7 +25,7 @@ export function NumberInput({ value, min, max, onChange }: props) {
             className='w-28 h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
             min={min}
             max={max}
-            onChange={e => handleOnChange(e.target.value)}
+            onChange={e => handleOnChange(Number(e.target.value))}
             value={value}
         />
     );

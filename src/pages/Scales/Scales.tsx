@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { instruments, instrumentNames } from '../../features/instruments';
 import { getTuning, getTuningKind } from '../../lib/notes';
-import { SelectorField } from '../../components/molecules/SelectorField';
+import { SelectField } from '../../components/molecules/SelectField';
 import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from './InstrumentTable';
 import { instrument } from '../../features/instruments/instrument';
+import { notes, noteType } from '../../features/notes';
 
-type notes =
-    | 'C'
-    | 'C#'
-    | 'D'
-    | 'D#'
-    | 'E'
-    | 'F'
-    | 'F#'
-    | 'G'
-    | 'G#'
-    | 'A'
-    | 'A#'
-    | 'B';
+type numberOfFretsType =
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24;
 
 const instrumentOptions = instruments.getOptions();
 
@@ -29,76 +32,49 @@ const scaleKindOptions = [
     { label: 'pentatonic', value: 'pentatonic' },
 ] as const;
 
-const notesOptions = [
-    { label: 'C', value: 'C' },
-    { label: 'C#', value: 'C#' },
-    { label: 'D', value: 'D' },
-    { label: 'D#', value: 'D#' },
-    { label: 'E', value: 'E' },
-    { label: 'F', value: 'F' },
-    { label: 'F#', value: 'F#' },
-    { label: 'G', value: 'G' },
-    { label: 'G#', value: 'G#' },
-    { label: 'A', value: 'A' },
-    { label: 'A#', value: 'A#' },
-    { label: 'B', value: 'B' },
-];
+const notesOptions = notes.getOptions();
 
 export function Scales() {
-    const [fretNumber, setFretNumber] = useState(11);
-    const [numberOfStrings, setStringNumber] = useState<number>(
+    const [selectedInstrument, setInstrument] = useState<
+        typeof instrumentOptions[number]['value']
+    >(instrumentOptions[0].value);
+    const [scaleNote, setScale] = useState<noteType['number']>(0);
+    const [fretNumber, setFretNumber] = useState<numberOfFretsType>(11);
+    const [numberOfStrings, setStringNumber] = useState(
         instrument.guitar.numberOfStrings.default,
     );
-
-    const [scaleNote, setScale] = useState<notes>('C');
     const [scaleKind, setScaleKind] = useState<
-        'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic'
-    >('diatonic');
-    const [selectedInstrument, setInstrument] =
-        useState<instrumentNames>('guitar');
-    const [tuningKind, setTuningKind] = useState<
-        | 'standard'
-        | 'nst'
-        | 'dropd'
-        | 'dropc'
-        | 'dadgad'
-        | 'dadaad'
-        | 'incinerate'
-    >('standard');
+        typeof scaleKindOptions[number]['value']
+    >(scaleKindOptions[0].value);
+    const [tuningKind, setTuningKind] = useState('standard');
 
     const tuning = getTuning({
-        instrument: selectedInstrument as any,
+        instrument: selectedInstrument,
         stringNumber: numberOfStrings as any,
         tuningKind: tuningKind as any,
     });
+
     const tuningKinds = getTuningKind({
         instrument: selectedInstrument,
         stringNumber: numberOfStrings as any,
     });
 
-    useEffect(() => {
-        switch (selectedInstrument) {
-            case 'guitar':
-                setStringNumber(6);
-                setTuningKind('standard');
-                break;
-            case 'bass':
-                setStringNumber(4);
-                setTuningKind('standard');
-        }
-    }, [selectedInstrument]);
-
     return (
         <>
             <div className='flex'>
-                <SelectorField
+                <SelectField
                     title='Instrument'
                     name='instrument'
                     options={instrumentOptions}
                     value={selectedInstrument}
-                    onChange={newInstrument =>
-                        setInstrument(newInstrument as instrumentNames)
-                    }
+                    onChange={newInstrument => {
+                        setInstrument(newInstrument as instrumentNames);
+                        setStringNumber(
+                            instrument[newInstrument as instrumentNames]
+                                .numberOfStrings.default,
+                        );
+                        setTuningKind('standard');
+                    }}
                 />
                 <NumberField
                     min={11}
@@ -117,28 +93,26 @@ export function Scales() {
                     }}
                     title='String number'
                 />
-                <SelectorField
+                <SelectField
                     name='scaleKind'
                     title='Scale kind'
                     options={scaleKindOptions}
                     value={scaleKind}
-                    onChange={scaleKind => {
-                        setScaleKind(scaleKind as any);
-                    }}
+                    onChange={setScaleKind}
                 />
-                <SelectorField
+                <SelectField
                     title='Tuning kind'
                     name='tuningKind'
                     options={tuningKinds}
                     value={tuningKind}
                     onChange={newValue => setTuningKind(newValue as any)}
                 />
-                <SelectorField
+                <SelectField
                     title='Key'
                     name='key'
                     options={notesOptions}
                     value={scaleNote}
-                    onChange={newValue => setScale(newValue as any)}
+                    onChange={setScale}
                 />
             </div>
             <InstrumentTable

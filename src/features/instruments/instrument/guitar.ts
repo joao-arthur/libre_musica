@@ -4,6 +4,7 @@ const { a, aSharp, b, c, d, dSharp, e, f, g } = note;
 
 export const guitar = {
     label: 'Guitar',
+    name: 'guitar',
     numberOfStrings: {
         min: 6,
         default: 6,
