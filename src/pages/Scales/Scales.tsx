@@ -11,7 +11,7 @@ import {
 } from '../../lib/notes';
 import { SelectorField } from '../../components/molecules/SelectorField';
 import { NumberField } from '../../components/molecules/NumberField';
-import { InstrumentTable } from '../../components/core/InstrumentTable';
+import { InstrumentTable } from './InstrumentTable';
 
 type notes =
     | 'C'
