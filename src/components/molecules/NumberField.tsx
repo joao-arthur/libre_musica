@@ -9,7 +9,7 @@ type props = {
     title: string;
 };
 
-export function NumberSelector({ value, min, max, onChange, title }: props) {
+export function NumberField({ value, min, max, onChange, title }: props) {
     return (
         <div className='flex-auto'>
             <InputTitle>{title}</InputTitle>

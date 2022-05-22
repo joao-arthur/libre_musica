@@ -9,8 +9,8 @@ import {
     getModes,
     Notes,
 } from '../../lib/notes';
-import { Selector } from '../../components/core/Selector';
-import { NumberSelector } from '../../components/molecules/NumberSelector';
+import { SelectorField } from '../../components/molecules/SelectorField';
+import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from '../../components/core/InstrumentTable';
 
 type notes =
@@ -98,7 +98,7 @@ export function Scales() {
 
     return (
         <>
-            <Selector
+            <SelectorField
                 options={instrumentOptions}
                 selected={instrument}
                 onChange={instrument => {
@@ -114,14 +114,14 @@ export function Scales() {
                 title='Instrument'
             />
             <div className='flex'>
-                <NumberSelector
+                <NumberField
                     min={11}
                     max={24}
                     value={fretNumber}
                     onChange={setFretNumber}
                     title='Frets'
                 />
-                <NumberSelector
+                <NumberField
                     min={instrument === 'guitar' ? 6 : 4}
                     max={instrument === 'guitar' ? 7 : 6}
                     value={stringNumber}
@@ -132,7 +132,7 @@ export function Scales() {
                     title='String number'
                 />
             </div>
-            <Selector
+            <SelectorField
                 options={scaleKindOptions}
                 selected={scaleKind}
                 onChange={scaleKind => {
@@ -148,19 +148,19 @@ export function Scales() {
             >
                 clear chord
             </button>
-            <Selector
+            <SelectorField
                 options={modes}
                 selected={modeIndex}
                 onChange={() => setMode}
                 title='Modes'
             />
-            <Selector
+            <SelectorField
                 options={tuningKinds}
                 selected={tuningKind}
                 onChange={newValue => setTuningKind(newValue as any)}
                 title='Tuning kind'
             />
-            <Selector
+            <SelectorField
                 options={notesArray}
                 selected={scale}
                 onChange={newValue => setScale(newValue as any)}

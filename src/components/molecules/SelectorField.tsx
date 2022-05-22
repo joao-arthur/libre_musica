@@ -8,7 +8,7 @@ type props = {
     mode?: 'square' | 'rectangle';
 };
 
-export function Selector({
+export function SelectorField({
     options,
     onChange,
     selected,
