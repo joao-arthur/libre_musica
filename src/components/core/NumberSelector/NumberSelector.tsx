@@ -1,5 +1,4 @@
-import { ChangeEvent } from 'react';
-import { InputButton } from './InputButton';
+import { NumberInput } from '../../atoms/NumberInput';
 
 type props = {
     value: number;
@@ -9,40 +8,16 @@ type props = {
     title: string;
 };
 
-export function NumberSelector({
-    value, min, max, onChange, title,
-}: props) {
-    function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
-        const maybeValue = Number(e.target.value);
-        if (!maybeValue) return;
-        if (maybeValue > max) return;
-        if (maybeValue < min) return;
-        onChange(maybeValue);
-    }
-
+export function NumberSelector({ value, min, max, onChange, title }: props) {
     return (
         <div className='flex-auto'>
             <h3 className='text-center'>{title}</h3>
-            <input
-                type='number'
-                className='w-28 h-14 mx-1 p-1 outline-none border border-transparent focus:border-gray-300 rounded'
+            <NumberInput
                 min={min}
                 max={max}
-                onChange={handleOnChange}
                 value={value}
+                onChange={onChange}
             />
-            <InputButton
-                disabled={value >= max}
-                onClick={() => onChange(value + 1)}
-            >
-                +
-            </InputButton>
-            <InputButton
-                disabled={value <= min}
-                onClick={() => onChange(value - 1)}
-            >
-                -
-            </InputButton>
         </div>
     );
 }
