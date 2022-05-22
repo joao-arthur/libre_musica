@@ -2,6 +2,7 @@ import { notesNames } from './notesNames';
 
 export const cSharp = {
     hasAccident: true,
-    name: notesNames.c,
+    sharp: notesNames.c,
+    flat: notesNames.d,
     number: 4,
 } as const;

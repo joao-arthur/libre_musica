@@ -72,5 +72,6 @@ module.exports = {
         'jsx-quotes': ['error', 'prefer-single'],
         'default-case': 'off',
         indent: 'off',
+        'consistent-return': 'off',
     },
 };
