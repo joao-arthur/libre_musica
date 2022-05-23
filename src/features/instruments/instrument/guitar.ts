@@ -8,7 +8,7 @@ export const guitar = {
     numberOfStrings: {
         min: 6,
         default: 6,
-        max: 8,
+        max: 7,
     },
     tunings: {
         6: {

@@ -36,7 +36,7 @@ export function InstrumentTable({
     return (
         <table className='w-full border-collapse bg-grey-light'>
             <tbody>
-                {tuning.map((row, index) => (
+                {[...tuning].reverse().map((row, index) => (
                     <tr key={index}>
                         {row.map((currentNote, i) => (
                             <TableCell
