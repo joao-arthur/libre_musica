@@ -1,37 +1,14 @@
 import { useState } from 'react';
 import { instruments, instrumentNames } from '../../features/instruments';
-import { getTuningKind } from '../../lib/notes';
 import { SelectField } from '../../components/molecules/SelectField';
 import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from './InstrumentTable';
 import { instrument } from '../../features/instruments/instrument';
 import { notes, noteType } from '../../features/notes';
-
-type numberOfFretsType =
-    | 11
-    | 12
-    | 13
-    | 14
-    | 15
-    | 16
-    | 17
-    | 18
-    | 19
-    | 20
-    | 21
-    | 22
-    | 23
-    | 24;
+import { scales } from '../../features/scales/scales';
 
 const instrumentOptions = instruments.getOptions();
-
-const scaleKindOptions = [
-    { label: 'diatonic', value: 'diatonic' },
-    { label: 'harmonic', value: 'harmonic' },
-    { label: 'double harmonic', value: 'doubleHarmonic' },
-    { label: 'pentatonic', value: 'pentatonic' },
-] as const;
-
+const scaleKindOptions = scales.getOptions();
 const notesOptions = notes.getOptions();
 
 type tuningsKindType =
@@ -49,7 +26,7 @@ export function Scales() {
         typeof instrumentOptions[number]['value']
     >(instrumentOptions[0].value);
     const [scaleNote, setScale] = useState<noteType['number']>(0);
-    const [fretNumber, setFretNumber] = useState<numberOfFretsType>(11);
+    const [fretNumber, setFretNumber] = useState(11);
     const [numberOfStrings, setStringNumber] = useState<number>(
         instrument.guitar.numberOfStrings.default,
     );
