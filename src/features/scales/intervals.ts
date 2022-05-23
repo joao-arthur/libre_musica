@@ -1,5 +1,5 @@
 export enum intervals {
-    semitone,
+    semitone = 1,
     tone,
     toneAndHalf,
     twoTones,

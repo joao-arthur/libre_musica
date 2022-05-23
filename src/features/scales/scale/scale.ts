@@ -9,3 +9,5 @@ export const scale = {
     harmonic,
     doubleHarmonic,
 } as const;
+
+export type scaleNames = keyof typeof scale;

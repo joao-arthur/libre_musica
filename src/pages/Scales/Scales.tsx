@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { instruments, instrumentNames } from '../../features/instruments';
+import {
+    instruments,
+    instrument,
+    instrumentNames,
+} from '../../features/instruments';
+import { notes, noteType } from '../../features/notes';
+import { scales } from '../../features/scales';
 import { SelectField } from '../../components/molecules/SelectField';
 import { NumberField } from '../../components/molecules/NumberField';
 import { InstrumentTable } from './InstrumentTable';
-import { instrument } from '../../features/instruments/instrument';
-import { notes, noteType } from '../../features/notes';
-import { scales } from '../../features/scales/scales';
 
 const instrumentOptions = instruments.getOptions();
 const scaleKindOptions = scales.getOptions();
@@ -22,9 +25,9 @@ type tuningsKindType =
       };
 
 export function Scales() {
-    const [selectedInstrument, setInstrument] = useState<
-        typeof instrumentOptions[number]['value']
-    >(instrumentOptions[0].value);
+    const [selectedInstrument, setInstrument] = useState<instrumentNames>(
+        instrumentOptions[0].value,
+    );
     const [scaleNote, setScale] = useState<noteType['number']>(0);
     const [fretNumber, setFretNumber] = useState(11);
     const [numberOfStrings, setStringNumber] = useState<number>(
@@ -85,44 +88,43 @@ export function Scales() {
                     options={instrumentOptions}
                     value={selectedInstrument}
                     onChange={newInstrument => {
-                        setInstrument(newInstrument as instrumentNames);
+                        setInstrument(newInstrument);
                         setStringNumber(
-                            instrument[newInstrument as instrumentNames]
-                                .numberOfStrings.default,
+                            instrument[newInstrument].numberOfStrings.default,
                         );
                         setTuningKind('standard');
                     }}
                 />
                 <NumberField
+                    title='Frets'
                     min={11}
                     max={24}
                     value={fretNumber}
                     onChange={setFretNumber}
-                    title='FretnotesOptionss'
                 />
                 <NumberField
+                    title='Strings'
                     min={instrument[selectedInstrument].numberOfStrings.min}
                     max={instrument[selectedInstrument].numberOfStrings.max}
                     value={numberOfStrings}
                     onChange={newStringNumber => {
-                        setStringNumber(newStringNumber as any);
+                        setStringNumber(newStringNumber);
                         setTuningKind('standard');
                     }}
-                    title='String number'
                 />
                 <SelectField
                     name='scaleKind'
-                    title='Scale kind'
+                    title='Scale'
                     options={scaleKindOptions}
                     value={scaleKind}
                     onChange={setScaleKind}
                 />
                 <SelectField
-                    title='Tuning kind'
+                    title='Tuning'
                     name='tuningKind'
                     options={tuningKinds}
                     value={tuningKind}
-                    onChange={newValue => setTuningKind(newValue as any)}
+                    onChange={setTuningKind}
                 />
                 <SelectField
                     title='Key'

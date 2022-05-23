@@ -1,5 +1,6 @@
 import { instrument } from '../../../features/instruments';
 import { notes, noteType } from '../../../features/notes';
+import { scales } from '../../../features/scales';
 import { arrayFns } from '../../../lib/objects/arrayFns';
 import { TableCell } from './TableCell';
 import { TableLabel } from './TableLabel';
@@ -27,23 +28,9 @@ export function InstrumentTable({
         notes.getNotesRange(baseNote, numberOfFrets + 1),
     );
 
-    function getScales(
-        scale: 'diatonic' | 'harmonic' | 'doubleHarmonic' | 'pentatonic',
-    ) {
-        switch (scale) {
-            case 'diatonic':
-                return [0, 2, 4, 5, 7, 9, 11];
-            case 'harmonic':
-                return [0, 2, 4, 5, 7, 8, 11];
-            case 'doubleHarmonic':
-                return [0, 1, 4, 5, 7, 8, 11];
-            case 'pentatonic':
-                return [0, 2, 4, 7, 9];
-        }
-    }
-
-    const currentScale = getScales(scaleKind).map(
-        noteOfScale => (noteOfScale + scaleNote) % 12,
+    const currentScale = scales.getNoteScale(
+        notes.getNoteByNumber(scaleNote),
+        scaleKind,
     );
 
     return (
@@ -58,9 +45,7 @@ export function InstrumentTable({
                                     currentNote,
                                     'standard',
                                 )}
-                                active={currentScale.includes(
-                                    currentNote.number,
-                                )}
+                                active={currentScale.includes(currentNote)}
                             />
                         ))}
                     </tr>
