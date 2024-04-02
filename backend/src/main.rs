@@ -1,76 +1,49 @@
-enum MusicalNote {
-    A,
-    AB,
-    B,
-    C,
-    CD,
-    D,
-    DE,
-    E,
-    F,
-    FG,
-    G,
-    GA,
-}
+pub mod interval;
+pub mod note;
+pub mod pitch;
+pub mod scale;
 
-fn musical_note_is_accident(mn: MusicalNote) -> bool {
-    match mn {
-        MusicalNote::A => false,
-        MusicalNote::AB => true,
-        MusicalNote::B => false,
-        MusicalNote::C => false,
-        MusicalNote::CD => true,
-        MusicalNote::D => false,
-        MusicalNote::DE => true,
-        MusicalNote::E => false,
-        MusicalNote::F => false,
-        MusicalNote::FG => true,
-        MusicalNote::G => false,
-        MusicalNote::GA => true,
-    }
-}
+//fn musical_note_is_accident(n: WesternNote) -> bool {
+//    match n {
+//        WesternNote::A => false,
+//        WesternNote::AB => true,
+//        WesternNote::B => false,
+//        WesternNote::C => false,
+//        WesternNote::CD => true,
+//        WesternNote::D => false,
+//        WesternNote::DE => true,
+//        WesternNote::E => false,
+//        WesternNote::F => false,
+//        WesternNote::FG => true,
+//        WesternNote::G => false,
+//        WesternNote::GA => true,
+//    }
+//}
 
-enum StandardScale {
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    G,
-}
+//fn fmt_sharp() -> &'static str {
+//   "♯"
+//}
 
-fn fmt_sharp() -> &'static str {
-    "♯"
-}
+//fn fmt_flat() -> &'static str {
+//    "♭"
+//}
 
-fn fmt_flat() -> &'static str {
-    "♭"
-}
-
-enum Tone {
-    Semitone,
-    Tone,
-    ToneAndHalf,
-}
-
-enum Octave {
-    _0,
-    _1,
-    _2,
-    _3,
-    _4,
-    _5,
-    _6,
-    _7,
-    _8,
-    _9,
-}
-
-struct InstrumentNote {
-    musical_note: MusicalNote,
-}
+//struct InstrumentNote {
+//    musical_note: WesternNote,
+//}
 
 fn main() {
     println!("Hello, world!");
 }
+
+//#[cfg(test)]
+//mod test_main {
+//    use super::*;
+//    use crate::note::WesternNote;
+//
+//    #[test]
+//    fn test_is_accident() {
+//        assert_eq!(musical_note_is_accident(WesternNote::A), false);
+//        assert_eq!(musical_note_is_accident(WesternNote::AB), true);
+//    }
+//}
