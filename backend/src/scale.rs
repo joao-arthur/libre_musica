@@ -1,23 +1,5 @@
 use crate::{interval::Interval, note::Note};
 
-pub const MAJOR_SCALE: [Interval; 6] = [
-    Interval::WholeTone,
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeTone,
-    Interval::WholeTone,
-    Interval::WholeTone,
-];
-
-pub const MINOR_SCALE: [Interval; 6] = [
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeTone,
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeTone,
-];
-
 fn make_scale(root: Note, intervals: &[Interval; 6]) -> [Note; 7] {
     let root_index = root.to_u8();
     let second_index = (root_index + (intervals[0]).to_u8()) % 12;
@@ -56,12 +38,56 @@ fn make_scale(root: Note, intervals: &[Interval; 6]) -> [Note; 7] {
     ]
 }
 
-fn make_major_scale(root: Note) -> [Note; 7] {
+pub const MAJOR_SCALE: [Interval; 6] = [
+    Interval::WholeTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+    Interval::WholeTone,
+    Interval::WholeTone,
+];
+
+pub const MINOR_SCALE: [Interval; 6] = [
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+];
+
+pub const HARMONIC_MAJOR_SCALE: [Interval; 6] = [
+    Interval::WholeTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeAndHalfTone,
+];
+
+pub const HARMONIC_MINOR_SCALE: [Interval; 6] = [
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeAndHalfTone,
+];
+
+pub fn make_major_scale(root: Note) -> [Note; 7] {
     make_scale(root, &MAJOR_SCALE)
 }
 
-fn make_minor_scale(root: Note) -> [Note; 7] {
+pub fn make_minor_scale(root: Note) -> [Note; 7] {
     make_scale(root, &MINOR_SCALE)
+}
+
+pub fn make_harmonic_minor_scale(root: Note) -> [Note; 7] {
+    make_scale(root, &HARMONIC_MINOR_SCALE)
+}
+
+pub fn make_harmonic_major_scale(root: Note) -> [Note; 7] {
+    make_scale(root, &HARMONIC_MAJOR_SCALE)
 }
 
 #[cfg(test)]
@@ -121,6 +147,38 @@ mod test_scale {
                 Note::B,
                 Note::C,
                 Note::D,
+            ]
+        );
+    }
+
+    #[test]
+    fn test_make_harmonic_minor_scale() {
+        assert_eq!(
+            make_harmonic_minor_scale(Note::A),
+            [
+                Note::A,
+                Note::B,
+                Note::C,
+                Note::D,
+                Note::E,
+                Note::F,
+                Note::GA,
+            ]
+        );
+    }
+
+    #[test]
+    fn test_make_hamornic_major_scale() {
+        assert_eq!(
+            make_harmonic_major_scale(Note::G),
+            [
+                Note::G,
+                Note::A,
+                Note::B,
+                Note::C,
+                Note::D,
+                Note::DE,
+                Note::FG,
             ]
         );
     }
