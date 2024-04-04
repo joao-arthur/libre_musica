@@ -1,1 +1,1 @@
-export { getNotesRange } from './getNotesRange';
+export { getNotesRange } from "./getNotesRange";

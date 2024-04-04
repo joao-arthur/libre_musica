@@ -16,7 +16,7 @@ export function SelectInput<T extends string | number>({
 }: props<T>) {
     return (
         <select
-            className='w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
+            className="w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded"
             name={name}
             value={value}
         >

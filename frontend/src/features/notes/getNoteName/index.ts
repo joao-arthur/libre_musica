@@ -1,1 +1,1 @@
-export { getNoteName } from './getNoteName';
+export { getNoteName } from "./getNoteName";

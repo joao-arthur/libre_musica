@@ -1,5 +1,5 @@
-import { getOptions } from './getOptions';
-import { getTuneOptions } from './getTuneOptions';
+import { getOptions } from "./getOptions";
+import { getTuneOptions } from "./getTuneOptions";
 
 export const instruments = {
     getOptions,

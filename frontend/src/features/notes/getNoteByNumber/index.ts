@@ -1,1 +1,1 @@
-export { getNoteByNumber } from './getNoteByNumber';
+export { getNoteByNumber } from "./getNoteByNumber";

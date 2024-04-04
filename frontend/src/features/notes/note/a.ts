@@ -1,4 +1,4 @@
-import { notesNames } from './notesNames';
+import { notesNames } from "./notesNames";
 
 export const a = {
     name: notesNames.a,

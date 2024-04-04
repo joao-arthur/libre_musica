@@ -1,1 +1,1 @@
-export { getScaleNoteNumbers } from './getScaleNoteNumbers';
+export { getScaleNoteNumbers } from "./getScaleNoteNumbers";

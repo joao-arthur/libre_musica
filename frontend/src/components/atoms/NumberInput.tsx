@@ -21,11 +21,11 @@ export function NumberInput<T extends number>({
 
     return (
         <input
-            type='number'
-            className='w-28 h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded'
+            type="number"
+            className="w-28 h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded"
             min={min}
             max={max}
-            onChange={e => handleOnChange(Number(e.target.value))}
+            onChange={(e) => handleOnChange(Number(e.target.value))}
             value={value}
         />
     );

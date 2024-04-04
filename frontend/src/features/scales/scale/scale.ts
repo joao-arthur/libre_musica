@@ -1,7 +1,7 @@
-import { diatonic } from './diatonic';
-import { doubleHarmonic } from './doubleHarmonic';
-import { harmonic } from './harmonic';
-import { pentatonic } from './pentatonic';
+import { diatonic } from "./diatonic";
+import { doubleHarmonic } from "./doubleHarmonic";
+import { harmonic } from "./harmonic";
+import { pentatonic } from "./pentatonic";
 
 export const scale = {
     diatonic,

@@ -1,9 +1,9 @@
-import { intervals } from '../intervals';
+import { intervals } from "../intervals";
 
 const { tone, toneAndHalf } = intervals;
 
 export const pentatonic = {
-    name: 'pentatonic',
-    label: 'Pentatonic',
+    name: "pentatonic",
+    label: "Pentatonic",
     intervals: [tone, tone, toneAndHalf, tone],
 } as const;

@@ -1,5 +1,5 @@
-import { InputTitle } from '../atoms/InputTitle';
-import { SelectInput } from '../atoms/SelectInput';
+import { InputTitle } from "../atoms/InputTitle";
+import { SelectInput } from "../atoms/SelectInput";
 
 type props<T extends string | number> = {
     title: string;
@@ -20,7 +20,7 @@ export function SelectField<T extends string | number>({
     onChange,
 }: props<T>) {
     return (
-        <div className='flex-auto'>
+        <div className="flex-auto">
             <InputTitle>{title}</InputTitle>
             <SelectInput
                 name={name}

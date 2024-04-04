@@ -1,5 +1,5 @@
-import { InputTitle } from '../atoms/InputTitle';
-import { NumberInput } from '../atoms/NumberInput';
+import { InputTitle } from "../atoms/InputTitle";
+import { NumberInput } from "../atoms/NumberInput";
 
 type props<T extends number> = {
     title: string;
@@ -17,7 +17,7 @@ export function NumberField<T extends number>({
     title,
 }: props<T>) {
     return (
-        <div className='flex-auto'>
+        <div className="flex-auto">
             <InputTitle>{title}</InputTitle>
             <NumberInput
                 min={min}

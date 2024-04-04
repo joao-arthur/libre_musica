@@ -3,5 +3,5 @@ type props = {
 };
 
 export function InputTitle({ children }: props) {
-    return <h3 className='text-lg'>{children}</h3>;
+    return <h3 className="text-lg">{children}</h3>;
 }

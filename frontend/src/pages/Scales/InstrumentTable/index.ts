@@ -1,1 +1,1 @@
-export { InstrumentTable } from './InstrumentTable';
+export { InstrumentTable } from "./InstrumentTable";

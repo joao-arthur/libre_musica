@@ -1,4 +1,4 @@
-import { noteName } from './notesNames';
+import { noteName } from "./notesNames";
 
 type naturalNote = {
     hasAccident?: false;

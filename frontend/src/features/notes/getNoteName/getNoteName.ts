@@ -1,5 +1,5 @@
-import { accident, accidentType } from '../accident';
-import { noteType, noteNamings } from '../note';
+import { accident, accidentType } from "../accident";
+import { noteNamings, noteType } from "../note";
 
 export function getNoteName(
     note: noteType,

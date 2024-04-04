@@ -1,5 +1,5 @@
-import { bass } from './bass';
-import { guitar } from './guitar';
+import { bass } from "./bass";
+import { guitar } from "./guitar";
 
 export const instrument = {
     bass,

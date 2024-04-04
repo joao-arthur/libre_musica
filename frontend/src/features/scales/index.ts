@@ -1,2 +1,2 @@
-export { scales } from './scales';
-export type { scaleNames } from './scale';
+export { scales } from "./scales";
+export type { scaleNames } from "./scale";

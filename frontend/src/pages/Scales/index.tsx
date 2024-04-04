@@ -1,1 +1,1 @@
-export { Scales } from './Scales';
+export { Scales } from "./Scales";

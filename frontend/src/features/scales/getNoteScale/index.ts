@@ -1,1 +1,1 @@
-export { getNoteScale } from './getNoteScale';
+export { getNoteScale } from "./getNoteScale";

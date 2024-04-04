@@ -1,6 +1,6 @@
 export const accident = {
-    sharp: '♯',
-    flat: '♭',
+    sharp: "♯",
+    flat: "♭",
 } as const;
 
 export type accidentType = typeof accident[keyof typeof accident];

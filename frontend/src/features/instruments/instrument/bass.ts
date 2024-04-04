@@ -1,10 +1,10 @@
-import { note } from '../../notes';
+import { note } from "../../notes";
 
 const { a, b, c, d, e, f, g } = note;
 
 export const bass = {
-    label: 'Bass',
-    name: 'bass',
+    label: "Bass",
+    name: "bass",
     numberOfStrings: {
         min: 4,
         default: 4,
