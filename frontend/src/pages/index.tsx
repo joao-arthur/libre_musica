@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
-import { Scales } from "./pages/Scales";
-import { BasePage } from "./pages/BasePage";
+import { Scales } from "./Scales";
+import { BasePage } from "./BasePage";
 
-export function App() {
+export default function App() {
     return (
         <StrictMode>
             <BasePage>
