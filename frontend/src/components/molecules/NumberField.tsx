@@ -1,12 +1,13 @@
+import type { JSX } from "react";
 import { InputTitle } from "../atoms/InputTitle";
 import { NumberInput } from "../atoms/NumberInput";
 
-type props<T extends number> = {
-    title: string;
-    min: number;
-    max: number;
-    value: T;
-    onChange: (value: T) => void;
+type Props<T extends number> = {
+    readonly title: string;
+    readonly min: number;
+    readonly max: number;
+    readonly value: T;
+    readonly onChange: (value: T) => void;
 };
 
 export function NumberField<T extends number>({
@@ -15,7 +16,7 @@ export function NumberField<T extends number>({
     max,
     onChange,
     title,
-}: props<T>) {
+}: Props<T>): JSX.Element {
     return (
         <div className="flex-auto">
             <InputTitle>{title}</InputTitle>

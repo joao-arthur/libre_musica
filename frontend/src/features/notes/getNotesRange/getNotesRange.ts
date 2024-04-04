@@ -1,13 +1,13 @@
-import { arrayFns } from "../../../lib/objects/arrayFns";
-import { getNoteByNumber } from "../getNoteByNumber";
-import { noteType } from "../note";
+import { arrayFns } from "../../../lib/objects/arrayFns/arrayFns";
+import { getNoteByNumber } from "../getNoteByNumber/getNoteByNumber";
+import { Note } from "../note";
 
-export function getNotesRange(note: noteType, size: number) {
+export function getNotesRange(note: Note, size: number) {
     const range = arrayFns
         .range(size)
         .map((number) => number + note.number)
         .map(
-            (absoluteNoteNumber) => (absoluteNoteNumber % 12) as noteType["number"],
+            (absoluteNoteNumber) => (absoluteNoteNumber % 12) as Note["number"],
         )
         .map(getNoteByNumber);
     return range;

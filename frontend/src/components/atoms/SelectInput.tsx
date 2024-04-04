@@ -1,11 +1,13 @@
-type props<T extends string | number> = {
-    name: string;
+import type { JSX } from "react";
+
+type Props<T extends string | number> = {
+    readonly name: string;
     readonly options: readonly {
         readonly value: T;
         readonly label: string;
     }[];
-    value: T;
-    onChange: (newValue: T) => void;
+    readonly value: T;
+    readonly onChange: (newValue: T) => void;
 };
 
 export function SelectInput<T extends string | number>({
@@ -13,7 +15,7 @@ export function SelectInput<T extends string | number>({
     options,
     value,
     onChange,
-}: props<T>) {
+}: Props<T>): JSX.Element {
     return (
         <select
             className="w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded"

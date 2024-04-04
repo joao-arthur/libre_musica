@@ -1,7 +1,7 @@
-import { getNotesRange } from "./getNotesRange";
-import { getNoteName } from "./getNoteName";
-import { getNoteByNumber } from "./getNoteByNumber";
-import { getOptions } from "./getOptions";
+import { getNotesRange } from "./getNotesRange/getNotesRange";
+import { getNoteName } from "./getNoteName/getNoteName";
+import { getNoteByNumber } from "./getNoteByNumber/getNoteByNumber";
+import { getOptions } from "./getOptions/getOptions";
 
 export const notes = {
     getNotesRange,

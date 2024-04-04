@@ -1,1 +1,0 @@
-export { getNoteScale } from "./getNoteScale";

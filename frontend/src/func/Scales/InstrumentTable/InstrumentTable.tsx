@@ -1,17 +1,19 @@
-import { instrument } from "../../../features/instruments";
-import { notes, noteType } from "../../../features/notes";
-import { scales } from "../../../features/scales";
-import { arrayFns } from "../../../lib/objects/arrayFns";
+import type { JSX } from "react";
+import { instrument } from "../../../features/instruments/instrument";
+import {  notes } from "../../../features/notes/notes";
+import type { Note } from "../../../features/notes/note";
+import { scales } from "../../../features/scales/scales";
+import { arrayFns } from "../../../lib/objects/arrayFns/arrayFns";
 import { TableCell } from "./TableCell";
 import { TableLabel } from "./TableLabel";
 
-type props = {
-    numberOfFrets: number;
-    scaleNote: noteType["number"];
-    scaleKind: "diatonic" | "harmonic" | "doubleHarmonic" | "pentatonic";
-    numberOfStrings: number;
-    selectedInstrument: "bass" | "guitar";
-    tuningKind: string;
+type Props = {
+    readonly numberOfFrets: number;
+    readonly scaleNote: Note["number"];
+    readonly scaleKind: "diatonic" | "harmonic" | "doubleHarmonic" | "pentatonic";
+    readonly numberOfStrings: number;
+    readonly selectedInstrument: "bass" | "guitar";
+    readonly tuningKind: string;
 };
 
 export function InstrumentTable({
@@ -21,10 +23,11 @@ export function InstrumentTable({
     numberOfStrings,
     selectedInstrument,
     tuningKind,
-}: props) {
-    const tuning = (instrument[selectedInstrument] as any).tunings[
-        numberOfStrings
-    ][tuningKind].map((baseNote) => notes.getNotesRange(baseNote, numberOfFrets + 1));
+}: Props): JSX.Element {
+    const tuning = instrument[selectedInstrument]
+    .tunings[numberOfStrings]
+    [tuningKind]
+    .map((baseNote) => notes.getNotesRange(baseNote, numberOfFrets + 1));
 
     const currentScale = scales.getNoteScale(
         notes.getNoteByNumber(scaleNote),

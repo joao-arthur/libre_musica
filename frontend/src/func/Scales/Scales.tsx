@@ -1,25 +1,28 @@
 import { useState } from "react";
-import { instrument, instrumentNames, instruments } from "../../features/instruments";
-import { notes, noteType } from "../../features/notes";
-import { scaleNames, scales } from "../../features/scales";
+import { instruments } from "../../features/instruments/intruments";
+import { instrument, InstrumentName } from "../../features/instruments/instrument";
+import { Note } from "../../features/notes/note";
+import { notes } from "../../features/notes/notes";
+import { scales } from "../../features/scales/scales";
+import { ScaleName } from "../../features/scales/scale";
 import { SelectField } from "../../components/molecules/SelectField";
 import { NumberField } from "../../components/molecules/NumberField";
-import { InstrumentTable } from "./InstrumentTable";
+import { InstrumentTable } from "./InstrumentTable/InstrumentTable";
 
 const instrumentOptions = instruments.getOptions();
 const scaleKindOptions = scales.getOptions();
 const notesOptions = notes.getOptions();
 
-export function Scales() {
-    const [selectedInstrument, setInstrument] = useState<instrumentNames>(
+export function Scales(): JSX.Element {
+    const [selectedInstrument, setInstrument] = useState<InstrumentName>(
         instrumentOptions[0].value,
     );
-    const [scaleNote, setScale] = useState<noteType["number"]>(0);
+    const [scaleNote, setScale] = useState<Note["number"]>(0);
     const [fretNumber, setFretNumber] = useState(11);
     const [numberOfStrings, setStringNumber] = useState<number>(
         instrument.guitar.numberOfStrings.default,
     );
-    const [scaleKind, setScaleKind] = useState<scaleNames>(
+    const [scaleKind, setScaleKind] = useState<ScaleName>(
         scaleKindOptions[0].value,
     );
     const [tuningKind, setTuningKind] = useState("standard");
@@ -36,7 +39,7 @@ export function Scales() {
                     name="instrument"
                     options={instrumentOptions}
                     value={selectedInstrument}
-                    onChange={(newInstrument) => {
+                    onChange={(newInstrument: "guitar" | "bass") => {
                         setInstrument(newInstrument);
                         setStringNumber(
                             instrument[newInstrument].numberOfStrings.default,

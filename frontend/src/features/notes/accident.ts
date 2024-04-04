@@ -3,4 +3,4 @@ export const accident = {
     flat: "♭",
 } as const;
 
-export type accidentType = typeof accident[keyof typeof accident];
+export type Accident = typeof accident[keyof typeof accident];

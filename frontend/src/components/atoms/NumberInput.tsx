@@ -1,8 +1,10 @@
-type props<T extends number> = {
-    min: number;
-    max: number;
-    value: T;
-    onChange: (newValue: T) => void;
+import type { JSX } from "react";
+
+type Props<T extends number> = {
+    readonly min: number;
+    readonly max: number;
+    readonly value: T;
+    readonly onChange: (newValue: T) => void;
 };
 
 export function NumberInput<T extends number>({
@@ -10,7 +12,7 @@ export function NumberInput<T extends number>({
     min,
     max,
     onChange,
-}: props<T>) {
+}: Props<T>): JSX.Element {
     function handleOnChange(newValue: number) {
         const maybeValue: T = newValue as any;
         if (!maybeValue) return;

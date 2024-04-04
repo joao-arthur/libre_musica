@@ -1,1 +1,0 @@
-export { getNoteName } from "./getNoteName";

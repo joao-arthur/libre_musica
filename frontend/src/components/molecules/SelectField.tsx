@@ -1,15 +1,16 @@
+import type { JSX } from "react";
 import { InputTitle } from "../atoms/InputTitle";
 import { SelectInput } from "../atoms/SelectInput";
 
-type props<T extends string | number> = {
-    title: string;
-    name: string;
+type Props<T extends string | number> = {
+    readonly title: string;
+    readonly name: string;
     readonly options: readonly {
         readonly value: T;
         readonly label: string;
     }[];
-    value: T;
-    onChange: (newValue: T) => void;
+    readonly value: T;
+    readonly onChange: (newValue: T) => void;
 };
 
 export function SelectField<T extends string | number>({
@@ -18,7 +19,7 @@ export function SelectField<T extends string | number>({
     options,
     value,
     onChange,
-}: props<T>) {
+}: Props<T>): JSX.Element {
     return (
         <div className="flex-auto">
             <InputTitle>{title}</InputTitle>

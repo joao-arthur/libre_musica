@@ -3,16 +3,16 @@ import { getNotesRange } from "./getNotesRange";
 
 describe("getNotesRange", () => {
     it("should return a range of notes", () => {
-        expect(getNotesRange(note.a, 3)).toEqual([note.a, note.aSharp, note.b]);
-        expect(getNotesRange(note.dSharp, 8)).toEqual([
-            note.dSharp,
+        expect(getNotesRange(note.a, 3)).toEqual([note.a, note.ab, note.b]);
+        expect(getNotesRange(note.de, 8)).toEqual([
+            note.de,
             note.e,
             note.f,
-            note.fSharp,
+            note.fg,
             note.g,
-            note.gSharp,
+            note.ga,
             note.a,
-            note.aSharp,
+            note.ab,
         ]);
     });
 });

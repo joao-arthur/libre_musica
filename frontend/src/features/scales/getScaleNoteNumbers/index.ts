@@ -1,1 +1,0 @@
-export { getScaleNoteNumbers } from "./getScaleNoteNumbers";

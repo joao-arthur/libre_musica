@@ -1,12 +1,13 @@
+import type { JSX, } from "react";
 import classNames from "classnames";
 import { TableLabel } from "./TableLabel";
 
-type props = {
-    text: string;
-    active: boolean;
+type Props = {
+    readonly text: string;
+    readonly active: boolean;
 };
 
-export function TableCell({ text, active }: props) {
+export function TableCell({ text, active }: Props): JSX.Element {
     return (
         <td className="h-12 text-center border border-grey-dark">
             <div

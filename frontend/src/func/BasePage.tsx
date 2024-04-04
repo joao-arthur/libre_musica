@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 
-type props = {
-    children: ReactNode;
+type Props = {
+    readonly children: ReactNode;
 };
 
-export function BasePage({ children }: props) {
+export function BasePage({ children }: Props): JSX.Element {
     return (
         <>
             <header className="text-center bg-gray-400">

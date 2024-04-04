@@ -1,10 +1,10 @@
-import { accident, accidentType } from "../accident";
-import { noteNamings, noteType } from "../note";
+import type { Note, NoteNamings } from "../note";
+import { Accident, accident } from "../accident";
 
 export function getNoteName(
-    note: noteType,
-    noteNaming: noteNamings,
-    selectedAccident?: accidentType,
+    note: Note,
+    noteNaming: NoteNamings,
+    selectedAccident?: Accident,
 ) {
     if (!note.hasAccident) return note.name[noteNaming];
     switch (selectedAccident || accident.sharp) {
