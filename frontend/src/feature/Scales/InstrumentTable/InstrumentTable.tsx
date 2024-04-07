@@ -1,9 +1,9 @@
 import type { JSX } from "react";
+import type { Note } from "../../../core/notes/note";
+import { num } from "funis";
 import { instrument } from "../../../core/instruments/instrument";
 import { notes } from "../../../core/notes/notes";
-import type { Note } from "../../../core/notes/note";
 import { scales } from "../../../core/scales/scales";
-import { arrayFns } from "../../../lib/objects/arrayFns/arrayFns";
 import { TableCell } from "./TableCell";
 import { TableLabel } from "./TableLabel";
 
@@ -53,7 +53,7 @@ export function InstrumentTable({
             </tbody>
             <tfoot>
                 <tr>
-                    {arrayFns.range(numberOfFrets + 1).map((i) => (
+                    {num.range(0, numberOfFrets + 1).map((i) => (
                         <td
                             className="h-12 text-center border border-grey-dark"
                             key={i}

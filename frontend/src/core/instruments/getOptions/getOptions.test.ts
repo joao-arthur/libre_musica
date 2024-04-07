@@ -1,11 +1,9 @@
 import { expect, test } from "vitest";
 import { getOptions } from "./getOptions";
 
-describe("getOptions", () => {
-    it("should return the instrument options", () => {
-        expect(getOptions()).toEqual([
-            { label: "Bass", value: "bass" },
-            { label: "Guitar", value: "guitar" },
-        ]);
-    });
+test("getOptions", () => {
+    expect(getOptions()).toEqual([
+        { label: "Bass", value: "bass" },
+        { label: "Guitar", value: "guitar" },
+    ]);
 });

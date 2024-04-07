@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { StrictMode } from "react";
-import { Scales } from "../func/Scales/Scales";
-import { BasePage } from "../func/BasePage";
+import { Scales } from "../feature/Scales/Scales";
+import { BasePage } from "../feature/BasePage";
 
 export default function App(): JSX.Element {
     return (

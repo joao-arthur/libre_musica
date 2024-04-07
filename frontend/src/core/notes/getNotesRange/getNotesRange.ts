@@ -1,4 +1,4 @@
-import { arrayFns } from "../../../lib/objects/arrayFns/arrayFns";
+import { arrayFns } from "../../lang/arrayFns";
 import { getNoteByNumber } from "../getNoteByNumber/getNoteByNumber";
 import { Note } from "../note";
 
