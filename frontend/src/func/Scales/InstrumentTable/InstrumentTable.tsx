@@ -1,8 +1,8 @@
 import type { JSX } from "react";
-import { instrument } from "../../../features/instruments/instrument";
-import {  notes } from "../../../features/notes/notes";
-import type { Note } from "../../../features/notes/note";
-import { scales } from "../../../features/scales/scales";
+import { instrument } from "../../../core/instruments/instrument";
+import { notes } from "../../../core/notes/notes";
+import type { Note } from "../../../core/notes/note";
+import { scales } from "../../../core/scales/scales";
 import { arrayFns } from "../../../lib/objects/arrayFns/arrayFns";
 import { TableCell } from "./TableCell";
 import { TableLabel } from "./TableLabel";
@@ -25,9 +25,8 @@ export function InstrumentTable({
     tuningKind,
 }: Props): JSX.Element {
     const tuning = instrument[selectedInstrument]
-    .tunings[numberOfStrings]
-    [tuningKind]
-    .map((baseNote) => notes.getNotesRange(baseNote, numberOfFrets + 1));
+        .tunings[numberOfStrings][tuningKind]
+        .map((baseNote) => notes.getNotesRange(baseNote, numberOfFrets + 1));
 
     const currentScale = scales.getNoteScale(
         notes.getNoteByNumber(scaleNote),

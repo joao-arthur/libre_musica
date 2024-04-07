@@ -1,3 +1,4 @@
+import { expect, test } from "vitest";
 import { accident } from "../accident";
 import { note } from "../note";
 import { getNoteName } from "./getNoteName";

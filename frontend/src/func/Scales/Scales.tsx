@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { instruments } from "../../features/instruments/intruments";
-import { instrument, InstrumentName } from "../../features/instruments/instrument";
-import { Note } from "../../features/notes/note";
-import { notes } from "../../features/notes/notes";
-import { scales } from "../../features/scales/scales";
-import { ScaleName } from "../../features/scales/scale";
+import { instruments } from "../../core/instruments/intruments";
+import { instrument, InstrumentName } from "../../core/instruments/instrument";
+import { Note } from "../../core/notes/note";
+import { notes } from "../../core/notes/notes";
+import { scales } from "../../core/scales/scales";
+import { ScaleName } from "../../core/scales/scale";
 import { SelectField } from "../../components/molecules/SelectField";
 import { NumberField } from "../../components/molecules/NumberField";
 import { InstrumentTable } from "./InstrumentTable/InstrumentTable";

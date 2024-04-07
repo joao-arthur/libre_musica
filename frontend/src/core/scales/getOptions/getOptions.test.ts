@@ -1,3 +1,4 @@
+import { expect, test } from "vitest";
 import { getOptions } from "./getOptions";
 
 describe("getOptions", () => {

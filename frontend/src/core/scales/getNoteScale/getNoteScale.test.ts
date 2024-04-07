@@ -1,3 +1,4 @@
+import { expect, test } from "vitest";
 import { note } from "../../notes/note";
 import { getNoteScale } from "./getNoteScale";
 

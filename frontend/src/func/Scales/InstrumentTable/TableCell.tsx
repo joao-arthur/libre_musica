@@ -1,4 +1,4 @@
-import type { JSX, } from "react";
+import type { JSX } from "react";
 import classNames from "classnames";
 import { TableLabel } from "./TableLabel";
 
