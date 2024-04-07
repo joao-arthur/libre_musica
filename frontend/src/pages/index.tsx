@@ -1,13 +1,13 @@
 import type { JSX } from "react";
 import { StrictMode } from "react";
-import { Scales } from "../feature/Scales/Scales";
-import { BasePage } from "../feature/BasePage";
+import { BasePage } from "../feat/BasePage";
+import { Tuning } from "../feat/Tuning/Tuning";
 
-export default function App(): JSX.Element {
+export default function AppIndex(): JSX.Element {
     return (
         <StrictMode>
             <BasePage>
-                <Scales />
+                <Tuning />
             </BasePage>
         </StrictMode>
     );

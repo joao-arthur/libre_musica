@@ -16,7 +16,7 @@ type Props = {
     readonly tuningKind: string;
 };
 
-export function InstrumentTable({
+export function TuningTable({
     numberOfFrets,
     scaleNote,
     scaleKind,
@@ -53,7 +53,7 @@ export function InstrumentTable({
             </tbody>
             <tfoot>
                 <tr>
-                    {num.range(0, numberOfFrets + 1).map((i) => (
+                    {num.range(0, numberOfFrets).map((i) => (
                         <td
                             className="h-12 text-center border border-grey-dark"
                             key={i}
