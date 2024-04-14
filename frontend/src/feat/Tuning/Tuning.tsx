@@ -1,38 +1,34 @@
 import { useState } from "react";
-import { instruments } from "../../core/instruments/intruments";
-import { instrument, InstrumentName } from "../../core/instruments/instrument";
-import { Note } from "../../core/notes/note";
-import { notes } from "../../core/notes/notes";
-import { scales } from "../../core/scales/scales";
-import { ScaleName } from "../../core/scales/scale";
-import { TuningTable } from "./Table/Table";
+import { InstrumentName } from "@/core/instruments/instrument";
+import { Note } from "@/core/notes/note";
+import { ScaleName } from "@/core/scales/scale";
+import { TuningTable } from "./Table";
 import { TuningForm } from "./Form";
 
-const instrumentOptions = instruments.getOptions();
-const scaleKindOptions = scales.getOptions();
-const notesOptions = notes.getOptions();
-
 export function Tuning(): JSX.Element {
-    const [selectedInstrument, setInstrument] = useState<InstrumentName>(
-        instrumentOptions[0].value,
-    );
+    const [selectedInstrument, setInstrument] = useState<InstrumentName>("bass");
     const [scaleNote, setScale] = useState<Note["number"]>(0);
-    const [fretNumber, setFretNumber] = useState(11);
-    const [numberOfStrings, setStringNumber] = useState<number>(
-        instrument.guitar.numberOfStrings.default,
-    );
-    const [scaleKind, setScaleKind] = useState<ScaleName>(
-        scaleKindOptions[0].value,
-    );
+    const [fretNumber, setFretNumber] = useState<number>(11);
+    const [numberOfStrings, setStringNumber] = useState<number>(4);
+    const [scaleKind, setScaleKind] = useState<ScaleName>("diatonic");
     const [tuningKind, setTuningKind] = useState("standard");
-    const tuningKinds = instruments.getTuneOptions({
-        selectedInstrument,
-        numberOfStrings: numberOfStrings as any,
-    });
 
     return (
-        <>
-            <TuningForm />
+        <div className="flex h-full">
+            <TuningForm
+                selectedInstrument={selectedInstrument}
+                setInstrument={setInstrument}
+                scaleNote={scaleNote}
+                setScale={setScale}
+                fretNumber={fretNumber}
+                setFretNumber={setFretNumber}
+                numberOfStrings={numberOfStrings}
+                setStringNumber={setStringNumber}
+                scaleKind={scaleKind}
+                setScaleKind={setScaleKind}
+                tuningKind={tuningKind}
+                setTuningKind={setTuningKind}
+            />
             <TuningTable
                 numberOfFrets={fretNumber}
                 scaleNote={scaleNote}
@@ -41,6 +37,6 @@ export function Tuning(): JSX.Element {
                 numberOfStrings={numberOfStrings}
                 tuningKind={tuningKind}
             />
-        </>
+        </div>
     );
 }

@@ -18,12 +18,19 @@ export function SelectInput<T extends string | number>({
 }: Props<T>): JSX.Element {
     return (
         <select
-            className="w-28 bg-white h-14 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded"
+            className="w-28 bg-white h-12 px-2 py-1 outline-none border border-transparent focus:border-gray-300 rounded"
             name={name}
             value={value}
+            onChange={(e) => {
+                const selected = options.find((o) => String(o.value) === String(e.target.value))
+                    ?.value;
+                if (selected) {
+                    onChange(selected);
+                }
+            }}
         >
             {options.map(({ value, label }) => (
-                <option onClick={() => onChange(value)} value={value}>
+                <option value={value}>
                     {label}
                 </option>
             ))}

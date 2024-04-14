@@ -6,8 +6,10 @@ type Props = {
 
 export function BasePage({ children }: Props): JSX.Element {
     return (
-        <div className="flex">
-            <div className="block flex-1-0-auto">{children}</div>
+        <div className="flex h-svh">
+            <div className="block w-full h-full">
+                {children}
+            </div>
         </div>
     );
 }
