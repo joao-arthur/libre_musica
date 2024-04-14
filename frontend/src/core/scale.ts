@@ -1,83 +1,72 @@
 import type { Note } from "./note";
-import { noteBusiness } from "./note";
+import { Interval } from "./interval";
 
-export enum intervals {
-    semitone = 1,
-    tone,
-    toneAndHalf,
-    twoTones,
-    twoTonesAndHalf,
-    threeTones,
-    threeTonesAndHalf,
-    fourTones,
-    fourTonesAndHalf,
-    fiveTones,
-    fiveTonesAndHalf,
+const diatonicScale = [
+    Interval.TONE,
+    Interval.TONE,
+    Interval.SEMITONE,
+    Interval.TONE,
+    Interval.TONE,
+    Interval.TONE,
+];
+
+const pentatonicScale = [
+    Interval.TONE,
+    Interval.TONE,
+    Interval.TONE_AND_HALF,
+    Interval.TONE,
+];
+
+const harmonicScale = [
+    Interval.TONE,
+    Interval.TONE,
+    Interval.SEMITONE,
+    Interval.TONE,
+    Interval.SEMITONE,
+    Interval.TONE_AND_HALF,
+];
+
+const doubleHarmonicScale = [
+    Interval.SEMITONE,
+    Interval.TONE_AND_HALF,
+    Interval.SEMITONE,
+    Interval.TONE,
+    Interval.SEMITONE,
+    Interval.TONE_AND_HALF,
+];
+
+export type ScaleKind = "diatonic" | "pentatonic" | "harmonic" | "doubleHarmonic";
+
+function getScaleByKind(scaleKind: ScaleKind): readonly Interval[] {
+    switch (scaleKind) {
+        case "diatonic":
+            return diatonicScale;
+        case "pentatonic":
+            return pentatonicScale;
+        case "harmonic":
+            return harmonicScale;
+        case "doubleHarmonic":
+            return doubleHarmonicScale;
+    }
 }
 
-const { semitone, tone, toneAndHalf } = intervals;
-
-export const diatonic = {
-    name: "diatonic",
-    label: "Diatonic",
-    intervals: [tone, tone, semitone, tone, tone, tone],
-} as const;
-
-export const pentatonic = {
-    name: "pentatonic",
-    label: "Pentatonic",
-    intervals: [tone, tone, toneAndHalf, tone],
-} as const;
-
-export const harmonic = {
-    name: "harmonic",
-    label: "Harmonic",
-    intervals: [tone, tone, semitone, tone, semitone, toneAndHalf],
-} as const;
-
-export const doubleHarmonic = {
-    name: "doubleHarmonic",
-    label: "Double harmonic",
-    intervals: [semitone, toneAndHalf, semitone, tone, semitone, toneAndHalf],
-} as const;
-
-export const scale = {
-    diatonic,
-    pentatonic,
-    harmonic,
-    doubleHarmonic,
-} as const;
-
-export type ScaleName = keyof typeof scale;
-
-function getScaleNoteNumbers(scaleKind: ScaleName) {
-    const currentScaleIntervals = scale[scaleKind].intervals;
+function getScaleNotes(scaleKind: ScaleKind): readonly Note[] {
+    const scaleIntervals = getScaleByKind(scaleKind);
     return [0].concat(
-        currentScaleIntervals.map((_, index) =>
-            currentScaleIntervals
+        scaleIntervals.map((_, index) =>
+            scaleIntervals
                 .slice(0, index + 1)
                 .reduce((accumulator, current) => accumulator + current, 0)
         ),
     );
 }
 
-function getOptions() {
-    return Object.values(scale).map((currentScale) => ({
-        label: currentScale.label,
-        value: currentScale.name,
-    }));
+function build(note: Note, scaleKind: ScaleKind): readonly Note[] {
+    return getScaleNotes(scaleKind)
+        .map((relativeNumber) => relativeNumber + note)
+        .map((noteRelativeNumber) => (noteRelativeNumber % 12));
 }
 
-function getNoteScale(note: Note, scaleKind: ScaleName) {
-    return getScaleNoteNumbers(scaleKind)
-        .map((relativeNumber) => relativeNumber + note.number)
-        .map(
-            (noteRelativeNumber) => (noteRelativeNumber % 12) as Note["number"],
-        )
-        .map(noteBusiness.getNoteByNumber);
-}
-
-export const scaleBusiness = {
-    getOptions,
-    getNoteScale,
-};
+export const scaleBus = {
+    build,
+} as const;

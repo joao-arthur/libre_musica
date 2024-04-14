@@ -1,43 +1,47 @@
 import type { JSX } from "react";
 import type { Note } from "@/core/note";
+import type { Instrument, Tuning } from "@/core/instrument";
+import type { ScaleKind } from "@/core/scale";
 import { num } from "funis";
-import { instrument } from "@/core/instrument";
-import { noteBusiness } from "@/core/note";
-import { scaleBusiness } from "@/core/scale";
 import { cls } from "@/lib/cls";
+import { noteBus } from "@/core/note";
+import { scaleBus } from "@/core/scale";
+import { formatBus } from "@/core/format";
+import { instrumentBus } from "@/core/instrument";
 
 type Props = {
+    readonly instrument: Instrument;
+    readonly root: Note;
     readonly numberOfFrets: number;
-    readonly scaleNote: Note["number"];
-    readonly scaleKind: "diatonic" | "harmonic" | "doubleHarmonic" | "pentatonic";
+    readonly scaleKind: ScaleKind;
     readonly numberOfStrings: number;
-    readonly selectedInstrument: "bass" | "guitar";
-    readonly tuningKind: string;
+    readonly tuning: Tuning;
 };
 
 export function TuningTable({
     numberOfFrets,
-    scaleNote,
+    root,
     scaleKind,
     numberOfStrings,
-    selectedInstrument,
-    tuningKind,
+    instrument,
+    tuning,
 }: Props): JSX.Element {
-    const tuning = instrument[selectedInstrument]
-        .tunings[numberOfStrings][tuningKind]
-        .map((baseNote) => noteBusiness.getNotesRange(baseNote, numberOfFrets));
-    const currentScale = scaleBusiness.getNoteScale(
-        noteBusiness.getNoteByNumber(scaleNote),
-        scaleKind,
-    );
-    const rows = [...tuning].reverse();
+    const tuningNotes = instrumentBus.getTuning(
+        instrument,
+        numberOfStrings,
+        tuning,
+    ) || [];
+
+    const fretboard = tuningNotes.map((baseNote) => noteBus.getRange(baseNote, numberOfFrets));
+    const currentScale = scaleBus.build(root, scaleKind);
+    const rows = [...fretboard].reverse();
 
     return (
         <div className="w-full overflow-x-auto">
             <div className="flex flex-col w-full">
                 {rows.map((row, index) => (
                     <div className="flex flex-row w-full justify-between" key={index}>
-                        {row.map((col, i) => (
+                        {row.map((col) => (
                             <div className="flex items-center justify-center w-11 h-11 shrink-0">
                                 <div
                                     className={cls(
@@ -47,7 +51,7 @@ export function TuningTable({
                                     )}
                                 >
                                     <span>
-                                        {notes.getNoteName(col, "standard")}
+                                        {formatBus.formatNote(col, "english")}
                                     </span>
                                 </div>
                             </div>
@@ -60,9 +64,7 @@ export function TuningTable({
                             className="flex items-center justify-center w-11 h-11 shrink-0"
                             key={i}
                         >
-                            <span>
-                                {i}
-                            </span>
+                            <span>{i}</span>
                         </div>
                     ))}
                 </div>

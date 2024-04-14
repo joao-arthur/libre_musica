@@ -1,11 +1,9 @@
 import type { JSX } from "react";
+import type { Options } from "@/lib/options";
 
 type Props<T extends string | number> = {
     readonly name: string;
-    readonly options: readonly {
-        readonly value: T;
-        readonly label: string;
-    }[];
+    readonly options: Options<T>;
     readonly value: T;
     readonly onChange: (newValue: T) => void;
 };

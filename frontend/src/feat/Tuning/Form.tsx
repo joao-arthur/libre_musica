@@ -1,49 +1,50 @@
-import type { ScaleName } from "@/core/scale";
-import type { InstrumentName } from "@/core/instrument";
+import type { ScaleKind } from "@/core/scale";
+import type { Instrument, Tuning } from "@/core/instrument";
 import type { Note } from "@/core/note";
-import { instrument, instrumentBusiness } from "@/core/instrument";
-import { noteBusiness } from "@/core/note";
-import { scaleBusiness } from "@/core/scale";
+import {
+    getMaxNumberOfStrings,
+    getMinNumberOfStrings,
+    getTuningOptions,
+    instrumentOptions,
+    noteOptions,
+    scaleKindOptions,
+} from "@/lib/options";
 import { SelectField } from "@/comp/molecules/SelectField";
 import { NumberField } from "@/comp/molecules/NumberField";
 
-const instrumentOptions = instrumentBusiness.getOptions();
-const scaleKindOptions = scaleBusiness.getOptions();
-const notesOptions = noteBusiness.getOptions();
-
 type Props = {
-    readonly selectedInstrument: InstrumentName;
-    readonly setInstrument: (selectedInstrument: InstrumentName) => void;
-    readonly scaleNote: Note["number"];
-    readonly setScale: (scaleNote: Note["number"]) => void;
-    readonly fretNumber: number;
-    readonly setFretNumber: (fretNumber: number) => void;
+    readonly instrument: Instrument;
+    readonly root: Note;
+    readonly numberOfFrets: number;
     readonly numberOfStrings: number;
-    readonly setStringNumber: (numberOfStrings: number) => void;
-    readonly scaleKind: ScaleName;
-    readonly setScaleKind: (scaleKind: ScaleName) => void;
-    readonly tuningKind: string;
-    readonly setTuningKind: (tuningKind: string) => void;
+    readonly scaleKind: ScaleKind;
+    readonly tuning: Tuning;
+    readonly onChangeInstrument: (instrument: Instrument) => void;
+    readonly onChangeRoot: (root: Note) => void;
+    readonly onChangeNumberOfFrets: (numberOfFrets: number) => void;
+    readonly onChangeNumberOfStrings: (numberOfStrings: number) => void;
+    readonly onChangeScaleKind: (scaleKind: ScaleKind) => void;
+    readonly onChangeTuning: (tuning: Tuning) => void;
 };
 
 export function TuningForm({
-    selectedInstrument,
-    setInstrument,
-    scaleNote,
-    setScale,
-    fretNumber,
-    setFretNumber,
+    instrument,
+    root,
+    numberOfFrets,
     numberOfStrings,
-    setStringNumber,
     scaleKind,
-    setScaleKind,
-    tuningKind,
-    setTuningKind,
+    tuning,
+    onChangeInstrument,
+    onChangeRoot,
+    onChangeNumberOfFrets,
+    onChangeNumberOfStrings,
+    onChangeScaleKind,
+    onChangeTuning,
 }: Props): JSX.Element {
-    const tuningKinds = instrumentBusiness.getTuneOptions({
-        selectedInstrument,
-        numberOfStrings: numberOfStrings as any,
-    });
+    const tuningOptions = getTuningOptions(
+        instrument,
+        numberOfStrings,
+    );
 
     return (
         <div className="w-48 bg-gray-200 flex flex-col items-center">
@@ -52,52 +53,43 @@ export function TuningForm({
                     title="Instrument"
                     name="instrument"
                     options={instrumentOptions}
-                    value={selectedInstrument}
-                    onChange={(newInstrument: "guitar" | "bass") => {
-                        setInstrument(newInstrument);
-                        setStringNumber(
-                            instrument[newInstrument].numberOfStrings.default,
-                        );
-                        setTuningKind("standard");
-                    }}
+                    value={instrument}
+                    onChange={onChangeInstrument}
                 />
                 <NumberField
                     title="Frets"
                     min={11}
                     max={24}
-                    value={fretNumber}
-                    onChange={setFretNumber}
+                    value={numberOfFrets}
+                    onChange={onChangeNumberOfFrets}
                 />
                 <NumberField
                     title="Strings"
-                    min={instrument[selectedInstrument].numberOfStrings.min}
-                    max={instrument[selectedInstrument].numberOfStrings.max}
+                    min={getMinNumberOfStrings(instrument)}
+                    max={getMaxNumberOfStrings(instrument)}
                     value={numberOfStrings}
-                    onChange={(newStringNumber) => {
-                        setStringNumber(newStringNumber);
-                        setTuningKind("standard");
-                    }}
+                    onChange={onChangeNumberOfStrings}
                 />
                 <SelectField
                     name="scaleKind"
                     title="Scale"
                     options={scaleKindOptions}
                     value={scaleKind}
-                    onChange={setScaleKind}
+                    onChange={onChangeScaleKind}
                 />
                 <SelectField
                     title="Tuning"
-                    name="tuningKind"
-                    options={tuningKinds}
-                    value={tuningKind}
-                    onChange={setTuningKind}
+                    name="tuning"
+                    options={tuningOptions}
+                    value={tuning}
+                    onChange={onChangeTuning}
                 />
                 <SelectField
                     title="Key"
                     name="key"
-                    options={notesOptions}
-                    value={scaleNote}
-                    onChange={setScale}
+                    options={noteOptions}
+                    value={root}
+                    onChange={onChangeRoot}
                 />
             </div>
         </div>

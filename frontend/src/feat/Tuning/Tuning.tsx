@@ -1,41 +1,53 @@
-import type { InstrumentName } from "@/core/instrument";
-import type { Note } from "@/core/note";
-import type { ScaleName } from "@/core/scale";
+import type { Instrument, Tuning } from "@/core/instrument";
+import type { ScaleKind } from "@/core/scale";
 import { useState } from "react";
+import { Note } from "@/core/note";
+import { getDefaultNumberOfStrings } from "@/lib/options";
 import { TuningTable } from "./Table";
 import { TuningForm } from "./Form";
 
 export function Tuning(): JSX.Element {
-    const [selectedInstrument, setInstrument] = useState<InstrumentName>("bass");
-    const [scaleNote, setScale] = useState<Note["number"]>(0);
-    const [fretNumber, setFretNumber] = useState<number>(11);
-    const [numberOfStrings, setStringNumber] = useState<number>(4);
-    const [scaleKind, setScaleKind] = useState<ScaleName>("diatonic");
-    const [tuningKind, setTuningKind] = useState("standard");
+    const [instrument, setInstrument] = useState<Instrument>("bass");
+    const [root, setRoot] = useState<Note>(Note.C);
+    const [numberOfFrets, setNumberOfFrets] = useState<number>(11);
+    const [numberOfStrings, setNumberOfStrings] = useState<number>(4);
+    const [scaleKind, setScaleKind] = useState<ScaleKind>("diatonic");
+    const [tuning, setTuning] = useState<Tuning>("standard");
+
+    function onChangeInstrument(newInstrument: Instrument): void {
+        setInstrument(newInstrument);
+        setNumberOfStrings(getDefaultNumberOfStrings(instrument));
+        setTuning("standard");
+    }
+
+    function onChangeNumberOfStrings(newNumberOfStrings: number): void {
+        setNumberOfStrings(newNumberOfStrings);
+        setTuning("standard");
+    }
 
     return (
         <div className="flex h-full">
             <TuningForm
-                selectedInstrument={selectedInstrument}
-                setInstrument={setInstrument}
-                scaleNote={scaleNote}
-                setScale={setScale}
-                fretNumber={fretNumber}
-                setFretNumber={setFretNumber}
+                instrument={instrument}
+                root={root}
+                numberOfFrets={numberOfFrets}
                 numberOfStrings={numberOfStrings}
-                setStringNumber={setStringNumber}
                 scaleKind={scaleKind}
-                setScaleKind={setScaleKind}
-                tuningKind={tuningKind}
-                setTuningKind={setTuningKind}
+                tuning={tuning}
+                onChangeInstrument={onChangeInstrument}
+                onChangeRoot={setRoot}
+                onChangeNumberOfFrets={setNumberOfFrets}
+                onChangeNumberOfStrings={onChangeNumberOfStrings}
+                onChangeScaleKind={setScaleKind}
+                onChangeTuning={setTuning}
             />
             <TuningTable
-                numberOfFrets={fretNumber}
-                scaleNote={scaleNote}
-                scaleKind={scaleKind}
-                selectedInstrument={selectedInstrument}
+                instrument={instrument}
+                root={root}
+                numberOfFrets={numberOfFrets}
                 numberOfStrings={numberOfStrings}
-                tuningKind={tuningKind}
+                scaleKind={scaleKind}
+                tuning={tuning}
             />
         </div>
     );
