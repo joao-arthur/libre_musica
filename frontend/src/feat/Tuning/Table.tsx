@@ -1,10 +1,10 @@
 import type { JSX } from "react";
-import type { Note } from "@/core/notes/note";
+import type { Note } from "@/core/note";
 import { num } from "funis";
-import { instrument } from "@/core/instruments/instrument";
-import { notes } from "@/core/notes/notes";
-import { scales } from "@/core/scales/scales";
-import {cls} from "@/core/cls";
+import { instrument } from "@/core/instrument";
+import { noteBusiness } from "@/core/note";
+import { scaleBusiness } from "@/core/scale";
+import { cls } from "@/lib/cls";
 
 type Props = {
     readonly numberOfFrets: number;
@@ -25,9 +25,9 @@ export function TuningTable({
 }: Props): JSX.Element {
     const tuning = instrument[selectedInstrument]
         .tunings[numberOfStrings][tuningKind]
-        .map((baseNote) => notes.getNotesRange(baseNote, numberOfFrets));
-    const currentScale = scales.getNoteScale(
-        notes.getNoteByNumber(scaleNote),
+        .map((baseNote) => noteBusiness.getNotesRange(baseNote, numberOfFrets));
+    const currentScale = scaleBusiness.getNoteScale(
+        noteBusiness.getNoteByNumber(scaleNote),
         scaleKind,
     );
     const rows = [...tuning].reverse();
@@ -41,14 +41,9 @@ export function TuningTable({
                             <div className="flex items-center justify-center w-11 h-11 shrink-0">
                                 <div
                                     className={cls(
-
                                         "flex items-center justify-center w-10 h-10 rounded-full text-white",
-                                        currentScale.includes(col)
-                                        ? "w-10 h-10"
-                                        : "w-8 h-8",
-                                        currentScale.includes(col)
-                                            ? "bg-blue-800"
-                                            : "bg-blue-400",
+                                        currentScale.includes(col) ? "w-10 h-10" : "w-8 h-8",
+                                        currentScale.includes(col) ? "bg-blue-800" : "bg-blue-400",
                                     )}
                                 >
                                     <span>
@@ -61,7 +56,10 @@ export function TuningTable({
                 ))}
                 <div className="flex flex-row w-full justify-between">
                     {num.range(0, numberOfFrets).map((i) => (
-                        <div className="flex items-center justify-center w-11 h-11 shrink-0" key={i}>
+                        <div
+                            className="flex items-center justify-center w-11 h-11 shrink-0"
+                            key={i}
+                        >
                             <span>
                                 {i}
                             </span>

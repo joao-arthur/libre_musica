@@ -1,3 +1,12 @@
+import { num } from "funis";
+
+export const accident = {
+    sharp: "♯",
+    flat: "♭",
+} as const;
+
+export type Accident = typeof accident[keyof typeof accident];
+
 export const notesNames = {
     a: { standard: "A", solfege: "Lá" },
     b: { standard: "B", solfege: "Sí" },
@@ -110,4 +119,50 @@ export const note = {
     fg,
     g,
     ga,
+} as const;
+
+function getOptions(selectedAccident?: Accident) {
+    return Object.values(note).map((currentNote) => ({
+        label: getNoteName(currentNote, "standard", selectedAccident),
+        value: currentNote.number,
+    }));
+}
+
+function getNotesRange(note: Note, size: number): readonly Note[] {
+    const range = num
+        .range(0, size)
+        .map((number) => number + note.number)
+        .map(
+            (absoluteNoteNumber) => (absoluteNoteNumber % 12) as Note["number"],
+        )
+        .map(getNoteByNumber);
+    return range;
+}
+
+function getNoteName(
+    note: Note,
+    noteNaming: NoteNamings,
+    selectedAccident?: Accident,
+) {
+    if (!note.hasAccident) return note.name[noteNaming];
+    switch (selectedAccident || accident.sharp) {
+        case accident.flat:
+            return note.flat[noteNaming] + accident.flat;
+        case accident.sharp:
+            return note.sharp[noteNaming] + accident.sharp;
+    }
+}
+
+function getNoteByNumber(number: Note["number"]): Note {
+    const foundNote = Object.values(note).find(
+        (noteValue) => noteValue.number === number,
+    )!;
+    return foundNote;
+}
+
+export const noteBusiness = {
+    getNotesRange,
+    getNoteName,
+    getNoteByNumber,
+    getOptions,
 } as const;

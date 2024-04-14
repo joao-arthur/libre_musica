@@ -1,16 +1,15 @@
-import type { ScaleName } from "@/core/scales/scale";
-import type { InstrumentName } from "@/core/instruments/instrument";
-import { instruments } from "@/core/instruments/intruments";
-import { instrument } from "@/core/instruments/instrument";
-import { notes } from "@/core/notes/notes";
-import { scales } from "@/core/scales/scales";
-import { Note } from "@/core/notes/note";
+import type { ScaleName } from "@/core/scale";
+import type { InstrumentName } from "@/core/instrument";
+import type { Note } from "@/core/note";
+import { instrument, instrumentBusiness } from "@/core/instrument";
+import { noteBusiness } from "@/core/note";
+import { scaleBusiness } from "@/core/scale";
 import { SelectField } from "@/comp/molecules/SelectField";
 import { NumberField } from "@/comp/molecules/NumberField";
 
-const instrumentOptions = instruments.getOptions();
-const scaleKindOptions = scales.getOptions();
-const notesOptions = notes.getOptions();
+const instrumentOptions = instrumentBusiness.getOptions();
+const scaleKindOptions = scaleBusiness.getOptions();
+const notesOptions = noteBusiness.getOptions();
 
 type Props = {
     readonly selectedInstrument: InstrumentName;
@@ -41,7 +40,7 @@ export function TuningForm({
     tuningKind,
     setTuningKind,
 }: Props): JSX.Element {
-    const tuningKinds = instruments.getTuneOptions({
+    const tuningKinds = instrumentBusiness.getTuneOptions({
         selectedInstrument,
         numberOfStrings: numberOfStrings as any,
     });

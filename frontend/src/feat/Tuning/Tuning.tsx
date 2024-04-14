@@ -1,7 +1,7 @@
+import type { InstrumentName } from "@/core/instrument";
+import type { Note } from "@/core/note";
+import type { ScaleName } from "@/core/scale";
 import { useState } from "react";
-import { InstrumentName } from "@/core/instruments/instrument";
-import { Note } from "@/core/notes/note";
-import { ScaleName } from "@/core/scales/scale";
 import { TuningTable } from "./Table";
 import { TuningForm } from "./Form";
 

@@ -1,4 +1,4 @@
-import { note } from "../notes/note";
+import { note } from "./note";
 
 const { a, ab, b, c, d, de, e, f, g } = note;
 
@@ -51,3 +51,44 @@ export const instrument = {
 } as const;
 
 export type InstrumentName = keyof typeof instrument;
+
+function getOptions() {
+    return Object.values(instrument).map((instrumentValue) => ({
+        label: instrumentValue.label,
+        value: instrumentValue.name,
+    }));
+}
+
+type tuningOptions =
+    | {
+        selectedInstrument: "guitar";
+        numberOfStrings: 6 | 7;
+    }
+    | {
+        selectedInstrument: "bass";
+        numberOfStrings: 4 | 5 | 6;
+    };
+
+function getTuneOptions({
+    selectedInstrument,
+    numberOfStrings,
+}: tuningOptions) {
+    function getTunings() {
+        switch (selectedInstrument) {
+            case "bass":
+                return instrument.bass.tunings[numberOfStrings];
+            case "guitar":
+                return instrument.guitar.tunings[numberOfStrings];
+        }
+    }
+
+    return Object.keys(getTunings()).map((tuning) => ({
+        label: tuning,
+        value: tuning,
+    }));
+}
+
+export const instrumentBusiness = {
+    getOptions,
+    getTuneOptions,
+} as const;
