@@ -22,7 +22,7 @@ export function SelectInput<T extends string | number>({
             onChange={(e) => {
                 const selected = options.find((o) => String(o.value) === String(e.target.value))
                     ?.value;
-                if (selected) {
+                if (selected !== undefined) {
                     onChange(selected);
                 }
             }}
