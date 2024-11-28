@@ -23,7 +23,7 @@ pub fn format_note(note: Note) -> String {
         Note::F => String::from("F"),
         Note::FG => String::from("F/G"),
         Note::G => String::from("G"),
-        Note::GA => String::from("G/A"), 
+        Note::GA => String::from("G/A"),
     }
 }
 
