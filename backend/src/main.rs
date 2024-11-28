@@ -1,3 +1,5 @@
+pub mod accident;
+pub mod format;
 pub mod instrument;
 pub mod interval;
 pub mod note;
@@ -19,18 +21,6 @@ pub mod scale;
 //        WesternNote::G => false,
 //        WesternNote::GA => true,
 //    }
-//}
-
-//fn fmt_sharp() -> &'static str {
-//   "♯"
-//}
-
-//fn fmt_flat() -> &'static str {
-//    "♭"
-//}
-
-//struct InstrumentNote {
-//    musical_note: WesternNote,
 //}
 
 fn main() {

@@ -61,6 +61,22 @@ mod test {
     use crate::note::Note;
 
     #[test]
+    pub fn test_note_base_frequency() {
+        assert_eq!(note_base_frequency(Note::C), 16.351);
+        assert_eq!(note_base_frequency(Note::CD), 17.324);
+        assert_eq!(note_base_frequency(Note::D), 18.354);
+        assert_eq!(note_base_frequency(Note::DE), 19.445);
+        assert_eq!(note_base_frequency(Note::E), 20.601);
+        assert_eq!(note_base_frequency(Note::F), 21.827);
+        assert_eq!(note_base_frequency(Note::FG), 23.124);
+        assert_eq!(note_base_frequency(Note::G), 24.499);
+        assert_eq!(note_base_frequency(Note::GA), 25.956);
+        assert_eq!(note_base_frequency(Note::A), 27.5);
+        assert_eq!(note_base_frequency(Note::AB), 29.135);
+        assert_eq!(note_base_frequency(Note::B), 30.868);
+    }
+
+    #[test]
     pub fn test_note_pitch() {
         assert_eq!(note_pitch(Note::A, OctavePitch::_0), 27.5);
         assert_eq!(note_pitch(Note::A, OctavePitch::_1), 55.0);

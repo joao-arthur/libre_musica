@@ -36,6 +36,18 @@ const HARMONIC_MINOR_SCALE: [Interval; 6] = [
     Interval::WholeAndHalfTone,
 ];
 
+const DOUBLE_HARMONIC_SCALE: [Interval; 6] = [
+    Interval::HalfTone,
+    Interval::WholeAndHalfTone,
+    Interval::HalfTone,
+    Interval::WholeTone,
+    Interval::HalfTone,
+    Interval::WholeAndHalfTone,
+];
+
+const PENTATONIC_SCALE: [Interval; 4] =
+    [Interval::WholeTone, Interval::WholeTone, Interval::WholeAndHalfTone, Interval::WholeTone];
+
 fn make_scale(root: Note, intervals: &[Interval; 6]) -> [Note; 7] {
     let root_index = root.to_u8();
     let second_index = (root_index + intervals[0].to_u8()) % 12;
@@ -82,13 +94,21 @@ pub fn make_minor_scale(root: Note) -> [Note; 7] {
     make_scale(root, &MINOR_SCALE)
 }
 
+pub fn make_harmonic_major_scale(root: Note) -> [Note; 7] {
+    make_scale(root, &HARMONIC_MAJOR_SCALE)
+}
+
 pub fn make_harmonic_minor_scale(root: Note) -> [Note; 7] {
     make_scale(root, &HARMONIC_MINOR_SCALE)
 }
 
-pub fn make_harmonic_major_scale(root: Note) -> [Note; 7] {
-    make_scale(root, &HARMONIC_MAJOR_SCALE)
+pub fn make_double_harmonic_major_scale(root: Note) -> [Note; 7] {
+    make_scale(root, &DOUBLE_HARMONIC_SCALE)
 }
+
+// pub fn make_pentatonic_scale(root: Note) -> [Note; 7] {
+//     make_scale(root, &PENTATONIC_SCALE)
+// }
 
 #[cfg(test)]
 mod test {
@@ -99,27 +119,11 @@ mod test {
     fn test_make_major_scale() {
         assert_eq!(
             make_major_scale(Note::C),
-            [
-                Note::C,
-                Note::D,
-                Note::E,
-                Note::F,
-                Note::G,
-                Note::A,
-                Note::B
-            ]
+            [Note::C, Note::D, Note::E, Note::F, Note::G, Note::A, Note::B]
         );
         assert_eq!(
             make_major_scale(Note::G),
-            [
-                Note::G,
-                Note::A,
-                Note::B,
-                Note::C,
-                Note::D,
-                Note::E,
-                Note::FG,
-            ]
+            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::E, Note::FG,]
         );
     }
 
@@ -127,27 +131,11 @@ mod test {
     fn test_make_minor_scale() {
         assert_eq!(
             make_minor_scale(Note::A),
-            [
-                Note::A,
-                Note::B,
-                Note::C,
-                Note::D,
-                Note::E,
-                Note::F,
-                Note::G,
-            ]
+            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::G,]
         );
         assert_eq!(
             make_minor_scale(Note::E),
-            [
-                Note::E,
-                Note::FG,
-                Note::G,
-                Note::A,
-                Note::B,
-                Note::C,
-                Note::D,
-            ]
+            [Note::E, Note::FG, Note::G, Note::A, Note::B, Note::C, Note::D,]
         );
     }
 
@@ -155,15 +143,7 @@ mod test {
     fn test_make_harmonic_minor_scale() {
         assert_eq!(
             make_harmonic_minor_scale(Note::A),
-            [
-                Note::A,
-                Note::B,
-                Note::C,
-                Note::D,
-                Note::E,
-                Note::F,
-                Note::GA,
-            ]
+            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::GA,]
         );
     }
 
@@ -171,15 +151,7 @@ mod test {
     fn test_make_hamornic_major_scale() {
         assert_eq!(
             make_harmonic_major_scale(Note::G),
-            [
-                Note::G,
-                Note::A,
-                Note::B,
-                Note::C,
-                Note::D,
-                Note::DE,
-                Note::FG,
-            ]
+            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::DE, Note::FG,]
         );
     }
 }
