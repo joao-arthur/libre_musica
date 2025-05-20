@@ -23,7 +23,7 @@ fn tuning_map() -> HashMap<Tuning, Vec<Note>> {
                 strings: 4,
                 id: String::from("standard_half_below"),
             },
-            vec![Note::D_E, Note::G_A, Note::C_D, Note::F_G],
+            vec![Note::DE, Note::GA, Note::CD, Note::FG],
         ),
         (
             Tuning {

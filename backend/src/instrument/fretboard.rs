@@ -4,7 +4,7 @@ pub fn make_fretboard(open_note: Note, frets: u8) -> Vec<Note> {
     let open_note_index = open_note.to_u8();
 
     (open_note_index..(open_note_index + frets))
-        .map(|note_index| Note::from_u8(note_index % 12).unwrap())
+        .map(|note_index| Note::try_from_u8(note_index % 12).unwrap())
         .collect()
 }
 

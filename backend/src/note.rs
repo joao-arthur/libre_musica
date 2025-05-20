@@ -34,7 +34,7 @@ impl Note {
         }
     }
 
-    pub fn from_u8(num: u8) -> Option<Note> {
+    pub fn try_from_u8(num: u8) -> Option<Note> {
         match num {
             0 => Some(Note::A),
             1 => Some(Note::AB),
@@ -91,28 +91,29 @@ fn natural_note(note: Note, accident: Accident) -> Note {
 }
 
 #[cfg(test)]
-mod test {
-    use super::*;
-    use crate::note::Note;
+mod tests {
+    use crate::accident::Accident;
+
+    use super::{Note, natural_note};
 
     #[test]
-    pub fn test_note_from_u8() {
-        assert_eq!(Note::from_u8(0), Some(Note::A));
-        assert_eq!(Note::from_u8(1), Some(Note::AB));
-        assert_eq!(Note::from_u8(2), Some(Note::B));
-        assert_eq!(Note::from_u8(3), Some(Note::C));
-        assert_eq!(Note::from_u8(4), Some(Note::CD));
-        assert_eq!(Note::from_u8(5), Some(Note::D));
-        assert_eq!(Note::from_u8(6), Some(Note::DE));
-        assert_eq!(Note::from_u8(7), Some(Note::E));
-        assert_eq!(Note::from_u8(8), Some(Note::F));
-        assert_eq!(Note::from_u8(9), Some(Note::FG));
-        assert_eq!(Note::from_u8(10), Some(Note::G));
-        assert_eq!(Note::from_u8(11), Some(Note::GA));
+    pub fn note_try_from_u8() {
+        assert_eq!(Note::try_from_u8(0), Some(Note::A));
+        assert_eq!(Note::try_from_u8(1), Some(Note::AB));
+        assert_eq!(Note::try_from_u8(2), Some(Note::B));
+        assert_eq!(Note::try_from_u8(3), Some(Note::C));
+        assert_eq!(Note::try_from_u8(4), Some(Note::CD));
+        assert_eq!(Note::try_from_u8(5), Some(Note::D));
+        assert_eq!(Note::try_from_u8(6), Some(Note::DE));
+        assert_eq!(Note::try_from_u8(7), Some(Note::E));
+        assert_eq!(Note::try_from_u8(8), Some(Note::F));
+        assert_eq!(Note::try_from_u8(9), Some(Note::FG));
+        assert_eq!(Note::try_from_u8(10), Some(Note::G));
+        assert_eq!(Note::try_from_u8(11), Some(Note::GA));
     }
 
     #[test]
-    pub fn test_note_to_u8() {
+    pub fn note_to_u8() {
         assert_eq!(Note::A.to_u8(), 0);
         assert_eq!(Note::AB.to_u8(), 1);
         assert_eq!(Note::B.to_u8(), 2);
@@ -128,7 +129,7 @@ mod test {
     }
 
     #[test]
-    pub fn test_natural_note_natural() {
+    pub fn natural_note_natural() {
         assert_eq!(natural_note(Note::A, Accident::Natural), Note::A);
         assert_eq!(natural_note(Note::B, Accident::Natural), Note::B);
         assert_eq!(natural_note(Note::C, Accident::Natural), Note::C);
@@ -145,7 +146,7 @@ mod test {
     }
 
     #[test]
-    pub fn test_natural_note_flat() {
+    pub fn natural_note_flat() {
         assert_eq!(natural_note(Note::A, Accident::Flat), Note::A);
         assert_eq!(natural_note(Note::B, Accident::Flat), Note::B);
         assert_eq!(natural_note(Note::C, Accident::Flat), Note::C);
@@ -162,7 +163,7 @@ mod test {
     }
 
     #[test]
-    pub fn test_natural_note_sharp() {
+    pub fn natural_note_sharp() {
         assert_eq!(natural_note(Note::A, Accident::Sharp), Note::A);
         assert_eq!(natural_note(Note::B, Accident::Sharp), Note::B);
         assert_eq!(natural_note(Note::C, Accident::Sharp), Note::C);
