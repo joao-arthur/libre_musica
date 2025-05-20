@@ -28,7 +28,7 @@ pub fn format_note(note: Note) -> String {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
     use crate::note::Note;
 

@@ -56,9 +56,10 @@ fn note_pitch(note: Note, octave: OctavePitch) -> f32 {
 }
 
 #[cfg(test)]
-mod test {
-    use super::*;
+mod tests {
     use crate::note::Note;
+
+    use super::{OctavePitch, note_base_frequency, note_pitch};
 
     #[test]
     pub fn test_note_base_frequency() {

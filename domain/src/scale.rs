@@ -76,13 +76,13 @@ fn make_scale(root: Note, intervals: &[Interval; 6]) -> [Note; 7] {
         + intervals[5].to_u8())
         % 12;
     [
-        Note::from_u8(root_index).unwrap(),
-        Note::from_u8(second_index).unwrap(),
-        Note::from_u8(third_index).unwrap(),
-        Note::from_u8(fourth_index).unwrap(),
-        Note::from_u8(fifth_index).unwrap(),
-        Note::from_u8(sixth_index).unwrap(),
-        Note::from_u8(seventh_index).unwrap(),
+        Note::try_from_u8(root_index).unwrap(),
+        Note::try_from_u8(second_index).unwrap(),
+        Note::try_from_u8(third_index).unwrap(),
+        Note::try_from_u8(fourth_index).unwrap(),
+        Note::try_from_u8(fifth_index).unwrap(),
+        Note::try_from_u8(sixth_index).unwrap(),
+        Note::try_from_u8(seventh_index).unwrap(),
     ]
 }
 
@@ -111,9 +111,12 @@ pub fn make_double_harmonic_major_scale(root: Note) -> [Note; 7] {
 // }
 
 #[cfg(test)]
-mod test {
-    use super::*;
+mod tests {
     use crate::note::Note;
+
+    use super::{
+        make_harmonic_major_scale, make_harmonic_minor_scale, make_major_scale, make_minor_scale,
+    };
 
     #[test]
     fn test_make_major_scale() {
@@ -123,7 +126,7 @@ mod test {
         );
         assert_eq!(
             make_major_scale(Note::G),
-            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::E, Note::FG,]
+            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::E, Note::FG]
         );
     }
 
@@ -131,11 +134,11 @@ mod test {
     fn test_make_minor_scale() {
         assert_eq!(
             make_minor_scale(Note::A),
-            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::G,]
+            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::G]
         );
         assert_eq!(
             make_minor_scale(Note::E),
-            [Note::E, Note::FG, Note::G, Note::A, Note::B, Note::C, Note::D,]
+            [Note::E, Note::FG, Note::G, Note::A, Note::B, Note::C, Note::D]
         );
     }
 
@@ -143,7 +146,7 @@ mod test {
     fn test_make_harmonic_minor_scale() {
         assert_eq!(
             make_harmonic_minor_scale(Note::A),
-            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::GA,]
+            [Note::A, Note::B, Note::C, Note::D, Note::E, Note::F, Note::GA]
         );
     }
 
@@ -151,7 +154,7 @@ mod test {
     fn test_make_hamornic_major_scale() {
         assert_eq!(
             make_harmonic_major_scale(Note::G),
-            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::DE, Note::FG,]
+            [Note::G, Note::A, Note::B, Note::C, Note::D, Note::DE, Note::FG]
         );
     }
 }

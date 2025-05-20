@@ -9,9 +9,10 @@ pub fn make_fretboard(open_note: Note, frets: u8) -> Vec<Note> {
 }
 
 #[cfg(test)]
-mod test {
-    use super::*;
+mod tests {
     use crate::note::Note;
+
+    use super::make_fretboard;
 
     #[test]
     fn test_make_freboard() {
@@ -52,7 +53,7 @@ mod test {
         );
         assert_eq!(
             make_fretboard(Note::G, 6),
-            [Note::G, Note::GA, Note::A, Note::AB, Note::B, Note::C,]
+            [Note::G, Note::GA, Note::A, Note::AB, Note::B, Note::C]
         );
     }
 }
