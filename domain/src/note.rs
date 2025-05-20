@@ -1,6 +1,6 @@
 use crate::accident::Accident;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Note {
     A,
     AB,
@@ -17,7 +17,7 @@ pub enum Note {
 }
 
 impl Note {
-    pub fn to_u8(self) -> u8 {
+    pub fn to_u8(&self) -> u8 {
         match self {
             Note::A => 0,
             Note::AB => 1,
