@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::note::Note;
+use crate::note::chromatic::{ChromaticNote, from_vec};
 
 use super::Instrument;
 
@@ -11,83 +11,67 @@ struct Tuning {
     pub id: String,
 }
 
-fn tuning_map() -> HashMap<Tuning, Vec<Note>> {
+fn tuning_map() -> HashMap<Tuning, Vec<ChromaticNote>> {
     HashMap::from([
         (
-            Tuning { instrument: Instrument::Bass, strings: 4, id: String::from("standard") },
-            vec![Note::E, Note::A, Note::D, Note::G],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "standard".into() },
+            from_vec(vec![4, 9, 2, 7]),
         ),
         (
-            Tuning {
-                instrument: Instrument::Bass,
-                strings: 4,
-                id: String::from("standard_half_below"),
-            },
-            vec![Note::DE, Note::GA, Note::CD, Note::FG],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "standard_half_below".into() },
+            from_vec(vec![3, 8, 1, 6]),
         ),
         (
-            Tuning {
-                instrument: Instrument::Bass,
-                strings: 4,
-                id: String::from("standard_tone_below"),
-            },
-            vec![Note::D, Note::G, Note::C, Note::F],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "standard_tone_below".into() },
+            from_vec(vec![2, 7, 0, 5]),
         ),
         (
-            Tuning { instrument: Instrument::Bass, strings: 4, id: String::from("new_standard") },
-            vec![Note::C, Note::G, Note::D, Note::A],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "new_standard".into() },
+            from_vec(vec![0, 7, 2, 9]),
         ),
         (
-            Tuning { instrument: Instrument::Bass, strings: 4, id: String::from("drop_d") },
-            vec![Note::D, Note::A, Note::D, Note::G],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "drop_d".into() },
+            from_vec(vec![2, 9, 2, 7]),
         ),
         (
-            Tuning { instrument: Instrument::Bass, strings: 4, id: String::from("drop_c") },
-            vec![Note::C, Note::G, Note::C, Note::F],
+            Tuning { instrument: Instrument::Bass, strings: 4, id: "drop_c".into() },
+            from_vec(vec![0, 7, 0, 5]),
         ),
         (
-            Tuning { instrument: Instrument::Bass, strings: 5, id: String::from("standard") },
-            vec![Note::B, Note::E, Note::A, Note::D, Note::G],
+            Tuning { instrument: Instrument::Bass, strings: 5, id: "standard".into() },
+            from_vec(vec![11, 4, 9, 2, 7]),
         ),
         (
-            Tuning { instrument: Instrument::Bass, strings: 6, id: String::from("standard") },
-            vec![Note::B, Note::E, Note::A, Note::D, Note::G, Note::C],
+            Tuning { instrument: Instrument::Bass, strings: 6, id: "standard".into() },
+            from_vec(vec![11, 4, 9, 2, 7, 0]),
         ),
         (
-            Tuning { instrument: Instrument::Guitar, strings: 6, id: String::from("standard") },
-            vec![Note::E, Note::A, Note::D, Note::G, Note::B, Note::E],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "standard".into() },
+            from_vec(vec![4, 9, 2, 7, 11, 4]),
         ),
         (
-            Tuning {
-                instrument: Instrument::Guitar,
-                strings: 6,
-                id: String::from("standard_half_below"),
-            },
-            vec![Note::DE, Note::GA, Note::CD, Note::FG, Note::AB, Note::DE],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "standard_half_below".into() },
+            from_vec(vec![3, 8, 1, 6, 10, 3]),
         ),
         (
-            Tuning {
-                instrument: Instrument::Guitar,
-                strings: 6,
-                id: String::from("standard_tone_below"),
-            },
-            vec![Note::D, Note::G, Note::C, Note::F, Note::A, Note::D],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "standard_tone_below".into() },
+            from_vec(vec![2, 7, 0, 5, 9, 2]),
         ),
         (
-            Tuning { instrument: Instrument::Guitar, strings: 6, id: String::from("new_standard") },
-            vec![Note::C, Note::G, Note::D, Note::A, Note::E, Note::G],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "new_standard".into() },
+            from_vec(vec![0, 7, 2, 9, 4, 7]),
         ),
         (
-            Tuning { instrument: Instrument::Guitar, strings: 6, id: String::from("drop_d") },
-            vec![Note::D, Note::A, Note::D, Note::G, Note::B, Note::E],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "drop_d".into() },
+            from_vec(vec![2, 9, 2, 7, 11, 4]),
         ),
         (
-            Tuning { instrument: Instrument::Guitar, strings: 6, id: String::from("drop_c") },
-            vec![Note::C, Note::G, Note::C, Note::F, Note::A, Note::D],
+            Tuning { instrument: Instrument::Guitar, strings: 6, id: "drop_c".into() },
+            from_vec(vec![0, 7, 0, 5, 9, 2]),
         ),
         (
-            Tuning { instrument: Instrument::Guitar, strings: 7, id: String::from("standard") },
-            vec![Note::B, Note::E, Note::A, Note::D, Note::G, Note::B, Note::E],
+            Tuning { instrument: Instrument::Guitar, strings: 7, id: "standard".into() },
+            from_vec(vec![11, 4, 9, 2, 7, 11, 4]),
         ),
     ])
 }
