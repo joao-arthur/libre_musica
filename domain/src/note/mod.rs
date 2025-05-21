@@ -1,3 +1,3 @@
-mod chromatic;
-mod theorical;
-mod transform;
+pub mod chromatic;
+pub mod theorical;
+pub mod transform;

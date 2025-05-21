@@ -1,4 +1,4 @@
-use crate::note::{chromatic::ChromaticNote, Note};
+use crate::note::chromatic::ChromaticNote;
 
 pub enum OctavePitch {
     _0,
@@ -57,32 +57,32 @@ fn note_pitch(note: ChromaticNote, octave: OctavePitch) -> f32 {
 
 #[cfg(test)]
 mod tests {
-    use crate::note::Note;
+    use crate::note::chromatic::ChromaticNote;
 
     use super::{OctavePitch, note_base_frequency, note_pitch};
 
     #[test]
     pub fn test_note_base_frequency() {
-        assert_eq!(note_base_frequency(Note::_0), 16.351);
-        assert_eq!(note_base_frequency(Note::_1), 17.324);
-        assert_eq!(note_base_frequency(Note::_2), 18.354);
-        assert_eq!(note_base_frequency(Note::_3), 19.445);
-        assert_eq!(note_base_frequency(Note::_4), 20.601);
-        assert_eq!(note_base_frequency(Note::_5), 21.827);
-        assert_eq!(note_base_frequency(Note::_6), 23.124);
-        assert_eq!(note_base_frequency(Note::_7), 24.499);
-        assert_eq!(note_base_frequency(Note::_8), 25.956);
-        assert_eq!(note_base_frequency(Note::_9), 27.5);
-        assert_eq!(note_base_frequency(Note::_10), 29.135);
-        assert_eq!(note_base_frequency(Note::_11), 30.868);
+        assert_eq!(note_base_frequency(ChromaticNote::_0), 16.351);
+        assert_eq!(note_base_frequency(ChromaticNote::_1), 17.324);
+        assert_eq!(note_base_frequency(ChromaticNote::_2), 18.354);
+        assert_eq!(note_base_frequency(ChromaticNote::_3), 19.445);
+        assert_eq!(note_base_frequency(ChromaticNote::_4), 20.601);
+        assert_eq!(note_base_frequency(ChromaticNote::_5), 21.827);
+        assert_eq!(note_base_frequency(ChromaticNote::_6), 23.124);
+        assert_eq!(note_base_frequency(ChromaticNote::_7), 24.499);
+        assert_eq!(note_base_frequency(ChromaticNote::_8), 25.956);
+        assert_eq!(note_base_frequency(ChromaticNote::_9), 27.5);
+        assert_eq!(note_base_frequency(ChromaticNote::_10), 29.135);
+        assert_eq!(note_base_frequency(ChromaticNote::_11), 30.868);
     }
 
     #[test]
     pub fn test_note_pitch() {
-        assert_eq!(note_pitch(Note::A, OctavePitch::_0), 27.5);
-        assert_eq!(note_pitch(Note::A, OctavePitch::_1), 55.0);
-        assert_eq!(note_pitch(Note::A, OctavePitch::_2), 110.0);
-        assert_eq!(note_pitch(Note::A, OctavePitch::_3), 220.0);
-        assert_eq!(note_pitch(Note::A, OctavePitch::_4), 440.0);
+        assert_eq!(note_pitch(ChromaticNote::_9, OctavePitch::_0), 27.5);
+        assert_eq!(note_pitch(ChromaticNote::_9, OctavePitch::_1), 55.0);
+        assert_eq!(note_pitch(ChromaticNote::_9, OctavePitch::_2), 110.0);
+        assert_eq!(note_pitch(ChromaticNote::_9, OctavePitch::_3), 220.0);
+        assert_eq!(note_pitch(ChromaticNote::_9, OctavePitch::_4), 440.0);
     }
 }

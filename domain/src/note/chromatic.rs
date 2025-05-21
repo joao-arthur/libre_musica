@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[derive(Debug, PartialEq, Clone)]
 pub enum ChromaticNote {
     _0,
@@ -12,6 +14,12 @@ pub enum ChromaticNote {
     _9,
     _10,
     _11,
+}
+
+impl fmt::Display for ChromaticNote {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.to_u8())
+    }
 }
 
 impl ChromaticNote {
@@ -51,12 +59,16 @@ impl ChromaticNote {
     }
 }
 
+pub fn from_vec(vec: Vec<u8>) -> Vec<ChromaticNote> {
+    vec.iter().map(|num| ChromaticNote::try_from_u8(*num)).filter_map(|num| num).collect()
+}
+
 #[cfg(test)]
 mod tests {
-    use super::ChromaticNote;
+    use super::{ChromaticNote, from_vec};
 
     #[test]
-    pub fn note_try_from_u8() {
+    pub fn chromatic_note_try_from_u8() {
         assert_eq!(ChromaticNote::try_from_u8(0), Some(ChromaticNote::_0));
         assert_eq!(ChromaticNote::try_from_u8(1), Some(ChromaticNote::_1));
         assert_eq!(ChromaticNote::try_from_u8(2), Some(ChromaticNote::_2));
@@ -72,7 +84,7 @@ mod tests {
     }
 
     #[test]
-    pub fn note_to_u8() {
+    pub fn chromatic_note_to_u8() {
         assert_eq!(ChromaticNote::_0.to_u8(), 0);
         assert_eq!(ChromaticNote::_1.to_u8(), 1);
         assert_eq!(ChromaticNote::_2.to_u8(), 2);
@@ -85,5 +97,16 @@ mod tests {
         assert_eq!(ChromaticNote::_9.to_u8(), 9);
         assert_eq!(ChromaticNote::_10.to_u8(), 10);
         assert_eq!(ChromaticNote::_11.to_u8(), 11);
+    }
+
+    #[test]
+    fn test_from_vec() {
+        assert_eq!(from_vec(vec![0, 1]), vec![ChromaticNote::_0, ChromaticNote::_1]);
+        assert_eq!(from_vec(vec![2, 3]), vec![ChromaticNote::_2, ChromaticNote::_3]);
+        assert_eq!(from_vec(vec![4, 5]), vec![ChromaticNote::_4, ChromaticNote::_5]);
+        assert_eq!(from_vec(vec![6, 7]), vec![ChromaticNote::_6, ChromaticNote::_7]);
+        assert_eq!(from_vec(vec![8, 9]), vec![ChromaticNote::_8, ChromaticNote::_9]);
+        assert_eq!(from_vec(vec![10, 11]), vec![ChromaticNote::_10, ChromaticNote::_11]);
+        assert_eq!(from_vec(vec![12, 13]), vec![]);
     }
 }
