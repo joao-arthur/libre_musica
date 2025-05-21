@@ -17,7 +17,7 @@ fn format_accident(accident: &Accident) -> String {
         Accident::Natural => "".into(),
         Accident::Sharp => "♯".into(),
         Accident::DoubleSharp => "♯♯".into(),
-     }
+    }
 }
 
 pub fn format_sharp(note: ChromaticNote) -> String {

@@ -14,3 +14,15 @@ impl Interval {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Interval;
+
+    #[test]
+    fn interval_to_u8() {
+        assert_eq!(Interval::HalfTone.to_u8(), 1);
+        assert_eq!(Interval::WholeTone.to_u8(), 2);
+        assert_eq!(Interval::WholeAndHalfTone.to_u8(), 3);
+    }
+}

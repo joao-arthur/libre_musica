@@ -62,6 +62,20 @@ mod tests {
     use super::{OctavePitch, note_base_frequency, note_pitch};
 
     #[test]
+    pub fn octave_pitch_to_u8() {
+        assert_eq!(OctavePitch::_0.to_u8(), 0);
+        assert_eq!(OctavePitch::_1.to_u8(), 1);
+        assert_eq!(OctavePitch::_2.to_u8(), 2);
+        assert_eq!(OctavePitch::_3.to_u8(), 3);
+        assert_eq!(OctavePitch::_4.to_u8(), 4);
+        assert_eq!(OctavePitch::_5.to_u8(), 5);
+        assert_eq!(OctavePitch::_6.to_u8(), 6);
+        assert_eq!(OctavePitch::_7.to_u8(), 7);
+        assert_eq!(OctavePitch::_8.to_u8(), 8);
+        assert_eq!(OctavePitch::_9.to_u8(), 9);
+    }
+
+    #[test]
     pub fn test_note_base_frequency() {
         assert_eq!(note_base_frequency(ChromaticNote::_0), 16.351);
         assert_eq!(note_base_frequency(ChromaticNote::_1), 17.324);

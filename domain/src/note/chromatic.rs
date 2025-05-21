@@ -68,6 +68,22 @@ mod tests {
     use super::{ChromaticNote, from_vec};
 
     #[test]
+    pub fn chromatic_note_format() {
+        assert_eq!(ChromaticNote::_0.to_string(), "0".to_string());
+        assert_eq!(ChromaticNote::_1.to_string(), "1".to_string());
+        assert_eq!(ChromaticNote::_2.to_string(), "2".to_string());
+        assert_eq!(ChromaticNote::_3.to_string(), "3".to_string());
+        assert_eq!(ChromaticNote::_4.to_string(), "4".to_string());
+        assert_eq!(ChromaticNote::_5.to_string(), "5".to_string());
+        assert_eq!(ChromaticNote::_6.to_string(), "6".to_string());
+        assert_eq!(ChromaticNote::_7.to_string(), "7".to_string());
+        assert_eq!(ChromaticNote::_8.to_string(), "8".to_string());
+        assert_eq!(ChromaticNote::_9.to_string(), "9".to_string());
+        assert_eq!(ChromaticNote::_10.to_string(), "10".to_string());
+        assert_eq!(ChromaticNote::_11.to_string(), "11".to_string());
+    }
+
+    #[test]
     pub fn chromatic_note_try_from_u8() {
         assert_eq!(ChromaticNote::try_from_u8(0), Some(ChromaticNote::_0));
         assert_eq!(ChromaticNote::try_from_u8(1), Some(ChromaticNote::_1));
