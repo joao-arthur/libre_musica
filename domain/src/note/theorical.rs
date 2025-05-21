@@ -20,7 +20,7 @@ impl BaseNote {
             BaseNote::F => 3,
             BaseNote::G => 4,
             BaseNote::A => 5,
-            BaseNote::B => 61,
+            BaseNote::B => 6,
         }
     }
 
