@@ -1,4 +1,4 @@
-use crate::note::Note;
+use crate::note::{chromatic::ChromaticNote, Note};
 
 pub enum OctavePitch {
     _0,
@@ -30,24 +30,24 @@ impl OctavePitch {
     }
 }
 
-fn note_base_frequency(note: Note) -> f32 {
+fn note_base_frequency(note: ChromaticNote) -> f32 {
     match note {
-        Note::C => 16.351,
-        Note::CD => 17.324,
-        Note::D => 18.354,
-        Note::DE => 19.445,
-        Note::E => 20.601,
-        Note::F => 21.827,
-        Note::FG => 23.124,
-        Note::G => 24.499,
-        Note::GA => 25.956,
-        Note::A => 27.5,
-        Note::AB => 29.135,
-        Note::B => 30.868,
+        ChromaticNote::_0 => 16.351,
+        ChromaticNote::_1 => 17.324,
+        ChromaticNote::_2 => 18.354,
+        ChromaticNote::_3 => 19.445,
+        ChromaticNote::_4 => 20.601,
+        ChromaticNote::_5 => 21.827,
+        ChromaticNote::_6 => 23.124,
+        ChromaticNote::_7 => 24.499,
+        ChromaticNote::_8 => 25.956,
+        ChromaticNote::_9 => 27.5,
+        ChromaticNote::_10 => 29.135,
+        ChromaticNote::_11 => 30.868,
     }
 }
 
-fn note_pitch(note: Note, octave: OctavePitch) -> f32 {
+fn note_pitch(note: ChromaticNote, octave: OctavePitch) -> f32 {
     let base_frequency = note_base_frequency(note);
     let factor = octave.to_u8();
     let base: i32 = 2;
@@ -63,18 +63,18 @@ mod tests {
 
     #[test]
     pub fn test_note_base_frequency() {
-        assert_eq!(note_base_frequency(Note::C), 16.351);
-        assert_eq!(note_base_frequency(Note::CD), 17.324);
-        assert_eq!(note_base_frequency(Note::D), 18.354);
-        assert_eq!(note_base_frequency(Note::DE), 19.445);
-        assert_eq!(note_base_frequency(Note::E), 20.601);
-        assert_eq!(note_base_frequency(Note::F), 21.827);
-        assert_eq!(note_base_frequency(Note::FG), 23.124);
-        assert_eq!(note_base_frequency(Note::G), 24.499);
-        assert_eq!(note_base_frequency(Note::GA), 25.956);
-        assert_eq!(note_base_frequency(Note::A), 27.5);
-        assert_eq!(note_base_frequency(Note::AB), 29.135);
-        assert_eq!(note_base_frequency(Note::B), 30.868);
+        assert_eq!(note_base_frequency(Note::_0), 16.351);
+        assert_eq!(note_base_frequency(Note::_1), 17.324);
+        assert_eq!(note_base_frequency(Note::_2), 18.354);
+        assert_eq!(note_base_frequency(Note::_3), 19.445);
+        assert_eq!(note_base_frequency(Note::_4), 20.601);
+        assert_eq!(note_base_frequency(Note::_5), 21.827);
+        assert_eq!(note_base_frequency(Note::_6), 23.124);
+        assert_eq!(note_base_frequency(Note::_7), 24.499);
+        assert_eq!(note_base_frequency(Note::_8), 25.956);
+        assert_eq!(note_base_frequency(Note::_9), 27.5);
+        assert_eq!(note_base_frequency(Note::_10), 29.135);
+        assert_eq!(note_base_frequency(Note::_11), 30.868);
     }
 
     #[test]
