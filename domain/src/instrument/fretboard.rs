@@ -10,7 +10,7 @@ pub fn build_fretboard(open_note: ChromaticNote, frets: u8) -> Vec<ChromaticNote
 
 #[cfg(test)]
 mod tests {
-    use crate::note::chromatic::{ChromaticNote, from_vec};
+    use crate::note::chromatic::{ChromaticNote, of_slice};
 
     use super::build_fretboard;
 
@@ -18,11 +18,11 @@ mod tests {
     fn test_make_freboard() {
         assert_eq!(
             build_fretboard(ChromaticNote::_0, 30),
-            from_vec(vec![
+            of_slice([
                 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1,
                 2, 3, 4, 5
             ])
         );
-        assert_eq!(build_fretboard(ChromaticNote::_7, 6), from_vec(vec![7, 8, 9, 10, 11, 0]));
+        assert_eq!(build_fretboard(ChromaticNote::_7, 6), of_slice([7, 8, 9, 10, 11, 0]));
     }
 }

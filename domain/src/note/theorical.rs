@@ -44,17 +44,17 @@ pub struct TheoricalNote {
     pub accident: Accident,
 }
 
-pub fn from_vec(vec: Vec<u8>) -> Vec<BaseNote> {
+pub fn of_vec(vec: Vec<u8>) -> Vec<BaseNote> {
     vec.iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
-pub fn from_slice<const N: usize>(slice: [u8; N]) -> Vec<BaseNote> {
+pub fn of_slice<const N: usize>(slice: [u8; N]) -> Vec<BaseNote> {
     slice.to_vec().iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{BaseNote, from_vec, from_slice};
+    use super::{BaseNote, of_vec, of_slice};
 
     #[test]
     pub fn chromatic_note_try_from_u8() {
@@ -80,19 +80,19 @@ mod tests {
 
     #[test]
     fn test_from_vec() {
-        assert_eq!(from_vec(vec![0, 1]), vec![BaseNote::C, BaseNote::D]);
-        assert_eq!(from_vec(vec![2, 3]), vec![BaseNote::E, BaseNote::F]);
-        assert_eq!(from_vec(vec![4, 5]), vec![BaseNote::G, BaseNote::A]);
-        assert_eq!(from_vec(vec![6, 7]), vec![BaseNote::B]);
-        assert_eq!(from_vec(vec![8, 9]), vec![]);
+        assert_eq!(of_vec(vec![0, 1]), vec![BaseNote::C, BaseNote::D]);
+        assert_eq!(of_vec(vec![2, 3]), vec![BaseNote::E, BaseNote::F]);
+        assert_eq!(of_vec(vec![4, 5]), vec![BaseNote::G, BaseNote::A]);
+        assert_eq!(of_vec(vec![6, 7]), vec![BaseNote::B]);
+        assert_eq!(of_vec(vec![8, 9]), vec![]);
     }
 
     #[test]
     fn test_from_slice() {
-        assert_eq!(from_slice([0, 1]), vec![BaseNote::C, BaseNote::D]);
-        assert_eq!(from_slice([2, 3]), vec![BaseNote::E, BaseNote::F]);
-        assert_eq!(from_slice([4, 5]), vec![BaseNote::G, BaseNote::A]);
-        assert_eq!(from_slice([6, 7]), vec![BaseNote::B]);
-        assert_eq!(from_slice([8, 9]), vec![]);
+        assert_eq!(of_slice([0, 1]), vec![BaseNote::C, BaseNote::D]);
+        assert_eq!(of_slice([2, 3]), vec![BaseNote::E, BaseNote::F]);
+        assert_eq!(of_slice([4, 5]), vec![BaseNote::G, BaseNote::A]);
+        assert_eq!(of_slice([6, 7]), vec![BaseNote::B]);
+        assert_eq!(of_slice([8, 9]), vec![]);
     }
 }

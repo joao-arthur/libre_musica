@@ -59,17 +59,17 @@ impl ChromaticNote {
     }
 }
 
-pub fn from_vec(vec: Vec<u8>) -> Vec<ChromaticNote> {
+pub fn of_vec(vec: Vec<u8>) -> Vec<ChromaticNote> {
     vec.iter().map(|num| ChromaticNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
-pub fn from_slice<const N: usize>(slice: [u8; N]) -> Vec<ChromaticNote> {
+pub fn of_slice<const N: usize>(slice: [u8; N]) -> Vec<ChromaticNote> {
     slice.to_vec().iter().map(|num| ChromaticNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{ChromaticNote, from_vec, from_slice};
+    use super::{ChromaticNote, of_vec, of_slice};
 
     #[test]
     pub fn chromatic_note_format() {
@@ -121,23 +121,23 @@ mod tests {
 
     #[test]
     fn test_from_vec() {
-        assert_eq!(from_vec(vec![0, 1]), vec![ChromaticNote::_0, ChromaticNote::_1]);
-        assert_eq!(from_vec(vec![2, 3]), vec![ChromaticNote::_2, ChromaticNote::_3]);
-        assert_eq!(from_vec(vec![4, 5]), vec![ChromaticNote::_4, ChromaticNote::_5]);
-        assert_eq!(from_vec(vec![6, 7]), vec![ChromaticNote::_6, ChromaticNote::_7]);
-        assert_eq!(from_vec(vec![8, 9]), vec![ChromaticNote::_8, ChromaticNote::_9]);
-        assert_eq!(from_vec(vec![10, 11]), vec![ChromaticNote::_10, ChromaticNote::_11]);
-        assert_eq!(from_vec(vec![12, 13]), vec![]);
+        assert_eq!(of_vec(vec![0, 1]), vec![ChromaticNote::_0, ChromaticNote::_1]);
+        assert_eq!(of_vec(vec![2, 3]), vec![ChromaticNote::_2, ChromaticNote::_3]);
+        assert_eq!(of_vec(vec![4, 5]), vec![ChromaticNote::_4, ChromaticNote::_5]);
+        assert_eq!(of_vec(vec![6, 7]), vec![ChromaticNote::_6, ChromaticNote::_7]);
+        assert_eq!(of_vec(vec![8, 9]), vec![ChromaticNote::_8, ChromaticNote::_9]);
+        assert_eq!(of_vec(vec![10, 11]), vec![ChromaticNote::_10, ChromaticNote::_11]);
+        assert_eq!(of_vec(vec![12, 13]), vec![]);
     }
 
     #[test]
     fn test_from_slice() {
-        assert_eq!(from_slice([0, 1]), vec![ChromaticNote::_0, ChromaticNote::_1]);
-        assert_eq!(from_slice([2, 3]), vec![ChromaticNote::_2, ChromaticNote::_3]);
-        assert_eq!(from_slice([4, 5]), vec![ChromaticNote::_4, ChromaticNote::_5]);
-        assert_eq!(from_slice([6, 7]), vec![ChromaticNote::_6, ChromaticNote::_7]);
-        assert_eq!(from_slice([8, 9]), vec![ChromaticNote::_8, ChromaticNote::_9]);
-        assert_eq!(from_slice([10, 11]), vec![ChromaticNote::_10, ChromaticNote::_11]);
-        assert_eq!(from_slice([12, 13]), vec![]);
+        assert_eq!(of_slice([0, 1]), vec![ChromaticNote::_0, ChromaticNote::_1]);
+        assert_eq!(of_slice([2, 3]), vec![ChromaticNote::_2, ChromaticNote::_3]);
+        assert_eq!(of_slice([4, 5]), vec![ChromaticNote::_4, ChromaticNote::_5]);
+        assert_eq!(of_slice([6, 7]), vec![ChromaticNote::_6, ChromaticNote::_7]);
+        assert_eq!(of_slice([8, 9]), vec![ChromaticNote::_8, ChromaticNote::_9]);
+        assert_eq!(of_slice([10, 11]), vec![ChromaticNote::_10, ChromaticNote::_11]);
+        assert_eq!(of_slice([12, 13]), vec![]);
     }
 }
