@@ -57,6 +57,10 @@ impl ChromaticNote {
             _ => None,
         }
     }
+
+    pub fn from_u8(num: u8) -> ChromaticNote {
+        ChromaticNote::try_from_u8(num).unwrap()
+    }
 }
 
 pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<ChromaticNote> {
@@ -106,6 +110,15 @@ mod tests {
         assert_eq!(ChromaticNote::try_from_u8(9), Some(ChromaticNote::_9));
         assert_eq!(ChromaticNote::try_from_u8(10), Some(ChromaticNote::_10));
         assert_eq!(ChromaticNote::try_from_u8(11), Some(ChromaticNote::_11));
+    }
+
+    #[test]
+    pub fn chromatic_note_from_u8() {
+        assert_eq!(ChromaticNote::from_u8(0), ChromaticNote::_0);
+        assert_eq!(ChromaticNote::from_u8(2), ChromaticNote::_2);
+        assert_eq!(ChromaticNote::from_u8(4), ChromaticNote::_4);
+        assert_eq!(ChromaticNote::from_u8(7), ChromaticNote::_7);
+        assert_eq!(ChromaticNote::from_u8(9), ChromaticNote::_9);
     }
 
     #[test]

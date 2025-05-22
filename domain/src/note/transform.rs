@@ -25,7 +25,7 @@ pub fn theorical_note_to_chromatic(theorical_note: &TheoricalNote) -> ChromaticN
     if result > 11 {
         result -= 12;
     }
-    ChromaticNote::try_from_u8(result as u8).unwrap()
+    ChromaticNote::from_u8(result as u8)
 }
 
 #[cfg(test)]
