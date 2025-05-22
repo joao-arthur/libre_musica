@@ -44,17 +44,55 @@ pub struct TheoricalNote {
     pub accident: Accident,
 }
 
-pub fn of_vec(vec: Vec<u8>) -> Vec<BaseNote> {
-    vec.iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
+impl TheoricalNote {
+    fn try_from_str(value: &str) -> Option<TheoricalNote> {
+        match value {
+            "C♭♭" => Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat }),
+            "C♭" => Some(TheoricalNote { base: BaseNote::C, accident: Accident::Flat }),
+            "C♯" => Some(TheoricalNote { base: BaseNote::C, accident: Accident::Sharp }),
+            "C♯♯" => Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleSharp }),
+            "D♭♭" => Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleFlat }),
+            "D♭" => Some(TheoricalNote { base: BaseNote::D, accident: Accident::Flat }),
+            "D♯" => Some(TheoricalNote { base: BaseNote::D, accident: Accident::Sharp }),
+            "D♯♯" => Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleSharp }),
+            "E♭♭" => Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleFlat }),
+            "E♭" => Some(TheoricalNote { base: BaseNote::E, accident: Accident::Flat }),
+            "E♯" => Some(TheoricalNote { base: BaseNote::E, accident: Accident::Sharp }),
+            "E♯♯" => Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleSharp }),
+            "F♭♭" => Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleFlat }),
+            "F♭" => Some(TheoricalNote { base: BaseNote::F, accident: Accident::Flat }),
+            "F♯" => Some(TheoricalNote { base: BaseNote::F, accident: Accident::Sharp }),
+            "F♯♯" => Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleSharp }),
+            "G♭♭" => Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleFlat }),
+            "G♭" => Some(TheoricalNote { base: BaseNote::G, accident: Accident::Flat }),
+            "G♯" => Some(TheoricalNote { base: BaseNote::G, accident: Accident::Sharp }),
+            "G♯♯" => Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp }),
+            "A♭♭" => Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleFlat }),
+            "A♭" => Some(TheoricalNote { base: BaseNote::A, accident: Accident::Flat }),
+            "A♯" => Some(TheoricalNote { base: BaseNote::A, accident: Accident::Sharp }),
+            "A♯♯" => Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleSharp }),
+            "B♭♭" => Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleFlat }),
+            "B♭" => Some(TheoricalNote { base: BaseNote::B, accident: Accident::Flat }),
+            "B♯" => Some(TheoricalNote { base: BaseNote::B, accident: Accident::Sharp }),
+            "B♯♯" => Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp }),
+            _ => None
+        } 
+    }
 }
 
-pub fn of_slice<const N: usize>(slice: [u8; N]) -> Vec<BaseNote> {
-    slice.to_vec().iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
+pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<BaseNote> {
+    value.iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
+}
+
+pub fn vec_of_slice_u8<const N: usize>(value: [u8; N]) -> Vec<BaseNote> {
+    value.to_vec().iter().map(|num| BaseNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{BaseNote, of_vec, of_slice};
+    use crate::accident::Accident;
+
+    use super::{BaseNote,TheoricalNote, vec_of_vec_u8, vec_of_slice_u8};
 
     #[test]
     pub fn chromatic_note_try_from_u8() {
@@ -80,19 +118,51 @@ mod tests {
 
     #[test]
     fn test_from_vec() {
-        assert_eq!(of_vec(vec![0, 1]), vec![BaseNote::C, BaseNote::D]);
-        assert_eq!(of_vec(vec![2, 3]), vec![BaseNote::E, BaseNote::F]);
-        assert_eq!(of_vec(vec![4, 5]), vec![BaseNote::G, BaseNote::A]);
-        assert_eq!(of_vec(vec![6, 7]), vec![BaseNote::B]);
-        assert_eq!(of_vec(vec![8, 9]), vec![]);
+        assert_eq!(vec_of_vec_u8(vec![0, 1]), vec![BaseNote::C, BaseNote::D]);
+        assert_eq!(vec_of_vec_u8(vec![2, 3]), vec![BaseNote::E, BaseNote::F]);
+        assert_eq!(vec_of_vec_u8(vec![4, 5]), vec![BaseNote::G, BaseNote::A]);
+        assert_eq!(vec_of_vec_u8(vec![6, 7]), vec![BaseNote::B]);
+        assert_eq!(vec_of_vec_u8(vec![8, 9]), vec![]);
     }
 
     #[test]
     fn test_from_slice() {
-        assert_eq!(of_slice([0, 1]), vec![BaseNote::C, BaseNote::D]);
-        assert_eq!(of_slice([2, 3]), vec![BaseNote::E, BaseNote::F]);
-        assert_eq!(of_slice([4, 5]), vec![BaseNote::G, BaseNote::A]);
-        assert_eq!(of_slice([6, 7]), vec![BaseNote::B]);
-        assert_eq!(of_slice([8, 9]), vec![]);
+        assert_eq!(vec_of_slice_u8([0, 1]), vec![BaseNote::C, BaseNote::D]);
+        assert_eq!(vec_of_slice_u8([2, 3]), vec![BaseNote::E, BaseNote::F]);
+        assert_eq!(vec_of_slice_u8([4, 5]), vec![BaseNote::G, BaseNote::A]);
+        assert_eq!(vec_of_slice_u8([6, 7]), vec![BaseNote::B]);
+        assert_eq!(vec_of_slice_u8([8, 9]), vec![]);
+    }
+
+    #[test]
+    fn test_try_from_str() {
+       assert_eq!(TheoricalNote::try_from_str("C♭♭"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("C♭"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("C♯"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("C♯♯"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("D♭♭"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("D♭"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("D♯"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("D♯♯"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("E♭♭"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("E♭"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("E♯"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("E♯♯"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("F♭♭"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("F♭"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("F♯"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("F♯♯"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("G♭♭"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("G♭"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("G♯"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("G♯♯"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("A♭♭"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("A♭"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("A♯"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("A♯♯"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleSharp }));
+       assert_eq!(TheoricalNote::try_from_str("B♭♭"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleFlat }));
+       assert_eq!(TheoricalNote::try_from_str("B♭"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Flat }));
+       assert_eq!(TheoricalNote::try_from_str("B♯"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Sharp }));
+       assert_eq!(TheoricalNote::try_from_str("B♯♯"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp }));
     }
 }
