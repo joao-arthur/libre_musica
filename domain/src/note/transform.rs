@@ -1,4 +1,7 @@
-use super::{chromatic::ChromaticNote, theorical::{BaseNote, TheoricalNote}};
+use super::{
+    chromatic::ChromaticNote,
+    theorical::{BaseNote, TheoricalNote},
+};
 
 pub fn base_note_to_chromatic(base_note: &BaseNote) -> ChromaticNote {
     match base_note {
@@ -22,12 +25,14 @@ pub fn theorical_note_to_chromatic(theorical_note: &TheoricalNote) -> ChromaticN
     if result > 11 {
         result -= 12;
     }
-    ChromaticNote::try_from_u8(result as u8).unwrap() 
+    ChromaticNote::try_from_u8(result as u8).unwrap()
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::{accident::Accident, note::{chromatic::ChromaticNote, theorical::TheoricalNote, transform::theorical_note_to_chromatic}};
+    use crate::note::{
+        chromatic::ChromaticNote, theorical::TheoricalNote, transform::theorical_note_to_chromatic,
+    };
 
     use super::{BaseNote, base_note_to_chromatic};
 
@@ -44,64 +49,64 @@ mod tests {
 
     #[test]
     fn theorical_c_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat }), ChromaticNote::_10);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::C, accident: Accident::Flat }), ChromaticNote::_11);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::C, accident: Accident::Natural }), ChromaticNote::_0);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::C, accident: Accident::Sharp }), ChromaticNote::_1);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::C, accident: Accident::DoubleSharp }), ChromaticNote::_2);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♭♭")), ChromaticNote::_10);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♭")), ChromaticNote::_11);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C")), ChromaticNote::_0);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♯")), ChromaticNote::_1);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♯♯")), ChromaticNote::_2);
     }
 
     #[test]
     fn theorical_d_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::D, accident: Accident::DoubleFlat }), ChromaticNote::_0);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::D, accident: Accident::Flat }), ChromaticNote::_1);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::D, accident: Accident::Natural }), ChromaticNote::_2);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::D, accident: Accident::Sharp }), ChromaticNote::_3);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::D, accident: Accident::DoubleSharp }), ChromaticNote::_4);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♭♭")), ChromaticNote::_0);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♭")), ChromaticNote::_1);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D")), ChromaticNote::_2);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♯")), ChromaticNote::_3);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♯♯")), ChromaticNote::_4);
     }
 
     #[test]
     fn theorical_e_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::E, accident: Accident::DoubleFlat }), ChromaticNote::_2);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::E, accident: Accident::Flat }), ChromaticNote::_3);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::E, accident: Accident::Natural }), ChromaticNote::_4);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::E, accident: Accident::Sharp }), ChromaticNote::_5);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::E, accident: Accident::DoubleSharp }), ChromaticNote::_6);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♭♭")), ChromaticNote::_2);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♭")), ChromaticNote::_3);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E")), ChromaticNote::_4);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♯")), ChromaticNote::_5);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♯♯")), ChromaticNote::_6);
     }
 
     #[test]
     fn theorical_f_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::F, accident: Accident::DoubleFlat }), ChromaticNote::_3);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::F, accident: Accident::Flat }), ChromaticNote::_4);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::F, accident: Accident::Natural }), ChromaticNote::_5);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::F, accident: Accident::Sharp }), ChromaticNote::_6);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::F, accident: Accident::DoubleSharp }), ChromaticNote::_7);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♭♭")), ChromaticNote::_3);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♭")), ChromaticNote::_4);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F")), ChromaticNote::_5);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♯")), ChromaticNote::_6);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♯♯")), ChromaticNote::_7);
     }
 
     #[test]
     fn theorical_g_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::G, accident: Accident::DoubleFlat }), ChromaticNote::_5);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::G, accident: Accident::Flat }), ChromaticNote::_6);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::G, accident: Accident::Natural }), ChromaticNote::_7);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::G, accident: Accident::Sharp }), ChromaticNote::_8);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp }), ChromaticNote::_9);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♭♭")), ChromaticNote::_5);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♭")), ChromaticNote::_6);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G")), ChromaticNote::_7);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♯")), ChromaticNote::_8);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♯♯")), ChromaticNote::_9);
     }
 
     #[test]
     fn theorical_a_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::A, accident: Accident::DoubleFlat }), ChromaticNote::_7);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::A, accident: Accident::Flat }), ChromaticNote::_8);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::A, accident: Accident::Natural }), ChromaticNote::_9);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::A, accident: Accident::Sharp }), ChromaticNote::_10);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::A, accident: Accident::DoubleSharp }), ChromaticNote::_11);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♭♭")), ChromaticNote::_7);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♭")), ChromaticNote::_8);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A")), ChromaticNote::_9);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♯")), ChromaticNote::_10);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♯♯")), ChromaticNote::_11);
     }
 
     #[test]
     fn theorical_b_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::B, accident: Accident::DoubleFlat }), ChromaticNote::_9);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::B, accident: Accident::Flat }), ChromaticNote::_10);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::B, accident: Accident::Natural }), ChromaticNote::_11);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::B, accident: Accident::Sharp }), ChromaticNote::_0);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp }), ChromaticNote::_1);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♭♭")), ChromaticNote::_9);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♭")), ChromaticNote::_10);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B")), ChromaticNote::_11);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♯")), ChromaticNote::_0);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♯♯")), ChromaticNote::_1);
     }
 }
