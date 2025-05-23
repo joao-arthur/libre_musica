@@ -49,11 +49,21 @@ mod tests {
 
     #[test]
     fn accident_try_from_i8() {
+        assert_eq!(Accident::try_from_i8(-3), None);
         assert_eq!(Accident::try_from_i8(-2), Some(Accident::DoubleFlat));
         assert_eq!(Accident::try_from_i8(-1), Some(Accident::Flat));
         assert_eq!(Accident::try_from_i8(0), Some(Accident::Natural));
         assert_eq!(Accident::try_from_i8(1), Some(Accident::Sharp));
         assert_eq!(Accident::try_from_i8(2), Some(Accident::DoubleSharp));
+        assert_eq!(Accident::try_from_i8(3), None);
     }
 
+    #[test]
+    fn accident_from_i8() {
+        assert_eq!(Accident::from_i8(-2), Accident::DoubleFlat);
+        assert_eq!(Accident::from_i8(-1), Accident::Flat);
+        assert_eq!(Accident::from_i8(0), Accident::Natural);
+        assert_eq!(Accident::from_i8(1), Accident::Sharp);
+        assert_eq!(Accident::from_i8(2), Accident::DoubleSharp);
+    }
 }
