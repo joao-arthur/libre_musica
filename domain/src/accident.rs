@@ -17,6 +17,21 @@ impl Accident {
             Accident::DoubleSharp => 2,
         }
     }
+
+    pub fn try_from_i8(num: i8) -> Option<Accident> {
+        match num {
+            -2 => Some(Accident::DoubleFlat),
+            -1 => Some(Accident::Flat),
+            0 => Some(Accident::Natural),
+            1 => Some(Accident::Sharp),
+            2 => Some(Accident::DoubleSharp),
+            _ => None,
+        }
+    }
+
+    pub fn from_i8(num: i8) -> Accident {
+        Self::try_from_i8(num).unwrap()
+    }
 }
 
 #[cfg(test)]
@@ -24,11 +39,21 @@ mod tests {
     use super::Accident;
 
     #[test]
-    fn accident_to_u8() {
+    fn accident_to_i8() {
         assert_eq!(Accident::DoubleFlat.to_i8(), -2);
         assert_eq!(Accident::Flat.to_i8(), -1);
         assert_eq!(Accident::Natural.to_i8(), 0);
         assert_eq!(Accident::Sharp.to_i8(), 1);
         assert_eq!(Accident::DoubleSharp.to_i8(), 2);
     }
+
+    #[test]
+    fn accident_try_from_i8() {
+        assert_eq!(Accident::try_from_i8(-2), Some(Accident::DoubleFlat));
+        assert_eq!(Accident::try_from_i8(-1), Some(Accident::Flat));
+        assert_eq!(Accident::try_from_i8(0), Some(Accident::Natural));
+        assert_eq!(Accident::try_from_i8(1), Some(Accident::Sharp));
+        assert_eq!(Accident::try_from_i8(2), Some(Accident::DoubleSharp));
+    }
+
 }
