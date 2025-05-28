@@ -29,9 +29,9 @@ mod tests {
     use super::major_scale_of;
 
     #[test]
-    fn test_build_major_scale() {
+    fn test_build_major_scale_c() {
         assert_eq!(
-            major_scale_of(TheoricalNote::from_str("C♭"),),
+            major_scale_of(TheoricalNote::from_str("C♭")),
             vec![
                 TheoricalNote::from_str("C♭"),
                 TheoricalNote::from_str("D♭"),
@@ -43,7 +43,7 @@ mod tests {
             ]
         );
         assert_eq!(
-            major_scale_of(TheoricalNote::from_str("C"),),
+            major_scale_of(TheoricalNote::from_str("C")),
             vec![
                 TheoricalNote::from_str("C"),
                 TheoricalNote::from_str("D"),
@@ -55,7 +55,7 @@ mod tests {
             ]
         );
         assert_eq!(
-            major_scale_of(TheoricalNote::from_str("C♯"),),
+            major_scale_of(TheoricalNote::from_str("C♯")),
             vec![
                 TheoricalNote::from_str("C♯"),
                 TheoricalNote::from_str("D♯"),
@@ -66,8 +66,12 @@ mod tests {
                 TheoricalNote::from_str("B♯"),
             ]
         );
+    }
+
+    #[test]
+    fn test_build_major_scale() {
         assert_eq!(
-            major_scale_of(TheoricalNote::from_str("E♯"),),
+            major_scale_of(TheoricalNote::from_str("E♯")),
             vec![
                 TheoricalNote::from_str("E♯"),
                 TheoricalNote::from_str("F♯♯"),
