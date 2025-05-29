@@ -61,6 +61,40 @@ impl ChromaticNote {
     pub fn from_u8(num: u8) -> ChromaticNote {
         ChromaticNote::try_from_u8(num).unwrap()
     }
+
+    pub fn next(self) -> ChromaticNote {
+        match self {
+            ChromaticNote::_0 => ChromaticNote::_1,
+            ChromaticNote::_1 => ChromaticNote::_2,
+            ChromaticNote::_2 => ChromaticNote::_3,
+            ChromaticNote::_3 => ChromaticNote::_4,
+            ChromaticNote::_4 => ChromaticNote::_5,
+            ChromaticNote::_5 => ChromaticNote::_6,
+            ChromaticNote::_6 => ChromaticNote::_7,
+            ChromaticNote::_7 => ChromaticNote::_8,
+            ChromaticNote::_8 => ChromaticNote::_9,
+            ChromaticNote::_9 => ChromaticNote::_10,
+            ChromaticNote::_10 => ChromaticNote::_11,
+            ChromaticNote::_11 => ChromaticNote::_0,
+        }
+    }
+
+    pub fn prev(self) -> ChromaticNote {
+        match self {
+            ChromaticNote::_0 => ChromaticNote::_11,
+            ChromaticNote::_1 => ChromaticNote::_0,
+            ChromaticNote::_2 => ChromaticNote::_1,
+            ChromaticNote::_3 => ChromaticNote::_2,
+            ChromaticNote::_4 => ChromaticNote::_3,
+            ChromaticNote::_5 => ChromaticNote::_4,
+            ChromaticNote::_6 => ChromaticNote::_5,
+            ChromaticNote::_7 => ChromaticNote::_6,
+            ChromaticNote::_8 => ChromaticNote::_7,
+            ChromaticNote::_9 => ChromaticNote::_8,
+            ChromaticNote::_10 => ChromaticNote::_9,
+            ChromaticNote::_11 => ChromaticNote::_10,
+        }
+    }
 }
 
 pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<ChromaticNote> {
@@ -81,7 +115,7 @@ mod tests {
     use super::{ChromaticNote, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
-    pub fn chromatic_note_format() {
+    pub fn format() {
         assert_eq!(ChromaticNote::_0.to_string(), "0".to_string());
         assert_eq!(ChromaticNote::_1.to_string(), "1".to_string());
         assert_eq!(ChromaticNote::_2.to_string(), "2".to_string());
@@ -97,7 +131,7 @@ mod tests {
     }
 
     #[test]
-    pub fn chromatic_note_try_from_u8() {
+    pub fn try_from_u8() {
         assert_eq!(ChromaticNote::try_from_u8(0), Some(ChromaticNote::_0));
         assert_eq!(ChromaticNote::try_from_u8(1), Some(ChromaticNote::_1));
         assert_eq!(ChromaticNote::try_from_u8(2), Some(ChromaticNote::_2));
@@ -113,7 +147,7 @@ mod tests {
     }
 
     #[test]
-    pub fn chromatic_note_from_u8() {
+    pub fn from_u8() {
         assert_eq!(ChromaticNote::from_u8(0), ChromaticNote::_0);
         assert_eq!(ChromaticNote::from_u8(2), ChromaticNote::_2);
         assert_eq!(ChromaticNote::from_u8(4), ChromaticNote::_4);
@@ -122,7 +156,7 @@ mod tests {
     }
 
     #[test]
-    pub fn chromatic_note_to_u8() {
+    pub fn to_u8() {
         assert_eq!(ChromaticNote::_0.to_u8(), 0);
         assert_eq!(ChromaticNote::_1.to_u8(), 1);
         assert_eq!(ChromaticNote::_2.to_u8(), 2);
@@ -135,6 +169,38 @@ mod tests {
         assert_eq!(ChromaticNote::_9.to_u8(), 9);
         assert_eq!(ChromaticNote::_10.to_u8(), 10);
         assert_eq!(ChromaticNote::_11.to_u8(), 11);
+    }
+
+    #[test]
+    pub fn next() {
+        assert_eq!(ChromaticNote::_0.next(), ChromaticNote::_1);
+        assert_eq!(ChromaticNote::_1.next(), ChromaticNote::_2);
+        assert_eq!(ChromaticNote::_2.next(), ChromaticNote::_3);
+        assert_eq!(ChromaticNote::_3.next(), ChromaticNote::_4);
+        assert_eq!(ChromaticNote::_4.next(), ChromaticNote::_5);
+        assert_eq!(ChromaticNote::_5.next(), ChromaticNote::_6);
+        assert_eq!(ChromaticNote::_6.next(), ChromaticNote::_7);
+        assert_eq!(ChromaticNote::_7.next(), ChromaticNote::_8);
+        assert_eq!(ChromaticNote::_8.next(), ChromaticNote::_9);
+        assert_eq!(ChromaticNote::_9.next(), ChromaticNote::_10);
+        assert_eq!(ChromaticNote::_10.next(), ChromaticNote::_11);
+        assert_eq!(ChromaticNote::_11.next(), ChromaticNote::_0);
+    }
+
+    #[test]
+    pub fn prev() {
+        assert_eq!(ChromaticNote::_0.prev(), ChromaticNote::_11);
+        assert_eq!(ChromaticNote::_1.prev(), ChromaticNote::_0);
+        assert_eq!(ChromaticNote::_2.prev(), ChromaticNote::_1);
+        assert_eq!(ChromaticNote::_3.prev(), ChromaticNote::_2);
+        assert_eq!(ChromaticNote::_4.prev(), ChromaticNote::_3);
+        assert_eq!(ChromaticNote::_5.prev(), ChromaticNote::_4);
+        assert_eq!(ChromaticNote::_6.prev(), ChromaticNote::_5);
+        assert_eq!(ChromaticNote::_7.prev(), ChromaticNote::_6);
+        assert_eq!(ChromaticNote::_8.prev(), ChromaticNote::_7);
+        assert_eq!(ChromaticNote::_9.prev(), ChromaticNote::_8);
+        assert_eq!(ChromaticNote::_10.prev(), ChromaticNote::_9);
+        assert_eq!(ChromaticNote::_11.prev(), ChromaticNote::_10);
     }
 
     #[test]
