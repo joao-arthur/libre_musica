@@ -73,7 +73,7 @@ mod tests {
     use super::{BaseNote, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
-    pub fn chromatic_note_try_from_u8() {
+    pub fn try_from_u8() {
         assert_eq!(BaseNote::try_from_u8(0), Some(BaseNote::C));
         assert_eq!(BaseNote::try_from_u8(1), Some(BaseNote::D));
         assert_eq!(BaseNote::try_from_u8(2), Some(BaseNote::E));
@@ -84,7 +84,7 @@ mod tests {
     }
 
     #[test]
-    pub fn chromatic_note_to_u8() {
+    pub fn to_u8() {
         assert_eq!(BaseNote::C.to_u8(), 0);
         assert_eq!(BaseNote::D.to_u8(), 1);
         assert_eq!(BaseNote::E.to_u8(), 2);
@@ -95,7 +95,29 @@ mod tests {
     }
 
     #[test]
-    fn test_from_vec() {
+    pub fn next() {
+        assert_eq!(BaseNote::C.next(), BaseNote::D);
+        assert_eq!(BaseNote::D.next(), BaseNote::E);
+        assert_eq!(BaseNote::E.next(), BaseNote::F);
+        assert_eq!(BaseNote::F.next(), BaseNote::G);
+        assert_eq!(BaseNote::G.next(), BaseNote::A);
+        assert_eq!(BaseNote::A.next(), BaseNote::B);
+        assert_eq!(BaseNote::B.next(), BaseNote::C);
+    }
+
+    #[test]
+    pub fn prev() {
+        assert_eq!(BaseNote::C.prev(), BaseNote::B);
+        assert_eq!(BaseNote::D.prev(), BaseNote::C);
+        assert_eq!(BaseNote::E.prev(), BaseNote::D);
+        assert_eq!(BaseNote::F.prev(), BaseNote::E);
+        assert_eq!(BaseNote::G.prev(), BaseNote::F);
+        assert_eq!(BaseNote::A.prev(), BaseNote::G);
+        assert_eq!(BaseNote::B.prev(), BaseNote::A);
+    }
+
+    #[test]
+    fn test_vec_of_vec_u8() {
         assert_eq!(vec_of_vec_u8(vec![0, 1]), vec![BaseNote::C, BaseNote::D]);
         assert_eq!(vec_of_vec_u8(vec![2, 3]), vec![BaseNote::E, BaseNote::F]);
         assert_eq!(vec_of_vec_u8(vec![4, 5]), vec![BaseNote::G, BaseNote::A]);
@@ -104,7 +126,7 @@ mod tests {
     }
 
     #[test]
-    fn test_from_slice() {
+    fn test_vec_of_slice_u8() {
         assert_eq!(vec_of_slice_u8([0, 1]), vec![BaseNote::C, BaseNote::D]);
         assert_eq!(vec_of_slice_u8([2, 3]), vec![BaseNote::E, BaseNote::F]);
         assert_eq!(vec_of_slice_u8([4, 5]), vec![BaseNote::G, BaseNote::A]);
