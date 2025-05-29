@@ -2,14 +2,8 @@ use crate::{interval::Interval, note::chromatic::ChromaticNote};
 
 use super::build::build_scale;
 
-const DOUBLE_HARMONIC_MINOR_SCALE: [Interval; 6] = [
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeAndHalfTone,
-    Interval::HalfTone,
-    Interval::HalfTone,
-    Interval::WholeAndHalfTone,
-];
+const DOUBLE_HARMONIC_MINOR_SCALE: [Interval; 6] =
+    [Interval::WholeTone, Interval::HalfTone, Interval::WholeAndHalfTone, Interval::HalfTone, Interval::HalfTone, Interval::WholeAndHalfTone];
 
 pub fn double_harmonic_minor_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
     build_scale(root, &DOUBLE_HARMONIC_MINOR_SCALE.to_vec())

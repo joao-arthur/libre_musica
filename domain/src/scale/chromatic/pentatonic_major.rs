@@ -2,8 +2,7 @@ use crate::{interval::Interval, note::chromatic::ChromaticNote};
 
 use super::build::build_scale;
 
-const PENTATONIC_MAJOR_SCALE: [Interval; 4] =
-    [Interval::WholeTone, Interval::WholeTone, Interval::WholeAndHalfTone, Interval::WholeTone];
+const PENTATONIC_MAJOR_SCALE: [Interval; 4] = [Interval::WholeTone, Interval::WholeTone, Interval::WholeAndHalfTone, Interval::WholeTone];
 
 pub fn pentatonic_major_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
     build_scale(root, &PENTATONIC_MAJOR_SCALE.to_vec())

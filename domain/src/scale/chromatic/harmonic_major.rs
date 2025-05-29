@@ -2,14 +2,8 @@ use crate::{interval::Interval, note::chromatic::ChromaticNote};
 
 use super::build::build_scale;
 
-const HARMONIC_MAJOR_SCALE: [Interval; 6] = [
-    Interval::WholeTone,
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeTone,
-    Interval::HalfTone,
-    Interval::WholeAndHalfTone,
-];
+const HARMONIC_MAJOR_SCALE: [Interval; 6] =
+    [Interval::WholeTone, Interval::WholeTone, Interval::HalfTone, Interval::WholeTone, Interval::HalfTone, Interval::WholeAndHalfTone];
 
 pub fn harmonic_major_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
     build_scale(root, &HARMONIC_MAJOR_SCALE.to_vec())

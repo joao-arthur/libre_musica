@@ -130,198 +130,72 @@ mod tests {
 
     #[test]
     fn try_from_str_c() {
-        assert_eq!(
-            TheoricalNote::try_from_str("C♭♭"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("C♭"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("C"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("C♮"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("C♯"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("C♯♯"),
-            Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("C♭♭"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("C♭"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("C"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("C♮"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("C♯"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("C♯♯"), Some(TheoricalNote { base: BaseNote::C, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_d() {
-        assert_eq!(
-            TheoricalNote::try_from_str("D♭♭"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("D♭"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("D"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("D♮"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("D♯"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("D♯♯"),
-            Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("D♭♭"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("D♭"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("D"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("D♮"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("D♯"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("D♯♯"), Some(TheoricalNote { base: BaseNote::D, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_e() {
-        assert_eq!(
-            TheoricalNote::try_from_str("E♭♭"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("E♭"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("E"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("E♮"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("E♯"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("E♯♯"),
-            Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("E♭♭"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("E♭"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("E"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("E♮"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("E♯"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("E♯♯"), Some(TheoricalNote { base: BaseNote::E, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_f() {
-        assert_eq!(
-            TheoricalNote::try_from_str("F♭♭"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("F♭"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("F"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("F♮"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("F♯"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("F♯♯"),
-            Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("F♭♭"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("F♭"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("F"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("F♮"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("F♯"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("F♯♯"), Some(TheoricalNote { base: BaseNote::F, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_g() {
-        assert_eq!(
-            TheoricalNote::try_from_str("G♭♭"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("G♭"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("G"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("G♮"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("G♯"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("G♯♯"),
-            Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("G♭♭"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("G♭"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("G"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("G♮"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("G♯"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("G♯♯"), Some(TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_a() {
-        assert_eq!(
-            TheoricalNote::try_from_str("A♭♭"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("A♭"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("A"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("A♮"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("A♯"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("A♯♯"),
-            Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("A♭♭"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("A♭"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("A"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("A♮"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("A♯"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("A♯♯"), Some(TheoricalNote { base: BaseNote::A, accident: Accident::DoubleSharp }));
     }
 
     #[test]
     fn try_from_str_b() {
-        assert_eq!(
-            TheoricalNote::try_from_str("B♭♭"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleFlat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("B♭"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::Flat })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("B"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("B♮"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::Natural })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("B♯"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::Sharp })
-        );
-        assert_eq!(
-            TheoricalNote::try_from_str("B♯♯"),
-            Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp })
-        );
+        assert_eq!(TheoricalNote::try_from_str("B♭♭"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleFlat }));
+        assert_eq!(TheoricalNote::try_from_str("B♭"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Flat }));
+        assert_eq!(TheoricalNote::try_from_str("B"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("B♮"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Natural }));
+        assert_eq!(TheoricalNote::try_from_str("B♯"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::Sharp }));
+        assert_eq!(TheoricalNote::try_from_str("B♯♯"), Some(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp }));
     }
 
     #[test]
@@ -331,25 +205,10 @@ mod tests {
 
     #[test]
     fn test_from_str() {
-        assert_eq!(
-            TheoricalNote::from_str("C♭♭"),
-            TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat }
-        );
-        assert_eq!(
-            TheoricalNote::from_str("D♭"),
-            TheoricalNote { base: BaseNote::D, accident: Accident::Flat }
-        );
-        assert_eq!(
-            TheoricalNote::from_str("E"),
-            TheoricalNote { base: BaseNote::E, accident: Accident::Natural }
-        );
-        assert_eq!(
-            TheoricalNote::from_str("F♯"),
-            TheoricalNote { base: BaseNote::F, accident: Accident::Sharp }
-        );
-        assert_eq!(
-            TheoricalNote::from_str("G♯♯"),
-            TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp }
-        );
+        assert_eq!(TheoricalNote::from_str("C♭♭"), TheoricalNote { base: BaseNote::C, accident: Accident::DoubleFlat });
+        assert_eq!(TheoricalNote::from_str("D♭"), TheoricalNote { base: BaseNote::D, accident: Accident::Flat });
+        assert_eq!(TheoricalNote::from_str("E"), TheoricalNote { base: BaseNote::E, accident: Accident::Natural });
+        assert_eq!(TheoricalNote::from_str("F♯"), TheoricalNote { base: BaseNote::F, accident: Accident::Sharp });
+        assert_eq!(TheoricalNote::from_str("G♯♯"), TheoricalNote { base: BaseNote::G, accident: Accident::DoubleSharp });
     }
 }

@@ -102,12 +102,7 @@ pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<ChromaticNote> {
 }
 
 pub fn vec_of_slice_u8<const N: usize>(value: [u8; N]) -> Vec<ChromaticNote> {
-    value
-        .to_vec()
-        .iter()
-        .map(|num| ChromaticNote::try_from_u8(*num))
-        .filter_map(|num| num)
-        .collect()
+    value.to_vec().iter().map(|num| ChromaticNote::try_from_u8(*num)).filter_map(|num| num).collect()
 }
 
 #[cfg(test)]

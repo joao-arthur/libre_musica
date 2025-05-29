@@ -30,9 +30,7 @@ pub fn theorical_note_to_chromatic(theorical_note: &TheoricalNote) -> ChromaticN
 
 #[cfg(test)]
 mod tests {
-    use crate::note::{
-        chromatic::ChromaticNote, theorical::TheoricalNote, transform::theorical_note_to_chromatic,
-    };
+    use crate::note::{chromatic::ChromaticNote, theorical::TheoricalNote, transform::theorical_note_to_chromatic};
 
     use super::{BaseNote, base_note_to_chromatic};
 
