@@ -38,6 +38,30 @@ impl BaseNote {
             _ => None,
         }
     }
+
+    pub fn next(self) -> BaseNote {
+        match self {
+            BaseNote::C => BaseNote::D,
+            BaseNote::D => BaseNote::E,
+            BaseNote::E => BaseNote::F,
+            BaseNote::F => BaseNote::G,
+            BaseNote::G => BaseNote::A,
+            BaseNote::A => BaseNote::B,
+            BaseNote::B => BaseNote::C,
+        }
+    }
+
+    pub fn prev(self) -> BaseNote {
+        match self {
+            BaseNote::C => BaseNote::B,
+            BaseNote::D => BaseNote::C,
+            BaseNote::E => BaseNote::D,
+            BaseNote::F => BaseNote::E,
+            BaseNote::G => BaseNote::F,
+            BaseNote::A => BaseNote::G,
+            BaseNote::B => BaseNote::A,
+        }
+    }
 }
 
 #[derive(Debug, PartialEq, Clone)]
