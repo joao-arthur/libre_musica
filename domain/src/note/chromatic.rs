@@ -127,7 +127,7 @@ pub fn distance_negative(a: ChromaticNote, b: ChromaticNote) -> u8 {
 
 #[cfg(test)]
 mod tests {
-    use super::{ChromaticNote, vec_of_slice_u8, vec_of_vec_u8,  distance_negative, distance_positive};
+    use super::{ChromaticNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
     pub fn format() {
@@ -242,7 +242,7 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_positive_0() {
+    fn distance_positive_from_0() {
         assert_eq!(distance_positive(ChromaticNote::_0, ChromaticNote::_0), 0);
         assert_eq!(distance_positive(ChromaticNote::_0, ChromaticNote::_1), 1);
         assert_eq!(distance_positive(ChromaticNote::_0, ChromaticNote::_2), 2);
@@ -258,7 +258,7 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_positive_5() {
+    fn distance_positive_from_5() {
         assert_eq!(distance_positive(ChromaticNote::_5, ChromaticNote::_5), 0);
         assert_eq!(distance_positive(ChromaticNote::_5, ChromaticNote::_6), 1);
         assert_eq!(distance_positive(ChromaticNote::_5, ChromaticNote::_7), 2);
@@ -274,8 +274,8 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_positive_11() {
-        assert_eq!(distance_positive(ChromaticNote::_11, ChromaticNote::_11),0 );
+    fn distance_positive_from_11() {
+        assert_eq!(distance_positive(ChromaticNote::_11, ChromaticNote::_11), 0);
         assert_eq!(distance_positive(ChromaticNote::_11, ChromaticNote::_0), 1);
         assert_eq!(distance_positive(ChromaticNote::_11, ChromaticNote::_1), 2);
         assert_eq!(distance_positive(ChromaticNote::_11, ChromaticNote::_2), 3);
@@ -290,7 +290,7 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_negative_0() {
+    fn distance_negative_from_0() {
         assert_eq!(distance_negative(ChromaticNote::_0, ChromaticNote::_0), 0);
         assert_eq!(distance_negative(ChromaticNote::_0, ChromaticNote::_11), 1);
         assert_eq!(distance_negative(ChromaticNote::_0, ChromaticNote::_10), 2);
@@ -306,7 +306,7 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_negative_5() {
+    fn distance_negative_from_5() {
         assert_eq!(distance_negative(ChromaticNote::_5, ChromaticNote::_5), 0);
         assert_eq!(distance_negative(ChromaticNote::_5, ChromaticNote::_4), 1);
         assert_eq!(distance_negative(ChromaticNote::_5, ChromaticNote::_3), 2);
@@ -322,7 +322,7 @@ mod tests {
     }
 
     #[test]
-    fn test_distance_negative_11() {
+    fn distance_negative_from_11() {
         assert_eq!(distance_negative(ChromaticNote::_11, ChromaticNote::_11), 0);
         assert_eq!(distance_negative(ChromaticNote::_11, ChromaticNote::_10), 1);
         assert_eq!(distance_negative(ChromaticNote::_11, ChromaticNote::_9), 2);
