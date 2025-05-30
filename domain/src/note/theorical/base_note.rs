@@ -64,20 +64,20 @@ impl BaseNote {
     }
 }
 
-pub fn distance_positive(a: BaseNote, b: BaseNote) -> u8 {
+pub fn distance_positive(a: &BaseNote, b: &BaseNote) -> u8 {
     let mut acc = 0;
     let mut curr = a.clone();
-    while curr != b {
+    while &curr != b {
         acc += 1;
         curr = curr.next();
     }
     acc
 }
 
-pub fn distance_negative(a: BaseNote, b: BaseNote) -> u8 {
+pub fn distance_negative(a: &BaseNote, b: &BaseNote) -> u8 {
     let mut acc = 0;
     let mut curr = a.clone();
-    while curr != b {
+    while &curr != b {
         acc += 1;
         curr = curr.prev();
     }
@@ -172,89 +172,89 @@ mod tests {
 
     #[test]
     fn distance_positive_from_c() {
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::C), 0);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::D), 1);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::E), 2);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::F), 3);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::G), 4);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::A), 5);
-        assert_eq!(distance_positive(BaseNote::C, BaseNote::B), 6);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::C), 0);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::D), 1);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::E), 2);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::F), 3);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::G), 4);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::A), 5);
+        assert_eq!(distance_positive(&BaseNote::C, &BaseNote::B), 6);
     }
 
     #[test]
     fn distance_positive_from_e() {
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::E), 0);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::F), 1);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::G), 2);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::A), 3);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::B), 4);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::C), 5);
-        assert_eq!(distance_positive(BaseNote::E, BaseNote::D), 6);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::E), 0);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::F), 1);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::G), 2);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::A), 3);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::B), 4);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::C), 5);
+        assert_eq!(distance_positive(&BaseNote::E, &BaseNote::D), 6);
     }
 
     #[test]
     fn distance_positive_from_g() {
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::G), 0);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::A), 1);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::B), 2);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::C), 3);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::D), 4);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::E), 5);
-        assert_eq!(distance_positive(BaseNote::G, BaseNote::F), 6);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::G), 0);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::A), 1);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::B), 2);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::C), 3);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::D), 4);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::E), 5);
+        assert_eq!(distance_positive(&BaseNote::G, &BaseNote::F), 6);
     }
 
     #[test]
     fn distance_positive_from_b() {
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::B), 0);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::C), 1);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::D), 2);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::E), 3);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::F), 4);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::G), 5);
-        assert_eq!(distance_positive(BaseNote::B, BaseNote::A), 6);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::B), 0);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::C), 1);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::D), 2);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::E), 3);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::F), 4);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::G), 5);
+        assert_eq!(distance_positive(&BaseNote::B, &BaseNote::A), 6);
     }
 
     #[test]
     fn distance_negative_from_c() {
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::C), 0);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::B), 1);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::A), 2);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::G), 3);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::F), 4);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::E), 5);
-        assert_eq!(distance_negative(BaseNote::C, BaseNote::D), 6);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::C), 0);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::B), 1);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::A), 2);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::G), 3);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::F), 4);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::E), 5);
+        assert_eq!(distance_negative(&BaseNote::C, &BaseNote::D), 6);
     }
 
     #[test]
     fn distance_negative_from_e() {
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::E), 0);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::D), 1);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::C), 2);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::B), 3);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::A), 4);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::G), 5);
-        assert_eq!(distance_negative(BaseNote::E, BaseNote::F), 6);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::E), 0);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::D), 1);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::C), 2);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::B), 3);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::A), 4);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::G), 5);
+        assert_eq!(distance_negative(&BaseNote::E, &BaseNote::F), 6);
     }
 
     #[test]
     fn distance_negative_from_g() {
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::G), 0);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::F), 1);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::E), 2);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::D), 3);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::C), 4);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::B), 5);
-        assert_eq!(distance_negative(BaseNote::G, BaseNote::A), 6);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::G), 0);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::F), 1);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::E), 2);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::D), 3);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::C), 4);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::B), 5);
+        assert_eq!(distance_negative(&BaseNote::G, &BaseNote::A), 6);
     }
 
     #[test]
     fn distance_negative_from_b() {
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::B), 0);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::A), 1);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::G), 2);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::F), 3);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::E), 4);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::D), 5);
-        assert_eq!(distance_negative(BaseNote::B, BaseNote::C), 6);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::B), 0);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::A), 1);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::G), 2);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::F), 3);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::E), 4);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::D), 5);
+        assert_eq!(distance_negative(&BaseNote::B, &BaseNote::C), 6);
     }
 }
