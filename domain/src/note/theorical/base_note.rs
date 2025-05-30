@@ -35,6 +35,10 @@ impl BaseNote {
         }
     }
 
+    pub fn from_u8(num: u8) -> BaseNote {
+        BaseNote::try_from_u8(num).unwrap()
+    }
+
     pub fn next(self) -> BaseNote {
         match self {
             BaseNote::C => BaseNote::D,
@@ -73,17 +77,6 @@ mod tests {
     use super::{BaseNote, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
-    pub fn try_from_u8() {
-        assert_eq!(BaseNote::try_from_u8(0), Some(BaseNote::C));
-        assert_eq!(BaseNote::try_from_u8(1), Some(BaseNote::D));
-        assert_eq!(BaseNote::try_from_u8(2), Some(BaseNote::E));
-        assert_eq!(BaseNote::try_from_u8(3), Some(BaseNote::F));
-        assert_eq!(BaseNote::try_from_u8(4), Some(BaseNote::G));
-        assert_eq!(BaseNote::try_from_u8(5), Some(BaseNote::A));
-        assert_eq!(BaseNote::try_from_u8(6), Some(BaseNote::B));
-    }
-
-    #[test]
     pub fn to_u8() {
         assert_eq!(BaseNote::C.to_u8(), 0);
         assert_eq!(BaseNote::D.to_u8(), 1);
@@ -92,6 +85,29 @@ mod tests {
         assert_eq!(BaseNote::G.to_u8(), 4);
         assert_eq!(BaseNote::A.to_u8(), 5);
         assert_eq!(BaseNote::B.to_u8(), 6);
+    }
+
+    #[test]
+    pub fn try_from_u8() {
+        assert_eq!(BaseNote::try_from_u8(0), Some(BaseNote::C));
+        assert_eq!(BaseNote::try_from_u8(1), Some(BaseNote::D));
+        assert_eq!(BaseNote::try_from_u8(2), Some(BaseNote::E));
+        assert_eq!(BaseNote::try_from_u8(3), Some(BaseNote::F));
+        assert_eq!(BaseNote::try_from_u8(4), Some(BaseNote::G));
+        assert_eq!(BaseNote::try_from_u8(5), Some(BaseNote::A));
+        assert_eq!(BaseNote::try_from_u8(6), Some(BaseNote::B));
+        assert_eq!(BaseNote::try_from_u8(7), None);
+    }
+
+    #[test]
+    pub fn from_u8() {
+        assert_eq!(BaseNote::from_u8(0), BaseNote::C);
+        assert_eq!(BaseNote::from_u8(1), BaseNote::D);
+        assert_eq!(BaseNote::from_u8(2), BaseNote::E);
+        assert_eq!(BaseNote::from_u8(3), BaseNote::F);
+        assert_eq!(BaseNote::from_u8(4), BaseNote::G);
+        assert_eq!(BaseNote::from_u8(5), BaseNote::A);
+        assert_eq!(BaseNote::from_u8(6), BaseNote::B);
     }
 
     #[test]
