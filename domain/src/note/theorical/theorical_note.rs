@@ -115,11 +115,19 @@ impl TheoricalNote {
     }
 }
 
+pub fn vec_of_vec_str(value: Vec<&str>) -> Vec<TheoricalNote> {
+    value.iter().map(|val| TheoricalNote::try_from_str(val)).filter_map(|num| num).collect()
+}
+
+pub fn vec_of_slice_str<const N: usize>(value: [&str; N]) -> Vec<TheoricalNote> {
+    value.to_vec().iter().map(|val| TheoricalNote::try_from_str(val)).filter_map(|num| num).collect()
+}
+
 #[cfg(test)]
 mod tests {
     use crate::accident::Accident;
 
-    use super::{BaseNote, TheoricalNote};
+    use super::{BaseNote, TheoricalNote, vec_of_slice_str, vec_of_vec_str};
 
     #[test]
     fn try_from_str_c() {
@@ -264,5 +272,37 @@ mod tests {
         assert_eq!(TheoricalNote { base: BaseNote::B, accident: Accident::Natural }.to_string(), "B".to_string());
         assert_eq!(TheoricalNote { base: BaseNote::B, accident: Accident::Sharp }.to_string(), "B♯".to_string());
         assert_eq!(TheoricalNote { base: BaseNote::B, accident: Accident::DoubleSharp }.to_string(), "B𝄪".to_string());
+    }
+
+    #[test]
+    fn test_vec_of_vec_str() {
+        assert_eq!(
+            vec_of_vec_str(vec!["C𝄫", "D♭", "E", "F", "G", "A♯", "B𝄪"]),
+            vec![
+                TheoricalNote::from_str("C𝄫"),
+                TheoricalNote::from_str("D♭"),
+                TheoricalNote::from_str("E"),
+                TheoricalNote::from_str("F"),
+                TheoricalNote::from_str("G"),
+                TheoricalNote::from_str("A♯"),
+                TheoricalNote::from_str("B𝄪"),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_vec_of_slice_str() {
+        assert_eq!(
+            vec_of_slice_str(["C𝄫", "D♭", "E", "F", "G", "A♯", "B𝄪"]),
+            vec![
+                TheoricalNote::from_str("C𝄫"),
+                TheoricalNote::from_str("D♭"),
+                TheoricalNote::from_str("E"),
+                TheoricalNote::from_str("F"),
+                TheoricalNote::from_str("G"),
+                TheoricalNote::from_str("A♯"),
+                TheoricalNote::from_str("B𝄪"),
+            ]
+        );
     }
 }
