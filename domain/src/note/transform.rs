@@ -47,64 +47,64 @@ mod tests {
 
     #[test]
     fn theorical_c_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♭♭")), ChromaticNote::_10);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C𝄫")), ChromaticNote::_10);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♭")), ChromaticNote::_11);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C")), ChromaticNote::_0);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♯")), ChromaticNote::_1);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C♯♯")), ChromaticNote::_2);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("C𝄪")), ChromaticNote::_2);
     }
 
     #[test]
     fn theorical_d_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♭♭")), ChromaticNote::_0);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D𝄫")), ChromaticNote::_0);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♭")), ChromaticNote::_1);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D")), ChromaticNote::_2);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♯")), ChromaticNote::_3);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D♯♯")), ChromaticNote::_4);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("D𝄪")), ChromaticNote::_4);
     }
 
     #[test]
     fn theorical_e_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♭♭")), ChromaticNote::_2);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E𝄫")), ChromaticNote::_2);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♭")), ChromaticNote::_3);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E")), ChromaticNote::_4);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♯")), ChromaticNote::_5);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E♯♯")), ChromaticNote::_6);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("E𝄪")), ChromaticNote::_6);
     }
 
     #[test]
     fn theorical_f_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♭♭")), ChromaticNote::_3);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F𝄫")), ChromaticNote::_3);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♭")), ChromaticNote::_4);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F")), ChromaticNote::_5);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♯")), ChromaticNote::_6);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F♯♯")), ChromaticNote::_7);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("F𝄪")), ChromaticNote::_7);
     }
 
     #[test]
     fn theorical_g_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♭♭")), ChromaticNote::_5);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G𝄫")), ChromaticNote::_5);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♭")), ChromaticNote::_6);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G")), ChromaticNote::_7);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♯")), ChromaticNote::_8);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G♯♯")), ChromaticNote::_9);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("G𝄪")), ChromaticNote::_9);
     }
 
     #[test]
     fn theorical_a_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♭♭")), ChromaticNote::_7);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A𝄫")), ChromaticNote::_7);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♭")), ChromaticNote::_8);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A")), ChromaticNote::_9);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♯")), ChromaticNote::_10);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A♯♯")), ChromaticNote::_11);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("A𝄪")), ChromaticNote::_11);
     }
 
     #[test]
     fn theorical_b_to_chromatic() {
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♭♭")), ChromaticNote::_9);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B𝄫")), ChromaticNote::_9);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♭")), ChromaticNote::_10);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B")), ChromaticNote::_11);
         assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♯")), ChromaticNote::_0);
-        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B♯♯")), ChromaticNote::_1);
+        assert_eq!(theorical_note_to_chromatic(&TheoricalNote::from_str("B𝄪")), ChromaticNote::_1);
     }
 }

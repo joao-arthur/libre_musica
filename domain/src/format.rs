@@ -2,8 +2,8 @@ use crate::{accident::Accident, note::chromatic::ChromaticNote};
 
 const KEY_SIGNATURE_SHARP: &str = "♯";
 const KEY_SIGNATURE_FLAT: &str = "♭";
-const KEY_SIGNATURE_DOUBLE_SHARP: &str = "♯♯";
-const KEY_SIGNATURE_DOUBLE_FLAT: &str = "♭♭";
+const KEY_SIGNATURE_DOUBLE_SHARP: &str = "𝄪";
+const KEY_SIGNATURE_DOUBLE_FLAT: &str = "𝄫";
 const KEY_SIGNATURE_NATURAL: &str = "♮";
 
 const LATIN_NOTES: [&str; 7] = ["dó", "ré", "mí", "fá", "sol", "lá", "sí"];
@@ -12,11 +12,11 @@ const ENGLISH_NOTES: [&str; 7] = ["a", "b", "c", "d", "e", "f", "g"];
 
 fn format_accident(accident: &Accident) -> String {
     match accident {
-        Accident::DoubleFlat => "♭♭".into(),
+        Accident::DoubleFlat => "𝄫".into(),
         Accident::Flat => "♭".into(),
         Accident::Natural => "".into(),
         Accident::Sharp => "♯".into(),
-        Accident::DoubleSharp => "♯♯".into(),
+        Accident::DoubleSharp => "𝄪".into(),
     }
 }
 
