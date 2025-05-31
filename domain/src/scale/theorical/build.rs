@@ -2,34 +2,41 @@ use crate::{
     accident::{self, Accident},
     interval::Interval,
     note::{
-        chromatic::ChromaticNote,
+        chromatic::{ChromaticNote, distance_negative, distance_positive},
         theorical::{BaseNote, TheoricalNote},
         transform::{base_note_to_chromatic, theorical_note_to_chromatic},
     },
 };
 
 pub fn build_scale(root: TheoricalNote, intervals: &Vec<Interval>) -> Vec<TheoricalNote> {
-    let mut chromatic_curr_base = base_note_to_chromatic(&root.base).to_u8() as i8;
-    let mut chromatic_curr = base_note_to_chromatic(&root.base).to_u8() as i8 + root.accident.to_i8();
-    let mut theorical_curr = root.base.to_u8();
-
     let mut res = Vec::with_capacity(intervals.len() + 1);
-    res.push(root);
+    res.push(root.clone());
+
+    let mut curr_base = root.base;
+    let mut curr_chromatic = base_note_to_chromatic(&curr_base);
+
+    curr_chromatic = match root.accident {
+        Accident::DoubleFlat => curr_chromatic.prev().prev(),
+        Accident::Flat => curr_chromatic.prev(),
+        Accident::Natural => curr_chromatic,
+        Accident::Sharp => curr_chromatic.next(),
+        Accident::DoubleSharp => curr_chromatic.next().next(),
+    };
 
     for interval in intervals {
-        chromatic_curr_base += interval.to_u8() as i8;
-        chromatic_curr += interval.to_u8() as i8;
-        theorical_curr += 1;
-        
-        let diff: i8 = (chromatic_curr as i8) - (chromatic_curr_base as i8);
+        curr_base = curr_base.next();
+        curr_chromatic = match interval {
+            Interval::HalfTone => curr_chromatic.next(),
+            Interval::WholeTone => curr_chromatic.next().next(),
+            Interval::WholeAndHalfTone => curr_chromatic.next().next().next(),
+        };
+        let curr_base_as_chromatic = base_note_to_chromatic(&curr_base);
+        let distance_pos = distance_positive(&curr_base_as_chromatic, &curr_chromatic) as i8;
+        let distance_neg = distance_negative(&curr_base_as_chromatic, &curr_chromatic) as i8;
 
-        if let Some(accident) = Accident::try_from_i8(diff) {
-            if let Some(base) = BaseNote::try_from_u8(theorical_curr % 8) {
-                res.push(TheoricalNote {
-                    base: base,
-                    accident: accident
-                });
-            }
+        let distance = if distance_pos < distance_neg { distance_pos } else { -distance_neg };
+        if let Some(accident_calc) = Accident::try_from_i8(distance) {
+            res.push(TheoricalNote { base: curr_base.clone(), accident: accident_calc });
         }
     }
 
