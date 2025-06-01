@@ -140,11 +140,11 @@ pub fn min_distance(a: &ChromaticNote, b: &ChromaticNote) -> i8 {
         curr_pos = curr_pos.next();
         curr_neg = curr_neg.prev();
     }
-} 
+}
 
 #[cfg(test)]
 mod tests {
-    use super::{ChromaticNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8, min_distance};
+    use super::{ChromaticNote, distance_negative, distance_positive, min_distance, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
     pub fn format() {
@@ -384,5 +384,5 @@ mod tests {
         assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_2), -3);
         assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_3), -2);
         assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_4), -1);
-    }  
+    }
 }

@@ -99,7 +99,7 @@ pub fn min_distance(a: &BaseNote, b: &BaseNote) -> i8 {
         curr_pos = curr_pos.next();
         curr_neg = curr_neg.prev();
     }
-} 
+}
 
 pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<BaseNote> {
     value.iter().filter_map(|num| BaseNote::try_from_u8(*num)).collect()
@@ -111,7 +111,7 @@ pub fn vec_of_slice_u8<const N: usize>(value: [u8; N]) -> Vec<BaseNote> {
 
 #[cfg(test)]
 mod tests {
-    use super::{BaseNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8, min_distance};
+    use super::{BaseNote, distance_negative, distance_positive, min_distance, vec_of_slice_u8, vec_of_vec_u8};
 
     #[test]
     pub fn to_u8() {
