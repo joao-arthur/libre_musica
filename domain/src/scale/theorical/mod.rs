@@ -6,3 +6,4 @@ mod harmonic_major;
 mod harmonic_minor;
 mod major;
 mod minor;
+mod pentatonic_major;
