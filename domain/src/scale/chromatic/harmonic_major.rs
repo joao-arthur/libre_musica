@@ -3,7 +3,7 @@ use crate::{note::chromatic::ChromaticNote, scale::categories::HARMONIC_MAJOR};
 use super::build::build_scale;
 
 pub fn harmonic_major_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &HARMONIC_MAJOR.to_vec())
+    build_scale(root, &HARMONIC_MAJOR)
 }
 
 #[cfg(test)]

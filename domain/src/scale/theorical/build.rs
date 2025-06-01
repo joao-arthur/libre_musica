@@ -1,14 +1,14 @@
 use crate::{
-    accident::{self, Accident},
+    accident::Accident,
     interval::Interval,
     note::{
-        chromatic::{ChromaticNote, distance_negative, distance_positive},
-        theorical::{BaseNote, TheoricalNote},
-        transform::{base_note_to_chromatic, theorical_note_to_chromatic},
+        chromatic::{distance_negative, distance_positive},
+        theorical::TheoricalNote,
+        transform::{base_note_to_chromatic},
     },
 };
 
-pub fn build_scale(root: TheoricalNote, intervals: &Vec<Interval>) -> Vec<TheoricalNote> {
+pub fn build_scale<const N: usize>(root: TheoricalNote, intervals: &[Interval; N]) -> Vec<TheoricalNote> {
     let mut res = Vec::with_capacity(intervals.len() + 1);
     res.push(root.clone());
 

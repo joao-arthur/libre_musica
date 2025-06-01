@@ -3,7 +3,7 @@ use crate::{note::chromatic::ChromaticNote, scale::categories::MINOR};
 use super::build::build_scale;
 
 pub fn minor_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &MINOR.to_vec())
+    build_scale(root, &MINOR)
 }
 
 #[cfg(test)]

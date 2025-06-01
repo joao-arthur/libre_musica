@@ -3,7 +3,7 @@ use crate::{note::chromatic::ChromaticNote, scale::categories::PENTATONIC_MAJOR}
 use super::build::build_scale;
 
 pub fn pentatonic_major_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &PENTATONIC_MAJOR.to_vec())
+    build_scale(root, &PENTATONIC_MAJOR)
 }
 
 #[cfg(test)]

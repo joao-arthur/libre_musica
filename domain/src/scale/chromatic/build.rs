@@ -1,6 +1,6 @@
 use crate::{interval::Interval, note::chromatic::ChromaticNote};
 
-pub fn build_scale(root: ChromaticNote, intervals: &Vec<Interval>) -> Vec<ChromaticNote> {
+pub fn build_scale<const N: usize>(root: ChromaticNote, intervals: &[Interval; N]) -> Vec<ChromaticNote> {
     let mut res = Vec::with_capacity(intervals.len() + 1);
     let mut curr = root;
     res.push(curr.clone());
