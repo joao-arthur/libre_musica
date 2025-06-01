@@ -1,12 +1,9 @@
-use crate::{interval::Interval, note::chromatic::ChromaticNote};
+use crate::{note::chromatic::ChromaticNote, scale::categories::MAJOR};
 
 use super::build::build_scale;
 
-const MAJOR_SCALE: [Interval; 6] =
-    [Interval::WholeTone, Interval::WholeTone, Interval::HalfTone, Interval::WholeTone, Interval::WholeTone, Interval::WholeTone];
-
 pub fn major_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &MAJOR_SCALE.to_vec())
+    build_scale(root, &MAJOR.to_vec())
 }
 
 #[cfg(test)]

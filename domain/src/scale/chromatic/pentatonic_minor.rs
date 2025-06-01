@@ -1,11 +1,9 @@
-use crate::{interval::Interval, note::chromatic::ChromaticNote};
+use crate::{note::chromatic::ChromaticNote, scale::categories::PENTATONIC_MINOR};
 
 use super::build::build_scale;
 
-const PENTATONIC_MINOR_SCALE: [Interval; 4] = [Interval::WholeAndHalfTone, Interval::WholeTone, Interval::WholeTone, Interval::WholeAndHalfTone];
-
 pub fn pentatonic_minor_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &PENTATONIC_MINOR_SCALE.to_vec())
+    build_scale(root, &PENTATONIC_MINOR.to_vec())
 }
 
 #[cfg(test)]

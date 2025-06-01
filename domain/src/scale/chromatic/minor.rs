@@ -1,12 +1,9 @@
-use crate::{interval::Interval, note::chromatic::ChromaticNote};
+use crate::{note::chromatic::ChromaticNote, scale::categories::MINOR};
 
 use super::build::build_scale;
 
-const MINOR_SCALE: [Interval; 6] =
-    [Interval::WholeTone, Interval::HalfTone, Interval::WholeTone, Interval::WholeTone, Interval::HalfTone, Interval::WholeTone];
-
 pub fn minor_scale_of(root: ChromaticNote) -> Vec<ChromaticNote> {
-    build_scale(root, &MINOR_SCALE.to_vec())
+    build_scale(root, &MINOR.to_vec())
 }
 
 #[cfg(test)]
