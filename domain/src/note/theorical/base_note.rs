@@ -84,6 +84,23 @@ pub fn distance_negative(a: &BaseNote, b: &BaseNote) -> u8 {
     acc
 }
 
+pub fn min_distance(a: &BaseNote, b: &BaseNote) -> i8 {
+    let mut acc = 0;
+    let mut curr_pos = a.clone();
+    let mut curr_neg = a.clone();
+    loop {
+        if &curr_pos == b {
+            return acc;
+        }
+        if &curr_neg == b {
+            return -acc;
+        }
+        acc += 1;
+        curr_pos = curr_pos.next();
+        curr_neg = curr_neg.prev();
+    }
+} 
+
 pub fn vec_of_vec_u8(value: Vec<u8>) -> Vec<BaseNote> {
     value.iter().filter_map(|num| BaseNote::try_from_u8(*num)).collect()
 }
@@ -94,7 +111,7 @@ pub fn vec_of_slice_u8<const N: usize>(value: [u8; N]) -> Vec<BaseNote> {
 
 #[cfg(test)]
 mod tests {
-    use super::{BaseNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8};
+    use super::{BaseNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8, min_distance};
 
     #[test]
     pub fn to_u8() {
@@ -256,5 +273,27 @@ mod tests {
         assert_eq!(distance_negative(&BaseNote::B, &BaseNote::E), 4);
         assert_eq!(distance_negative(&BaseNote::B, &BaseNote::D), 5);
         assert_eq!(distance_negative(&BaseNote::B, &BaseNote::C), 6);
+    }
+
+    #[test]
+    fn min_distance_from_c() {
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::C), 0);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::D), 1);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::E), 2);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::F), 3);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::G), -3);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::A), -2);
+        assert_eq!(min_distance(&BaseNote::C, &BaseNote::B), -1);
+    }
+
+    #[test]
+    fn min_distance_from_f() {
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::F), 0);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::G), 1);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::A), 2);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::B), 3);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::C), -3);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::D), -2);
+        assert_eq!(min_distance(&BaseNote::F, &BaseNote::E), -1);
     }
 }
