@@ -13,7 +13,7 @@ mod tests {
     use super::major_scale_of;
 
     #[test]
-    fn test_build_major_scale() {
+    fn build_major_scale() {
         assert_eq!(major_scale_of(ChromaticNote::_0), vec_of_slice_u8([0, 2, 4, 5, 7, 9, 11]));
         assert_eq!(major_scale_of(ChromaticNote::_1), vec_of_slice_u8([1, 3, 5, 6, 8, 10, 0]));
         assert_eq!(major_scale_of(ChromaticNote::_2), vec_of_slice_u8([2, 4, 6, 7, 9, 11, 1]));

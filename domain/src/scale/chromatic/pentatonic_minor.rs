@@ -13,7 +13,7 @@ mod tests {
     use super::pentatonic_minor_scale_of;
 
     #[test]
-    fn test_build_minor_scale() {
+    fn build_pentatonic_minor_scale() {
         assert_eq!(pentatonic_minor_scale_of(ChromaticNote::_0), vec_of_slice_u8([0, 3, 5, 7, 10]));
         assert_eq!(pentatonic_minor_scale_of(ChromaticNote::_1), vec_of_slice_u8([1, 4, 6, 8, 11]));
         assert_eq!(pentatonic_minor_scale_of(ChromaticNote::_2), vec_of_slice_u8([2, 5, 7, 9, 0]));

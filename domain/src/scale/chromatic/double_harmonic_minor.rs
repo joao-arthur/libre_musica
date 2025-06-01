@@ -13,7 +13,7 @@ mod tests {
     use super::double_harmonic_minor_scale_of;
 
     #[test]
-    fn test_build_harmonic_minor_scale() {
+    fn build_double_harmonic_minor_scale() {
         assert_eq!(double_harmonic_minor_scale_of(ChromaticNote::_0), vec_of_slice_u8([0, 2, 3, 6, 7, 8, 11]));
         assert_eq!(double_harmonic_minor_scale_of(ChromaticNote::_1), vec_of_slice_u8([1, 3, 4, 7, 8, 9, 0]));
         assert_eq!(double_harmonic_minor_scale_of(ChromaticNote::_2), vec_of_slice_u8([2, 4, 5, 8, 9, 10, 1]));

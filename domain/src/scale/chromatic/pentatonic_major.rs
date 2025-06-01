@@ -13,7 +13,7 @@ mod tests {
     use super::pentatonic_major_scale_of;
 
     #[test]
-    fn test_build_major_scale() {
+    fn build_pentatonic_major_scale() {
         assert_eq!(pentatonic_major_scale_of(ChromaticNote::_0), vec_of_slice_u8([0, 2, 4, 7, 9]));
         assert_eq!(pentatonic_major_scale_of(ChromaticNote::_1), vec_of_slice_u8([1, 3, 5, 8, 10]));
         assert_eq!(pentatonic_major_scale_of(ChromaticNote::_2), vec_of_slice_u8([2, 4, 6, 9, 11]));
