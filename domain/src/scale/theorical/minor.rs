@@ -13,42 +13,42 @@ mod tests {
     use super::minor_scale_of;
 
     #[test]
-    fn build_minor_scale_c() {
+    fn build_minor_scale_of_c() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("C♭")), vec_of_slice_str(["C♭", "D♭", "E𝄫", "F♭", "G♭", "A𝄫", "B𝄫"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("C")), vec_of_slice_str(["C", "D", "E♭", "F", "G", "A♭", "B♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("C♯")), vec_of_slice_str(["C♯", "D♯", "E", "F♯", "G♯", "A", "B"]));
     }
 
     #[test]
-    fn build_minor_scale_d() {
+    fn build_minor_scale_of_d() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("D♭")), vec_of_slice_str(["D♭", "E♭", "F♭", "G♭", "A♭", "B𝄫", "C♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("D")), vec_of_slice_str(["D", "E", "F", "G", "A", "B♭", "C"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("D♯")), vec_of_slice_str(["D♯", "E♯", "F♯", "G♯", "A♯", "B", "C♯"]));
     }
 
     #[test]
-    fn build_minor_scale_e() {
+    fn build_minor_scale_of_e() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("E♭")), vec_of_slice_str(["E♭", "F", "G♭", "A♭", "B♭", "C♭", "D♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("E")), vec_of_slice_str(["E", "F♯", "G", "A", "B", "C", "D"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("E♯")), vec_of_slice_str(["E♯", "F𝄪", "G♯", "A♯", "B♯", "C♯", "D♯"]));
     }
 
     #[test]
-    fn build_minor_scale_f() {
+    fn build_minor_scale_of_f() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("F♭")), vec_of_slice_str(["F♭", "G♭", "A𝄫", "B𝄫", "C♭", "D𝄫", "E𝄫"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("F")), vec_of_slice_str(["F", "G", "A♭", "B♭", "C", "D♭", "E♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("F♯")), vec_of_slice_str(["F♯", "G♯", "A", "B", "C♯", "D", "E"]));
     }
 
     #[test]
-    fn build_minor_scale_g() {
+    fn build_minor_scale_of_g() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("G♭")), vec_of_slice_str(["G♭", "A♭", "B𝄫", "C♭", "D♭", "E𝄫", "F♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("G")), vec_of_slice_str(["G", "A", "B♭", "C", "D", "E♭", "F"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("G♯")), vec_of_slice_str(["G♯", "A♯", "B", "C♯", "D♯", "E", "F♯"]));
     }
 
     #[test]
-    fn build_minor_scale_a() {
+    fn build_minor_scale_of_a() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("A𝄫")), vec_of_slice_str(["A𝄫", "B𝄫", "C𝄫", "D𝄫", "E𝄫", "F𝄫", "G𝄫"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("A♭")), vec_of_slice_str(["A♭", "B♭", "C♭", "D♭", "E♭", "F♭", "G♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("A")), vec_of_slice_str(["A", "B", "C", "D", "E", "F", "G"]));
@@ -57,7 +57,7 @@ mod tests {
     }
 
     #[test]
-    fn build_minor_scale_b() {
+    fn build_minor_scale_of_b() {
         assert_eq!(minor_scale_of(TheoricalNote::from_str("B♭")), vec_of_slice_str(["B♭", "C", "D♭", "E♭", "F", "G♭", "A♭"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("B")), vec_of_slice_str(["B", "C♯", "D", "E", "F♯", "G", "A"]));
         assert_eq!(minor_scale_of(TheoricalNote::from_str("B♯")), vec_of_slice_str(["B♯", "C𝄪", "D♯", "E♯", "F𝄪", "G♯", "A♯"]));

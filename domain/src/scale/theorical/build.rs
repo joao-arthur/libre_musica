@@ -4,7 +4,7 @@ use crate::{
     note::{
         chromatic::{distance_negative, distance_positive},
         theorical::TheoricalNote,
-        transform::{base_note_to_chromatic},
+        transform::base_note_to_chromatic,
     },
 };
 
