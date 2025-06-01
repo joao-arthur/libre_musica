@@ -1,10 +1,12 @@
+use crate::accident::Accident;
+
 use super::{
     chromatic::ChromaticNote,
     theorical::{BaseNote, TheoricalNote},
 };
 
-pub fn base_note_to_chromatic(base_note: &BaseNote) -> ChromaticNote {
-    match base_note {
+pub fn base_note_to_chromatic(note: &BaseNote) -> ChromaticNote {
+    match note {
         BaseNote::C => ChromaticNote::_0,
         BaseNote::D => ChromaticNote::_2,
         BaseNote::E => ChromaticNote::_4,
@@ -15,17 +17,15 @@ pub fn base_note_to_chromatic(base_note: &BaseNote) -> ChromaticNote {
     }
 }
 
-pub fn theorical_note_to_chromatic(theorical_note: &TheoricalNote) -> ChromaticNote {
-    let base_chromatic = base_note_to_chromatic(&theorical_note.base).to_u8() as i8;
-    let modifier = theorical_note.accident.to_i8();
-    let mut result = base_chromatic + modifier;
-    if result < 0 {
-        result += 12;
+pub fn theorical_note_to_chromatic(note: &TheoricalNote) -> ChromaticNote {
+    let base_as_chromatic = base_note_to_chromatic(&note.base);
+    match note.accident {
+        Accident::DoubleFlat => base_as_chromatic.prev().prev(),
+        Accident::Flat => base_as_chromatic.prev(),
+        Accident::Natural => base_as_chromatic,
+        Accident::Sharp => base_as_chromatic.next(),
+        Accident::DoubleSharp => base_as_chromatic.next().next(),
     }
-    if result > 11 {
-        result -= 12;
-    }
-    ChromaticNote::from_u8(result as u8)
 }
 
 #[cfg(test)]
