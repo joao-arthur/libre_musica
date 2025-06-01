@@ -116,11 +116,11 @@ impl TheoricalNote {
 }
 
 pub fn vec_of_vec_str(value: Vec<&str>) -> Vec<TheoricalNote> {
-    value.iter().map(|val| TheoricalNote::try_from_str(val)).filter_map(|num| num).collect()
+    value.iter().filter_map(|val| TheoricalNote::try_from_str(val)).collect()
 }
 
 pub fn vec_of_slice_str<const N: usize>(value: [&str; N]) -> Vec<TheoricalNote> {
-    value.to_vec().iter().map(|val| TheoricalNote::try_from_str(val)).filter_map(|num| num).collect()
+    value.to_vec().iter().filter_map(|val| TheoricalNote::try_from_str(val)).collect()
 }
 
 #[cfg(test)]

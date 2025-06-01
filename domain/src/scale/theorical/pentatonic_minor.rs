@@ -1,6 +1,6 @@
 use crate::note::theorical::TheoricalNote;
 
-use super::{build::build_scale, minor::minor_scale_of};
+use super::minor::minor_scale_of;
 
 pub fn pentatonic_minor_scale_of(root: TheoricalNote) -> Vec<TheoricalNote> {
     let mut scale = minor_scale_of(root);

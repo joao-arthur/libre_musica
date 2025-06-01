@@ -3,7 +3,7 @@ use crate::note::chromatic::ChromaticNote;
 pub fn build_fretboard(open_note: ChromaticNote, frets: u8) -> Vec<ChromaticNote> {
     let open_note_index = open_note.to_u8();
 
-    (open_note_index..(open_note_index + frets)).map(|note_index| ChromaticNote::try_from_u8(note_index % 12)).filter_map(|note| note).collect()
+    (open_note_index..(open_note_index + frets)).filter_map(|note_index| ChromaticNote::try_from_u8(note_index % 12)).collect()
 }
 
 #[cfg(test)]

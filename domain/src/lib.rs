@@ -1,7 +1,7 @@
-pub mod accident;
-pub mod format;
-pub mod instrument;
-pub mod interval;
-pub mod note;
-pub mod pitch;
-pub mod scale;
+mod accident;
+mod format;
+mod instrument;
+mod interval;
+mod note;
+mod pitch;
+mod scale;
