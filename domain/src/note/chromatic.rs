@@ -125,9 +125,26 @@ pub fn distance_negative(a: &ChromaticNote, b: &ChromaticNote) -> u8 {
     acc
 }
 
+pub fn min_distance(a: &ChromaticNote, b: &ChromaticNote) -> i8 {
+    let mut acc = 0;
+    let mut curr_pos = a.clone();
+    let mut curr_neg = a.clone();
+    loop {
+        if &curr_pos == b {
+            return acc;
+        }
+        if &curr_neg == b {
+            return -acc;
+        }
+        acc += 1;
+        curr_pos = curr_pos.next();
+        curr_neg = curr_neg.prev();
+    }
+} 
+
 #[cfg(test)]
 mod tests {
-    use super::{ChromaticNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8};
+    use super::{ChromaticNote, distance_negative, distance_positive, vec_of_slice_u8, vec_of_vec_u8, min_distance};
 
     #[test]
     pub fn format() {
@@ -336,4 +353,36 @@ mod tests {
         assert_eq!(distance_negative(&ChromaticNote::_11, &ChromaticNote::_1), 10);
         assert_eq!(distance_negative(&ChromaticNote::_11, &ChromaticNote::_0), 11);
     }
+
+    #[test]
+    fn test_min_distance_from_0() {
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_0), 0);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_1), 1);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_2), 2);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_3), 3);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_4), 4);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_5), 5);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_6), 6);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_7), -5);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_8), -4);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_9), -3);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_10), -2);
+        assert_eq!(min_distance(&ChromaticNote::_0, &ChromaticNote::_11), -1);
+    }
+
+    #[test]
+    fn test_min_distance_from_5() {
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_5), 0);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_6), 1);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_7), 2);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_8), 3);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_9), 4);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_10), 5);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_11), 6);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_0), -5);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_1), -4);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_2), -3);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_3), -2);
+        assert_eq!(min_distance(&ChromaticNote::_5, &ChromaticNote::_4), -1);
+    }  
 }
