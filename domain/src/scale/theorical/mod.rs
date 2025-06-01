@@ -1,5 +1,6 @@
 mod build;
 
+mod double_harmonic_major;
 mod double_harmonic_minor;
 mod harmonic_major;
 mod harmonic_minor;
