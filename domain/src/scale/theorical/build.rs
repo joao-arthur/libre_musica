@@ -4,7 +4,7 @@ use crate::{
     note::{
         chromatic::{distance_negative, distance_positive},
         theorical::TheoricalNote,
-        transform::base_note_to_chromatic,
+        transform::{base_note_to_chromatic, theorical_note_to_chromatic},
     },
 };
 
@@ -12,16 +12,8 @@ pub fn build_scale<const N: usize>(root: TheoricalNote, intervals: &[Interval; N
     let mut res = Vec::with_capacity(intervals.len() + 1);
     res.push(root.clone());
 
+    let mut curr_chromatic = theorical_note_to_chromatic(&root);
     let mut curr_base = root.base;
-    let mut curr_chromatic = base_note_to_chromatic(&curr_base);
-
-    curr_chromatic = match root.accident {
-        Accident::DoubleFlat => curr_chromatic.prev().prev(),
-        Accident::Flat => curr_chromatic.prev(),
-        Accident::Natural => curr_chromatic,
-        Accident::Sharp => curr_chromatic.next(),
-        Accident::DoubleSharp => curr_chromatic.next().next(),
-    };
 
     for interval in intervals {
         curr_base = curr_base.next();
