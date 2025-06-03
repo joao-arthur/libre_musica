@@ -2,7 +2,6 @@ import type { Instrument, Tuning } from "./instrument";
 import type { ScaleKind } from "./scale";
 import { Note } from "./note";
 
-
 export type Option<T extends string | number> = {
     label: string;
     value: T;

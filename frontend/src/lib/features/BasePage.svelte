@@ -4,6 +4,6 @@
 
 <div>
     <div>
-        {children}
+        {@render children?.()}
     </div>
 </div>
