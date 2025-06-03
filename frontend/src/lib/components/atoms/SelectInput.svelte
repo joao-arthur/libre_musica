@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { Options } from "@/lib/options";
+    import type { Option } from "$lib/core/options";
 
     type Props = {
         readonly name: string;
-        readonly options: Options<string>;
+        readonly options: readonly Option<string>[];
         readonly value: string;
         readonly onChange: (newValue: string) => void;
     };

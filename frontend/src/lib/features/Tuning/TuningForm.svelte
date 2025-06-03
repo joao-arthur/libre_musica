@@ -1,39 +1,27 @@
 <script lang="ts">
-    import type { ScaleKind } from "@/core/scale";
-    import type { Instrument, Tuning } from "@/core/instrument";
-    import type { Note } from "@/core/note";
-    import {
-        getMaxNumberOfStrings,
-        getMinNumberOfStrings,
-        getTuningOptions,
-        instrumentOptions,
-        noteOptions,
-        scaleKindOptions,
-    } from "@/lib/options";
-    import { SelectField } from "@/comp/molecules/SelectField";
-    import { NumberField } from "@/comp/molecules/NumberField";
+    import NumberField from "$lib/components/molecules/NumberField.svelte";
+    import SelectField from "$lib/components/molecules/SelectField.svelte";
 
-    type Props = {
-        readonly instrument: Instrument;
-        readonly root: Note;
-        readonly numberOfFrets: number;
-        readonly numberOfStrings: number;
-        readonly scaleKind: ScaleKind;
-        readonly tuning: Tuning;
-        readonly onChangeInstrument: (instrument: Instrument) => void;
-        readonly onChangeRoot: (root: Note) => void;
-        readonly onChangeNumberOfFrets: (numberOfFrets: number) => void;
-        readonly onChangeNumberOfStrings: (numberOfStrings: number) => void;
-        readonly onChangeScaleKind: (scaleKind: ScaleKind) => void;
-        readonly onChangeTuning: (tuning: Tuning) => void;
-    };
+    const { mutate, isPending, isSuccess } = useCreateAppointment();
+    
+    function onChangeInstrument(newInstrument: Instrument): void {
+        setInstrument(newInstrument);
+        setNumberOfStrings(getDefaultNumberOfStrings(instrument));
+        setTuning("standard");
+    }
+
+    function onChangeNumberOfStrings(newNumberOfStrings: number): void {
+        setNumberOfStrings(newNumberOfStrings);
+        setTuning("standard");
+    }
+
     const tuningOptions = getTuningOptions(
         instrument,
         numberOfStrings,
     );
 </script>
 
-<div className="w-48 bg-gray-200 flex flex-col items-center">
+<div>
     <div>
         <SelectField
             title="Instrument"

@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Option } from "$lib/core/options";
     import InputTitle from "../atoms/InputTitle.svelte";
+    import SelectInput from "../atoms/SelectInput.svelte";
 
     type Props = {
         readonly title: string;
