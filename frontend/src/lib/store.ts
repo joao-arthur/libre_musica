@@ -41,8 +41,8 @@ function createEventsStore() {
             instrumentStore.update((value) => ({ ...value, numberOfFrets }));
         },
         setNumberOfStrings: (numberOfStrings: number) => {
-            instrumentStore.update((value) => ({ 
-                ...value, 
+            instrumentStore.update((value) => ({
+                ...value,
                 numberOfStrings,
                 tuning: "standard",
             }));

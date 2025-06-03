@@ -3,6 +3,13 @@
     import TuningTable from "./TuningTable.svelte";
 </script>
 
+<style>
+    div {
+        display: flex;
+        height: 100%;
+    }
+</style>
+
 <div>
     <TuningForm />
     <TuningTable />

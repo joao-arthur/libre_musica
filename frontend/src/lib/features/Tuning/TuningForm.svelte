@@ -62,7 +62,17 @@
     }
 </script>
 
-<div>
+<style>
+    .container {
+        background-color: #e5e7eb;
+        width: 12rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<div class="container">
     <div>
         <SelectField
             title="Instrument"
