@@ -1,13 +1,9 @@
 <script lang="ts">
-    import type { JSX, ReactNode } from "react";
-
-    type Props = {
-        readonly children: ReactNode;
-    };
+    const { children } = $props();
 </script>
 
-<div className="flex h-svh">
-    <div className="block w-full h-full">
+<div>
+    <div>
         {children}
     </div>
 </div>

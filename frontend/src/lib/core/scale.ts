@@ -61,12 +61,8 @@ function getScaleNotes(scaleKind: ScaleKind): readonly Note[] {
     );
 }
 
-function build(note: Note, scaleKind: ScaleKind): readonly Note[] {
+export function build(note: Note, scaleKind: ScaleKind): readonly Note[] {
     return getScaleNotes(scaleKind)
         .map((relativeNumber) => relativeNumber + note)
         .map((noteRelativeNumber) => (noteRelativeNumber % 12));
 }
-
-export const scaleBus = {
-    build,
-} as const;

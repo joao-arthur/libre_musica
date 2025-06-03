@@ -1,25 +1,26 @@
-import type { Instrument, Tuning } from "@/core/instrument";
-import type { ScaleKind } from "@/core/scale";
-import { Note } from "@/core/note";
+import type { Instrument, Tuning } from "./instrument";
+import type { ScaleKind } from "./scale";
+import { Note } from "./note";
+
 
 export type Option<T extends string | number> = {
     label: string;
     value: T;
 };
 
-export const instrumentOptions: Options<Instrument> = [
+export const instrumentOptions: readonly Option<Instrument>[] = [
     { label: "Bass", value: "bass" },
     { label: "Guitar", value: "guitar" },
 ];
 
-export const scaleKindOptions: Options<ScaleKind> = [
+export const scaleKindOptions: readonly Option<ScaleKind>[] = [
     { label: "Diatonic", value: "diatonic" },
     { label: "Pentatonic", value: "pentatonic" },
     { label: "Harmonic", value: "harmonic" },
     { label: "Double harmonic", value: "doubleHarmonic" },
 ];
 
-export const noteOptions: Options<Note> = [
+export const noteOptions: readonly Option<Note>[] = [
     { label: "A", value: Note.A },
     { label: "A♯", value: Note.A_B },
     { label: "B", value: Note.B },
@@ -37,7 +38,7 @@ export const noteOptions: Options<Note> = [
 export function getTuningOptions(
     instrument: Instrument,
     numberOfStrings: number,
-): Options<Tuning> {
+): readonly Option<Tuning>[] {
     switch (instrument) {
         case "bass":
             switch (numberOfStrings) {

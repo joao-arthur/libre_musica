@@ -1,5 +1,4 @@
 import { num } from "funis";
-import { formatBus } from "./format";
 
 export enum Note {
     A,
@@ -16,7 +15,7 @@ export enum Note {
     G_A,
 }
 
-function hasAccident(note: Note): boolean {
+export function hasAccident(note: Note): boolean {
     switch (note) {
         case Note.A:
             return false;
@@ -45,7 +44,7 @@ function hasAccident(note: Note): boolean {
     }
 }
 
-function getSharp(note: Note): Note {
+export function getSharp(note: Note): Note {
     switch (note) {
         case Note.A:
             return Note.A_B;
@@ -74,7 +73,7 @@ function getSharp(note: Note): Note {
     }
 }
 
-function getFlat(note: Note): Note {
+export function getFlat(note: Note): Note {
     switch (note) {
         case Note.A:
             return Note.G_A;
@@ -103,7 +102,7 @@ function getFlat(note: Note): Note {
     }
 }
 
-function getRange(note: Note, size: number): readonly Note[] {
+export function getRange(note: Note, size: number): readonly Note[] {
     return num
         .range(0, size)
         .map((number) => number + note)
@@ -111,10 +110,3 @@ function getRange(note: Note, size: number): readonly Note[] {
         .filter((maybeNote) => maybeNote !== undefined)
         .map((note) => note!);
 }
-
-export const noteBus = {
-    getSharp,
-    getFlat,
-    hasAccident,
-    getRange,
-} as const;

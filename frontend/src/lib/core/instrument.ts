@@ -58,14 +58,10 @@ tunings.set(getKey("guitar", 7, "standard"), [
     Note.E,
 ]);
 
-function getTuning(
+export function getTuning(
     instrument: Instrument,
     numberOfStrings: number,
     tuning: Tuning,
 ): (readonly Note[]) | undefined {
     return tunings.get(getKey(instrument, numberOfStrings, tuning));
 }
-
-export const instrumentBus = {
-    getTuning,
-};

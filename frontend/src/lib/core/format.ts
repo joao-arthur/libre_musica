@@ -1,8 +1,10 @@
-import { Note, noteBus } from "./note";
+import { getFlat, hasAccident, Note } from "./note";
 
 export type NoteNaming = "english" | "romance";
 
 type NamingFn = (note: Note) => string;
+
+const sharp = "♯";
 
 function englishNaming(note: Note): string {
     switch (note) {
@@ -55,24 +57,13 @@ function getNamingFn(noteNaming: NoteNaming): NamingFn {
     }
 }
 
-function formatNote(
+export function formatNote(
     note: Note,
     noteNaming: NoteNaming,
 ): string {
     const namingFn = getNamingFn(noteNaming);
-    if (!noteBus.hasAccident(note)) {
+    if (!hasAccident(note)) {
         return namingFn(note);
     }
-    return namingFn(noteBus.getFlat(note)) + sharp;
+    return namingFn(getFlat(note)) + sharp;
 }
-
-function formatScale(): string {
-    return "";
-}
-
-const sharp = "♯";
-
-export const formatBus = {
-    formatNote,
-    formatScale,
-};

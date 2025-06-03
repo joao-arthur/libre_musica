@@ -1,11 +1,11 @@
 <script lang="ts">
     import type { Options } from "@/lib/options";
 
-    type Props<T extends string | number> = {
+    type Props = {
         readonly name: string;
-        readonly options: Options<T>;
-        readonly value: T;
-        readonly onChange: (newValue: T) => void;
+        readonly options: Options<string>;
+        readonly value: string;
+        readonly onChange: (newValue: string) => void;
     };
 
     const {
@@ -13,11 +13,11 @@
         options,
         value,
         onChange,
-    } = $props();
+    }: Props = $props();
 </script>
 
 <select
-    onChange={(e) => {
+    oninput={(e) => {
         const selected = options.find((o) => String(o.value) === String(e.target.value))?.value;
         if (selected !== undefined) {
             onChange(selected);
@@ -26,11 +26,9 @@
     {name}
     {value}
 >
-    {
-        options.map(({ value, label }) => (
-            <option value={value}>
-                {label}
-            </option>
-        ))
-    }
+    {#each options as option}
+        <option value={option.value}>
+            {option.label}
+        </option>
+    {/each}
 </select>
