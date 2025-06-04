@@ -1,29 +1,34 @@
-# Música
+# libre_musica
 
 This project aims to help learning music theory in string instruments.
-
-## TODO
-
--   router history
--   sidebar
-    -   icons
-    -   hamburguer
--   header
-    -   fixed?
--   footer
-    -   info
--   home page
--   a better not found page
--   better layout
--   enhance chords (suspended chords, for instance)
--   chord progressions
--   note and chord sounds
--   sound effects
--   musical notation
--   play songs
 
 ## Run it
 
 > pnpm install
 
 > pnpm dev
+
+## Roadmap
+
+- 404 page
+- Select chords
+- Note and chart
+- Musical notation
+- Play notes
+- Record, save, load
+- Representations
+    - Circle of fifths
+    - Circle of Fourths
+    - Circle of camelot
+    - Harmonic Table
+    - Euler's Tonnetz
+
+## TODO
+
+- Strings table
+    - Log or linear scale, enhanced style
+    - Fret 0 separated from the rest
+        - Lower or elevate the open note
+        - Lower or elevate the open note
+    - Frets
+        - accident notes, toggle sharp flat
