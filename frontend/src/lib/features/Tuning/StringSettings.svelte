@@ -39,10 +39,6 @@
         );
     });
 
-    function onChangeInstrument(instrument: Instrument) {
-        instrumentTable.setInstrument(instrument);
-    }
-
     function onChangeNumberOfFrets(numberOfFrets: number) {
         instrumentTable.setNumberOfFrets(numberOfFrets);
     }
@@ -76,17 +72,10 @@
 
 <div class="container">
     <div>
-        <SelectField
-            title="Instrument"
-            name="instrument"
-            options={instrumentOptions}
-            value={instrument}
-            onChange={onChangeInstrument}
-        />
         <NumberField
             title="Frets"
             min={11}
-            max={24}
+            max={30}
             value={numberOfFrets}
             onChange={onChangeNumberOfFrets}
         />

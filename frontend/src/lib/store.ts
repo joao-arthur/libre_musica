@@ -15,10 +15,10 @@ type Store = {
 
 function createEventsStore() {
     const initialValue: Store = {
-        instrument: "bass",
+        instrument: "guitar",
         root: Note.C,
         numberOfFrets: 11,
-        numberOfStrings: 4,
+        numberOfStrings: 6,
         scaleKind: "diatonic",
         tuning: "standard",
     };
