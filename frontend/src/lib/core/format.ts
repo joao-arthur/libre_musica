@@ -27,43 +27,9 @@ function englishNaming(note: Note): string {
     }
 }
 
-function romanceNaming(note: Note): string {
-    switch (note) {
-        case Note.A:
-            return "Lá";
-        case Note.B:
-            return "Só";
-        case Note.C:
-            return "Dó";
-        case Note.D:
-            return "Ré";
-        case Note.E:
-            return "Mí";
-        case Note.F:
-            return "Fá";
-        case Note.G:
-            return "Sol";
-        default:
-            return "";
-    }
-}
-
-function getNamingFn(noteNaming: NoteNaming): NamingFn {
-    switch (noteNaming) {
-        case "english":
-            return englishNaming;
-        case "romance":
-            return romanceNaming;
-    }
-}
-
-export function formatNote(
-    note: Note,
-    noteNaming: NoteNaming,
-): string {
-    const namingFn = getNamingFn(noteNaming);
+export function formatNote(note: Note): string {
     if (!hasAccident(note)) {
-        return namingFn(note);
+        return englishNaming(note);
     }
-    return namingFn(getFlat(note)) + sharp;
+    return englishNaming(getFlat(note)) + sharp;
 }

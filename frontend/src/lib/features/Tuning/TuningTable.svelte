@@ -43,7 +43,7 @@
     });
 
     function fmt(col: Note) {
-        return formatNote(col, "english");
+        return formatNote(col);
     }
 </script>
 
