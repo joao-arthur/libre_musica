@@ -1,11 +1,9 @@
 <script lang="ts">
     import type { Instrument, Tuning } from "$lib/core/instrument";
     import type { ScaleKind } from "$lib/core/scale";
+    import type { Option } from "$lib/core/options";
 
-    import NumberField from "$lib/components/molecules/NumberField.svelte";
-    import SelectField from "$lib/components/molecules/SelectField.svelte";
-
-    import { getRange, Note } from "$lib/core/note";
+    import { Note } from "$lib/core/note";
     import { instrumentTable } from "$lib/store";
     import {
         getMaxNumberOfStrings,
@@ -16,12 +14,16 @@
         scaleKindOptions,
     } from "$lib/core/options";
 
-    let instrument: Instrument = undefined!;
-    let root: Note = undefined!;
-    let numberOfFrets: number = undefined!;
-    let numberOfStrings: number = undefined!;
-    let scaleKind: ScaleKind = undefined!;
-    let tuning: Tuning = undefined!;
+    import NumberField from "$lib/components/molecules/NumberField.svelte";
+    import SelectField from "$lib/components/molecules/SelectField.svelte";
+
+    let instrument: Instrument;
+    let root: Note;
+    let numberOfFrets: number;
+    let numberOfStrings: number;
+    let scaleKind: ScaleKind;
+    let tuning: Tuning;
+    let tuningOptions: readonly Option<Tuning>[];
 
     instrumentTable.store.subscribe((value) => {
         instrument = value.instrument;
@@ -30,35 +32,35 @@
         numberOfStrings = value.numberOfStrings;
         scaleKind = value.scaleKind;
         tuning = value.tuning;
+
+        tuningOptions = getTuningOptions(
+            instrument,
+            numberOfStrings,
+        );
     });
 
-    const tuningOptions = getTuningOptions(
-        instrument,
-        numberOfStrings,
-    );
-
-    function onChangeInstrument(instrument: string) {
-        instrumentTable.setInstrument(instrument as any);
+    function onChangeInstrument(instrument: Instrument) {
+        instrumentTable.setInstrument(instrument);
     }
 
-    function onChangeNumberOfFrets(instrument: number) {
-        instrumentTable.setNumberOfFrets(instrument as any);
+    function onChangeNumberOfFrets(numberOfFrets: number) {
+        instrumentTable.setNumberOfFrets(numberOfFrets);
     }
 
-    function onChangeNumberOfStrings(instrument: number) {
-        instrumentTable.setNumberOfStrings(instrument as any);
+    function onChangeNumberOfStrings(numberOfStrings: number) {
+        instrumentTable.setNumberOfStrings(numberOfStrings);
     }
 
-    function onChangeScaleKind(instrument: string) {
-        instrumentTable.setScaleKind(instrument as any);
+    function onChangeScaleKind(scaleKind: ScaleKind) {
+        instrumentTable.setScaleKind(scaleKind);
     }
 
-    function onChangeTuning(instrument: string) {
-        instrumentTable.setTuning(instrument as any);
+    function onChangeTuning(tuning: Tuning) {
+        instrumentTable.setTuning(tuning);
     }
 
-    function onChangeRoot(instrument: string) {
-        instrumentTable.setRoot(instrument as any);
+    function onChangeRoot(root: Note) {
+        instrumentTable.setRoot(root);
     }
 </script>
 

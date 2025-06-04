@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" generics="Op extends string | number">
     import type { Option } from "$lib/core/options";
     import InputTitle from "../atoms/InputTitle.svelte";
     import SelectInput from "../atoms/SelectInput.svelte";
@@ -6,9 +6,9 @@
     type Props = {
         readonly title: string;
         readonly name: string;
-        readonly options: readonly Option<string>[];
-        readonly value: string;
-        readonly onChange: (newValue: string) => void;
+        readonly options: readonly Option<Op>[];
+        readonly value: Op;
+        readonly onChange: (newValue: Op) => void;
     };
 
     const { title, name, options, value, onChange }: Props = $props();

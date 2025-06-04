@@ -16,10 +16,7 @@
     function handleOnChange(value: string) {
         if (!value) return;
         const newValue = Number(value);
-        if (newValue > max) {
-            return;
-        }
-        if (newValue < min) {
+        if (newValue > max || newValue < min) {
             return;
         }
         onChange(newValue);

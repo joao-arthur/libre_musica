@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { formatNote } from "$lib/core/format";
-
     import type { Instrument, Tuning } from "$lib/core/instrument";
     import type { ScaleKind } from "$lib/core/scale";
+    import type { Note } from "$lib/core/note";
 
+    import { num } from "funis";
+    import { formatNote } from "$lib/core/format";
     import { getTuning } from "$lib/core/instrument";
-    import { getRange, Note } from "$lib/core/note";
+    import { getRange } from "$lib/core/note";
     import { build } from "$lib/core/scale";
     import { instrumentTable } from "$lib/store";
-    import { num } from "funis";
 
     let instrument: Instrument;
     let root: Note;
