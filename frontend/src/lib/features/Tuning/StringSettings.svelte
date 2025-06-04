@@ -9,13 +9,12 @@
         getMaxNumberOfStrings,
         getMinNumberOfStrings,
         getTuningOptions,
-        instrumentOptions,
         noteOptions,
         scaleKindOptions,
     } from "$lib/core/options";
 
     import NumberField from "$lib/components/molecules/NumberField.svelte";
-    import SelectField from "$lib/components/molecules/SelectField.svelte";
+    import RadioGroupField from "$lib/components/molecules/RadioGroupField.svelte";
 
     let instrument: Instrument;
     let root: Note;
@@ -62,11 +61,34 @@
 
 <style>
     .container {
+        width: 100%;
         background-color: #e5e7eb;
-        width: 12rem;
         display: flex;
-        flex-direction: column;
+    }
+
+    section {
+        display: flex;
         align-items: center;
+        width: 100%;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    li {
+        display: flex;
+        border-radius: 99px;
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+
+        justify-content: center;
+        align-items: center;
+
+        background-color: red;
     }
 </style>
 
@@ -86,26 +108,35 @@
             value={numberOfStrings}
             onChange={onChangeNumberOfStrings}
         />
-        <SelectField
-            name="scaleKind"
-            title="Scale"
-            options={scaleKindOptions}
-            value={scaleKind}
-            onChange={onChangeScaleKind}
-        />
-        <SelectField
-            title="Tuning"
-            name="tuning"
-            options={tuningOptions}
-            value={tuning}
-            onChange={onChangeTuning}
-        />
-        <SelectField
+        <section>
+            <RadioGroupField
+                name="scaleKind"
+                title="Scale"
+                options={scaleKindOptions}
+                value={scaleKind}
+                onChange={onChangeScaleKind}
+                size="lg"
+            />
+        </section>
+        <section>
+            <RadioGroupField
+                title="Tuning"
+                name="tuning"
+                options={tuningOptions}
+                value={tuning}
+                onChange={onChangeTuning}
+                size="md"
+            />
+        </section>
+        <section>
+            <RadioGroupField
             title="Key"
             name="key"
             options={noteOptions}
             value={root}
             onChange={onChangeRoot}
-        />
+            size="sm"
+            />
+        </section>
     </div>
 </div>

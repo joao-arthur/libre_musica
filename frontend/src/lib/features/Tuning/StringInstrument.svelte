@@ -57,6 +57,10 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        margin: 0;
+        border: 0;
+        padding: 0;  
     }
 
     .row {
@@ -64,6 +68,8 @@
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
+
+
     }
 
     .col {
@@ -73,28 +79,36 @@
         width: 2.75rem;
         height: 2.75rem;
         flex-shrink: 0;
+
+
+
+        border: 1px solid black;
     }
 
     .colcontent {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 2.5rem; /* 40px */
-        height: 2.5rem; /* 40px */
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
         border-radius: 9999px;
         color: white;
+
+
     }
 
     .scale-included {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 40px;
+        height: 40px;
         background-color: #1e40af;
     }
 
     .scale-excluded {
-        width: 2rem;
-        height: 2rem;
+        width: 34px;
+        height: 34px;
         background-color: #60a5fa;
+        color: black;
     }
 
     .footer {

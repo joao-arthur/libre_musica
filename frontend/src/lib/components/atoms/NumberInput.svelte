@@ -23,6 +23,15 @@
     }
 </script>
 
+<style>
+    input {
+        height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+    }
+</style>
+
 <input
     type="number"
     oninput={(e) => handleOnChange(e.currentTarget.value)}

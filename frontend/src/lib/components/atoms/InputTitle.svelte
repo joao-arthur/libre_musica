@@ -5,6 +5,7 @@
 <style>
     h3 {
         font-size: 18px;
+        width: 80px;
     }
 </style>
 
