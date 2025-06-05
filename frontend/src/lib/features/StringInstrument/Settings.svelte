@@ -130,12 +130,12 @@
         </section>
         <section>
             <RadioGroupField
-            title="Key"
-            name="key"
-            options={noteOptions}
-            value={root}
-            onChange={onChangeRoot}
-            size="sm"
+                title="Key"
+                name="key"
+                options={noteOptions}
+                value={root}
+                onChange={onChangeRoot}
+                size="sm"
             />
         </section>
     </div>

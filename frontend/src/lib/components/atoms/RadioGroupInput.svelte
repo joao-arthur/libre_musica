@@ -63,24 +63,18 @@
 
 <ul>
     {#each options as note}
-        <li
-       
-        >
-         <button
-         class={
-            [
-              note.value === value ? "selected" : "unselected",
-              size=== "sm"?"small" : "",
-               size=== "md"? "medium" : "",
-               size==="lg"? "big" : "",
-            ].join(" ")
-          }
-        
-         onclick={e => onChange(note.value) }
-         >
-             {note.label}
-         </button>
-        
-    </li>
+        <li>
+            <button
+                class={[
+                    note.value === value ? "selected" : "unselected",
+                    size === "sm" ? "small" : "",
+                    size === "md" ? "medium" : "",
+                    size === "lg" ? "big" : "",
+                ].join(" ")}
+                onclick={(e) => onChange(note.value)}
+            >
+                {note.label}
+            </button>
+        </li>
     {/each}
 </ul>

@@ -13,7 +13,7 @@
         readonly size: "sm" | "md" | "lg";
     };
 
-    const { title, name, options, value, onChange,size }: Props = $props();
+    const { title, name, options, value, onChange, size }: Props = $props();
 </script>
 
 <style>
