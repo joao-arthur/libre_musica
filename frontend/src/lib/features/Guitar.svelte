@@ -1,6 +1,6 @@
 <script lang="ts">
-    import StringSettings from "./Tuning/StringSettings.svelte";
-    import StringsInstrument from "./Tuning/StringInstrument.svelte";
+    import StringSettings from "./StringInstrument/StringSettings.svelte";
+    import StringsInstrument from "./StringInstrument/StringInstrument.svelte";
 </script>
 
 <style>
