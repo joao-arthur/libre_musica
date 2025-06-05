@@ -144,8 +144,20 @@
     .rowaqui {
         display: flex;
         flex-direction: row;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 1px;
+        align-items: center;
+        justify-content: center;
     }
 
+    .colaqui {
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .scale-excluded {
         width: 34px;
         height: 34px;
