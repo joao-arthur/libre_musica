@@ -21,7 +21,6 @@
     let fretboard: readonly (readonly Note[])[];
     let currentScale: readonly Note[];
     let rows: readonly (readonly Note[])[];
-    let rangeOfFrets: readonly number[];
 
     instrumentTable.store.subscribe((value) => {
         instrument = value.instrument;
@@ -34,9 +33,8 @@
         tuningNotes = getTuning(instrument, numberOfStrings, tuning) || [];
         fretboard = tuningNotes.map((baseNote) => getRange(baseNote, numberOfFrets));
         currentScale = build(root, scaleKind);
-        rows = [...fretboard].reverse();
+        rows = fretboard.toReversed();
 
-        rangeOfFrets = num.range(0, numberOfFrets);
     });
 
     function fmt(col: Note) {
@@ -46,7 +44,7 @@
 
 <div>
     {#each rows as row}
-        <div class="cell-container">
+        <div class="note-container">
             <button>&lt;</button>
             <div
                 class={currentScale.includes(row[0])
@@ -66,7 +64,7 @@
 </div>
 
 <style>
-    .cell-container {
+    .note-container {
         display: flex;
         align-items: center;
         justify-content: center;
