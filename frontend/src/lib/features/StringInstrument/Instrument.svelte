@@ -47,68 +47,74 @@
 
 <div class="container">
     <InstrumentOpenFret />
-    <div class="frets">
-        {#each rangeOfFrets.slice(1) as i}
-            <div class="colaqui" style={`width: ${100 / (rangeOfFrets.length - 1)}%`}>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[0][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[0][i])}</span>
+    <div class="content">
+        <div class="frets">
+            {#each rangeOfFrets.slice(1) as i}
+                <div class="colaqui" style={`width: ${100 / (rangeOfFrets.length - 1)}%`}>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[0][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[0][i])}</span>
+                        </div>
+                    </div>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[1][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[1][i])}</span>
+                        </div>
+                    </div>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[2][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[2][i])}</span>
+                        </div>
+                    </div>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[3][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[3][i])}</span>
+                        </div>
+                    </div>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[4][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[4][i])}</span>
+                        </div>
+                    </div>
+                    <div class="rowaqui">
+                        <div
+                            class={currentScale.includes(rows[5][i])
+                            ? "colcontent scale-included"
+                            : "colcontent scale-excluded"}
+                        >
+                            <span>{fmt(rows[5][i])}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[1][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[1][i])}</span>
+            {/each}
+        </div>
+        <div style="display: flex; width: 100%;">
+            {#each rangeOfFrets.slice(1) as i}
+                    <div class="footer-col" style={`width: ${100 / (rangeOfFrets.length - 1)}%`}>
+                        <span>{i}</span>
                     </div>
-                </div>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[2][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[2][i])}</span>
-                    </div>
-                </div>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[3][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[3][i])}</span>
-                    </div>
-                </div>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[4][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[4][i])}</span>
-                    </div>
-                </div>
-                <div class="rowaqui">
-                    <div
-                        class={currentScale.includes(rows[5][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
-                    >
-                        <span>{fmt(rows[5][i])}</span>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <span>{i}</span>
-                </div>
-            </div>
-        {/each}
+            {/each}
+        </div>
     </div>
 </div>
 
@@ -116,6 +122,12 @@
     .container {
         width: 100%;
         display: flex;
+    }
+
+    .content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .frets {
