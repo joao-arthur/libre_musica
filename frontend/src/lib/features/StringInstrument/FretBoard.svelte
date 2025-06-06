@@ -33,9 +33,7 @@
         tuning = value.tuning;
 
         tuningNotes = getTuning(instrument, numberOfStrings, tuning) || [];
-        fretboard = tuningNotes.map((baseNote) =>
-            getRange(baseNote, numberOfFrets),
-        );
+        fretboard = tuningNotes.map((baseNote) => getRange(baseNote, numberOfFrets));
         currentScale = build(root, scaleKind);
         rows = [...fretboard].toReversed();
 
@@ -56,8 +54,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[0][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[0][i])}</span>
                 </div>
@@ -65,8 +63,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[1][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[1][i])}</span>
                 </div>
@@ -74,8 +72,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[2][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[2][i])}</span>
                 </div>
@@ -83,8 +81,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[3][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[3][i])}</span>
                 </div>
@@ -92,8 +90,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[4][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[4][i])}</span>
                 </div>
@@ -101,8 +99,8 @@
             <div class="rowaqui">
                 <div
                     class={currentScale.includes(rows[5][i])
-                        ? "colcontent scale-included"
-                        : "colcontent scale-excluded"}
+                    ? "colcontent scale-included"
+                    : "colcontent scale-excluded"}
                 >
                     <span>{fmt(rows[5][i])}</span>
                 </div>

@@ -3,7 +3,6 @@
     import type { ScaleKind } from "$lib/core/scale";
     import type { Note } from "$lib/core/note";
 
-    import { num } from "funis";
     import { formatNote } from "$lib/core/format";
     import { getTuning } from "$lib/core/instrument";
     import { getRange } from "$lib/core/note";
@@ -34,7 +33,6 @@
         fretboard = tuningNotes.map((baseNote) => getRange(baseNote, numberOfFrets));
         currentScale = build(root, scaleKind);
         rows = fretboard.toReversed();
-
     });
 
     function fmt(col: Note) {
