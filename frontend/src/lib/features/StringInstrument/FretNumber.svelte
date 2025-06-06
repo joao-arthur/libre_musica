@@ -1,6 +1,7 @@
 <script lang="ts">
     import { num } from "funis";
     import { instrumentTable } from "$lib/store";
+    import { fretTemperedSize } from "$lib/core/fret";
 
     let numberOfFrets: number;
     let rangeOfFrets: readonly number[];
@@ -12,7 +13,7 @@
 </script>
 <div class="container">
     {#each rangeOfFrets.slice(1) as i}
-        <div class="col" style={`width: ${100 / (rangeOfFrets.length - 1)}%`}>
+        <div class="col" style={`width: ${fretTemperedSize(100 / rangeOfFrets.length, i) * 100}%`}>
             <span>{i}</span>
         </div>
     {/each}
@@ -27,8 +28,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 2.75rem;
         height: 2.75rem;
-        flex-shrink: 0;
     }
 </style>

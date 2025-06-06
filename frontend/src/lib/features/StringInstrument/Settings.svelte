@@ -97,7 +97,7 @@
         <NumberField
             title="Frets"
             min={11}
-            max={30}
+            max={36}
             value={numberOfFrets}
             onChange={onChangeNumberOfFrets}
         />

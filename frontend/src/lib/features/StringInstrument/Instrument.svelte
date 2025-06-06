@@ -16,6 +16,7 @@
     .container {
         width: 100%;
         display: flex;
+        overflow: hidden;
     }
 
     .content {

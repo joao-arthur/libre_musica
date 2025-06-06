@@ -2,10 +2,10 @@
     import type { Instrument, Tuning } from "$lib/core/instrument";
     import type { ScaleKind } from "$lib/core/scale";
     import type { Note } from "$lib/core/note";
-
     import { num } from "funis";
     import { getTuning } from "$lib/core/instrument";
     import { getRange } from "$lib/core/note";
+    import { fretTemperedSize } from "$lib/core/fret";
     import { build } from "$lib/core/scale";
     import { instrumentTable } from "$lib/store";
     import NoteCircle from "./NoteVisualization.svelte";
@@ -42,10 +42,7 @@
 
 <div class="container">
     {#each rangeOfFrets.slice(1) as i}
-        <div
-            class="col"
-            style={`width: ${100 / (rangeOfFrets.length - 1)}%`}
-        >
+        <div class="col" style={`width: ${fretTemperedSize(100 / rangeOfFrets.length, i) * 100}%`}>
             {#each rows as row}
                 <div class="row">
                     <NoteCircle active={currentScale.includes(row[i])} note={row[i]} />
@@ -74,7 +71,8 @@
         flex-direction: row;
         width: 2.75rem;
         height: 2.75rem;
-        padding: 1px;
+        padding-top: 1px;
+        padding-bottom: 1px;
         align-items: center;
         justify-content: center;
     }
