@@ -4,12 +4,11 @@
     import type { Note } from "$lib/core/note";
 
     import { num } from "funis";
-    import { formatNote } from "$lib/core/format";
     import { getTuning } from "$lib/core/instrument";
     import { getRange } from "$lib/core/note";
     import { build } from "$lib/core/scale";
     import { instrumentTable } from "$lib/store";
-    import OpenNote from "./OpenNote.svelte";
+    import NoteCircle from "./NoteCircle.svelte";
 
     let instrument: Instrument;
     let root: Note;
@@ -39,101 +38,38 @@
 
         rangeOfFrets = num.range(0, numberOfFrets);
     });
-
-    function fmt(col: Note) {
-        return formatNote(col);
-    }
 </script>
 
-<div class="frets">
+<div class="container">
     {#each rangeOfFrets.slice(1) as i}
         <div
-            class="colaqui"
+            class="col"
             style={`width: ${100 / (rangeOfFrets.length - 1)}%`}
         >
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[0][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[0][i])}</span>
+            {#each rows as row}
+                <div class="row">
+                    <NoteCircle active={currentScale.includes(row[i])} note={row[i]} />
                 </div>
-            </div>
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[1][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[1][i])}</span>
-                </div>
-            </div>
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[2][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[2][i])}</span>
-                </div>
-            </div>
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[3][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[3][i])}</span>
-                </div>
-            </div>
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[4][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[4][i])}</span>
-                </div>
-            </div>
-            <div class="rowaqui">
-                <div
-                    class={currentScale.includes(rows[5][i])
-                    ? "colcontent scale-included"
-                    : "colcontent scale-excluded"}
-                >
-                    <span>{fmt(rows[5][i])}</span>
-                </div>
-            </div>
+            {/each}
         </div>
     {/each}
 </div>
 
 <style>
-    .frets {
+    .container {
         display: flex;
         flex-direction: row;
         width: 100%;
     }
 
-    .colcontent {
+    .col {
+        border: 1px solid black;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        border-radius: 9999px;
-        color: white;
     }
 
-    .scale-included {
-        width: 40px;
-        height: 40px;
-        background-color: #1e40af;
-    }
-
-    .rowaqui {
+    .row {
         display: flex;
         flex-direction: row;
         width: 2.75rem;
@@ -141,19 +77,5 @@
         padding: 1px;
         align-items: center;
         justify-content: center;
-    }
-
-    .colaqui {
-        border: 1px solid black;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .scale-excluded {
-        width: 34px;
-        height: 34px;
-        background-color: #60a5fa;
-        color: black;
     }
 </style>

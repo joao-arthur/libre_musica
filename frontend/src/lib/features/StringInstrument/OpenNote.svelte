@@ -3,11 +3,11 @@
     import type { ScaleKind } from "$lib/core/scale";
     import type { Note } from "$lib/core/note";
 
-    import { formatNote } from "$lib/core/format";
     import { getTuning } from "$lib/core/instrument";
     import { getRange } from "$lib/core/note";
     import { build } from "$lib/core/scale";
     import { instrumentTable } from "$lib/store";
+    import NoteCircle from "./NoteCircle.svelte";
 
     let instrument: Instrument;
     let root: Note;
@@ -34,23 +34,13 @@
         currentScale = build(root, scaleKind);
         rows = fretboard.toReversed();
     });
-
-    function fmt(col: Note) {
-        return formatNote(col);
-    }
 </script>
 
 <div>
     {#each rows as row}
         <div class="note-container">
             <button>&lt;</button>
-            <div
-                class={currentScale.includes(row[0])
-                ? "cell-content scale-included"
-                : "cell-content scale-excluded"}
-            >
-                <span>{fmt(row[0])}</span>
-            </div>
+            <NoteCircle active={currentScale.includes(row[0])} note={row[0]} />
             <button>&gt;</button>
         </div>
     {/each}
@@ -66,34 +56,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 2.75rem;
         height: 2.75rem;
         flex-shrink: 0;
         border: 1px solid black;
-    }
-
-    .cell-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        border-radius: 9999px;
-        color: white;
-    }
-
-    .scale-included {
-        width: 40px;
-        height: 40px;
-        background-color: #1e40af;
-    }
-
-    .scale-excluded {
-        width: 34px;
-        height: 34px;
-        background-color: #60a5fa;
-        color: black;
     }
 
     .footer {
