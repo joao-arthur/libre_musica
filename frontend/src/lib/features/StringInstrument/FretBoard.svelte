@@ -8,7 +8,7 @@
     import { getRange } from "$lib/core/note";
     import { build } from "$lib/core/scale";
     import { instrumentTable } from "$lib/store";
-    import NoteCircle from "./NoteCircle.svelte";
+    import NoteCircle from "./NoteVisualization.svelte";
 
     let instrument: Instrument;
     let root: Note;
